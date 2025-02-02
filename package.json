@@ -1,0 +1,26 @@
+{
+  "name": "final-project",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "preview": "npx wrangler pages dev",
+    "pages": "npx @cloudflare/next-on-pages",
+    "lint": "next lint --fix"
+  },
+  "dependencies": {
+    "next": "15.1.5",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@cloudflare/next-on-pages": "^1.13.7",
+    "@cloudflare/workers-types": "^4.20250129.0",
+    "@eslint/eslintrc": "^3",
+    "eslint": "^9",
+    "eslint-config-next": "15.1.5",
+    "vercel": "^40.1.0",
+    "wrangler": "^3.107.2"
+  }
+}
