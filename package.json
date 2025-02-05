@@ -10,6 +10,7 @@
     "lint": "next lint --fix"
   },
   "dependencies": {
+    "@vanilla-extract/next-plugin": "^2.4.9",
     "next": "15.1.5",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"

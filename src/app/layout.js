@@ -1,14 +1,16 @@
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
+import localFont from 'next/font/local';
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+import Header from 'components/header';
+
+import 'styles/css/theme/global.css';
+
+const comicSans = localFont({
+  src: '../styles/fonts/comic-sans-ms.woff', 
+  variable: '--font-comic-sans-ms'
 });
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const lucidaFax = localFont({
+  src: '../styles/fonts/lucida-fax-regular-v2.woff',
+  variable: '--font-lucida-fax'
 });
 
 export const metadata = {
@@ -19,9 +21,13 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+      <head>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" />
+      </head>
+      <body className={`${lucidaFax.variable} ${comicSans.variable}`}>
+        <Header />
         {children}
       </body>
     </html>
   );
-}
+};
