@@ -6,14 +6,14 @@ export const header = styleVariants({
   header: {
     display: vars.display.flex,
     justifyContent: vars.justifyContent.space,
-    padding: '5px'
+    padding: '25px'
   },
   box: {
 
   },
   logo: {
-    width: '125px',
-    height: '125px'
+    width: '100px',
+    height: '100px'
   },
   menu: {
     textAlign: vars.side.center,
