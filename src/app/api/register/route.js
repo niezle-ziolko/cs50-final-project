@@ -1,15 +1,16 @@
 import { getRequestContext } from '@cloudflare/next-on-pages';
 
-export default async function handler(req, res) {
-  if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Method Not Allowed' });
-  }
 
-  const { username, email, password } = req.body;
+export async function POST(request) {
+  const requestBody = await request.text();
+  const { username, email, password } = JSON.parse(requestBody);
 
   if (!username || !email || !password) {
-    return res.status(400).json({ error: 'All fields are required' });
-  }
+    return new Response(JSON.stringify({ error: 'All fields are required.' }), {
+      status: 400,
+      headers: { 'Content-Type': 'application/json' }
+    });
+  };
 
   try {
     const db = getRequestContext().env.DATABASE;;
@@ -19,10 +20,18 @@ export default async function handler(req, res) {
       VALUES (?, ?, ?)
     `).bind(username, email, password).run();
 
-    res.status(201).json({ message: 'User registered successfully', userId: result.lastInsertRowid });
+
+    return new Response(JSON.stringify({ message: 'User registered successfully', userId: result.lastInsertRowid }), {
+      status: 200,
+      headers: corsHeaders
+    });
   } catch (error) {
     console.error('Database error:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
+
+    return new Response(JSON.stringify({ error: error.message }), {
+      status: 500,
+      headers: { 'Content-Type': 'application/json' }
+    });
   }
 }
 
