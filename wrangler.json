@@ -23,5 +23,9 @@
       "database_name": "cs50",
       "database_id": "e7af7a4f-4f32-4aaa-9fe3-33db3653c0b7"
     }
-  ]
+  ],
+  "vars": {
+    "NODE_VERSION": "23.7.0",
+    "PNPM_VERSION": "10.2.0"
+  }
 }
