@@ -10,18 +10,17 @@
     "lint": "next lint --fix"
   },
   "dependencies": {
-    "@vanilla-extract/next-plugin": "^2.4.9",
     "next": "15.1.5",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
   "devDependencies": {
     "@cloudflare/next-on-pages": "^1.13.7",
-    "@cloudflare/workers-types": "^4.20250129.0",
-    "@eslint/eslintrc": "^3",
-    "eslint": "^9",
+    "@cloudflare/workers-types": "^4.20250204.0",
+    "@eslint/eslintrc": "^3.2.0",
+    "eslint": "^9.19.0",
     "eslint-config-next": "15.1.5",
-    "vercel": "^40.1.0",
-    "wrangler": "^3.107.2"
+    "vercel": "^41.0.2",
+    "wrangler": "^3.107.3"
   }
 }

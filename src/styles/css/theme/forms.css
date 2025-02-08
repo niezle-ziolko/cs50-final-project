@@ -1,0 +1,24 @@
+.heading {
+  font-size: var(--font-size-p);
+  font-weight: bold;
+  padding-bottom: 2em;
+  text-align: var(--center);
+  color: var(--primary-color);
+}
+
+.input {
+  outline: none;
+  padding: 0.7em;
+}
+
+.form .btn {
+  padding: 0.7em;
+  margin-top: 2em;
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+.login-form {
+  width: 25em;
+  align-self: var(--center);
+}

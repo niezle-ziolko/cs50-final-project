@@ -1,26 +1,29 @@
-import { memo } from 'react';
+import Link from 'next/link';
+
+import Switch from './button/button';
 
 import LogoIcon from 'styles/icons/logo';
 
-import { header } from 'styles/css/header/theme.css';
+import 'styles/css/header/theme.css';
 
 
-function Header() {
-
+export default function Header() {
   return (
-    <header className={header.header}>
-      <div className={header.box}>
-        <div>
-          <LogoIcon />
+    <header className='header'>
+      <div className='header-element'>
+        <div className='header-box'>
+          <div>
+            <Link href='/'>
+              <LogoIcon />
+            </Link>
+          </div>
         </div>
-      </div>
-      <div className={header.box}>
-        <div className={header.menu}>
-          <i className="fa-solid fa-bars"></i>
+        <div className='header-box'>
+          <div className='header-menu'>
+            <Switch />
+          </div>
         </div>
       </div>
     </header>
   );
 };
-
-export default memo(Header);
