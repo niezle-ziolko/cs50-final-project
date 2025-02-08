@@ -1,4 +1,4 @@
-import { getRequestContext } from "@cloudflare/next-on-pages";
+import { getRequestContext } from '@cloudflare/next-on-pages';
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -26,4 +26,4 @@ export default async function handler(req, res) {
   }
 }
 
-export const runtime = "edge";
+export const runtime = 'edge';

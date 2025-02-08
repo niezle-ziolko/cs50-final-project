@@ -1,4 +1,4 @@
-import 'styles/css/theme/forms.css'
+import 'styles/css/theme/forms.css';
 
 
 export default function Login() {

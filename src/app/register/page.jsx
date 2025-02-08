@@ -1,7 +1,7 @@
 'use client';
 import { useState } from 'react';
 
-import 'styles/css/theme/forms.css'
+import 'styles/css/theme/forms.css';
 
 export default function Register() {
   const [formData, setFormData] = useState({
