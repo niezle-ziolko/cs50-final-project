@@ -23,7 +23,7 @@ export async function POST(request) {
 
     return new Response(JSON.stringify({ message: 'User registered successfully', userId: result.lastInsertRowid }), {
       status: 200,
-      headers: corsHeaders
+      headers: { 'Content-Type': 'application/json' }
     });
   } catch (error) {
     console.error('Database error:', error);
