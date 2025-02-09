@@ -1,9 +1,9 @@
 .heading {
-  font-size: var(--font-size-p);
   font-weight: bold;
   padding-bottom: 2em;
   text-align: var(--center);
   color: var(--primary-color);
+  font-size: var(--primary-space);
 }
 
 .input {
@@ -21,4 +21,9 @@
 .login-form {
   width: 25em;
   align-self: var(--center);
+}
+
+.error-message {
+  color: #E63946;
+  font-weight: bold;
 }

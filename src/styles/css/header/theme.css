@@ -11,12 +11,12 @@
 }
 
 .header-box {
-  margin-bottom: 15px
+  margin-bottom: var(--font-size-p);
 }
 
 .header-logo {
   width: 75px;
-  height: 75px
+  height: 75px;
 }
 
 .header-menu {

@@ -6,6 +6,8 @@ import 'styles/css/theme/forms.css';
 
 
 export default function Register() {
+  const [errorMessage, setErrorMessage] = useState('');
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     username: '',
     email: '',
@@ -19,28 +21,73 @@ export default function Register() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setErrorMessage('');
 
     if (formData.password !== formData.confirmPassword) {
-      alert('Passwords do not match!');
+      setErrorMessage('Passwords do not match!');
       return;
     };
 
-    const res = await fetch('/api/auth/register', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${process.env.NEXT_PUBLIC_REGISTER_TOKEN}`
-      },
-      body: JSON.stringify(formData)
-    });
+    const formState = new FormData(e.target);
+    const turnstileRes = formState.get('cf-turnstile-response');
 
-    const data = await res.json();
-    if (res.ok) {
-      alert('Registration successful!');
-    } else {
-      alert(`Error: ${data.error}`);
+    if (!turnstileRes || turnstileRes === 'error') {
+      setErrorMessage('Turnstile verification failed.');
+
+      return;
+    };
+
+    try {
+      setLoading(true);
+
+      if (!turnstileRes || turnstileRes === 'error') {
+        setErrorMessage('Turnstile verification failed.');
+        setLoading(false);
+
+        return;
+      };
+
+      const response = await fetch('/api/auth/challenge', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${process.env.NEXT_PUBLIC_CHALLENGE_AUTH}`
+        },
+        body: JSON.stringify({
+          token: turnstileRes,
+          ...formData
+        })
+      });
+
+      if (response.ok) {
+        setLoading(true);
+
+        const res = await fetch('/api/auth/register', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${process.env.NEXT_PUBLIC_REGISTER_TOKEN}`
+          },
+          body: JSON.stringify({ ...formData })
+        });
+
+        const data = await res.json();
+        setLoading(false);
+
+        if (res.ok) {
+          alert('Registration successful!');
+        } else {
+          setErrorMessage(`Error: ${data.error}`);
+        };
+      };
+    } catch (error) {
+      setErrorMessage('An unexpected error occurred.');
+      console.error('Registration error:', error);
+      setLoading(false);
     };
   };
+
+  const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_SITE_KEY;
 
   return (
     <div>
@@ -52,8 +99,11 @@ export default function Register() {
           <input className="input" name="email" placeholder="E-mail" type="email" onChange={handleChange} required />
           <input className="input" name="password" placeholder="Password" type="password" onChange={handleChange} required />
           <input className="input" name="confirmPassword" placeholder="Confirm password" type="password" onChange={handleChange} required />
-          <div className='cf-turnstile' data-sitekey='0x4AAAAAAA8CytbRsD_4tmim' data-callback='javascriptCallback' data-theme='dark' />
-          <button className="btn" type="submit">Submit</button>
+          <div className='cf-turnstile' data-sitekey={TURNSTILE_SITE_KEY} data-callback='javascriptCallback' data-theme='dark' />
+          {errorMessage && <p className="error-message">{errorMessage}</p>}
+          <button className="btn" type="submit" disabled={loading}>
+            {loading ? 'Submitting...' : 'Submit'}
+          </button>
         </form>
       </div>
     </div>

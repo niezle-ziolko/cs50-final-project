@@ -3,7 +3,7 @@
   --switch-color: #e8e8e8;
   --primary-color: #222831;
   --secondary-color: #f2f2f2;
-  --font-size-p: 17px;
+  --primary-space: 15px;
   --font-family: 'lucidaFax';
   --flex: flex;
   --center: center;
@@ -31,13 +31,13 @@ main {
 }
 
 input {
-  font-size: 15px;
   margin-top: 10px;
   border-radius: 5px;
   border: var(--border);
   transition: .4s ease-in-out;
   color: var(--primary-color);
   font-family: var(--font-family);
+  font-size: var(--primary-space);
   background-color: var(--secondary-color);
 }
 
@@ -58,12 +58,19 @@ button {
   border: var(--border);
   transition: .4s ease-in-out;
   font-family: var(--font-family);
+  font-size: var(--primary-space);
   background-color: var(--logo-color);
 }
 
 button:hover {
   box-shadow: 6px 6px 0px var(--primary-color);
   transform: translateX(-0.5em) translateY(-0.5em);
+}
+
+button:active {
+  transition: .2s;
+  box-shadow: none;
+  transform: translateX(0em) translateY(0em);
 }
 
 form {
@@ -82,12 +89,11 @@ form:hover {
   transform: translateX(-0.5em) translateY(-0.5em);
 }
 
-button:active {
-  transition: .2s;
-  box-shadow: none;
-  transform: translateX(0em) translateY(0em);
-}
-
 a {
   color: var(--primary-color);
+}
+
+p {
+  color: var(--primary-color);
+  font-size: var(--primary-space);
 }

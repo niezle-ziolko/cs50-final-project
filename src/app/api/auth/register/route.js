@@ -33,7 +33,7 @@ export async function POST(request) {
   
   try {
     const existingUser = await db.prepare(
-      `SELECT id FROM users WHERE email = ? OR username = ?`
+      'SELECT id FROM users WHERE email = ? OR username = ?'
     ).bind(email, username).first();
 
     if (existingUser) {
@@ -47,11 +47,11 @@ export async function POST(request) {
     const hashedPassword = await hashPassword(password);
     
     const result = await db.prepare(
-      `INSERT INTO users (id, username, email, password) VALUES (?, ?, ?, ?)`
+      'INSERT INTO users (id, username, email, password) VALUES (?, ?, ?, ?)'
     ).bind(userId, username, email, hashedPassword).run();
 
     return new Response(JSON.stringify({ message: 'User registered successfully', userId }), {
-      status: 201,
+      status: 200,
       headers: { 'Content-Type': 'application/json' }
     });
   } catch (error) {
