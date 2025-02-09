@@ -40,7 +40,7 @@ export default function Login() {
         return;
       };
 
-      console.log(`turnstileRes: ${turnstileRes}`)
+      console.log(`turnstileRes: ${turnstileRes}`);
 
       const response = await fetch('/api/auth/challenge', {
         method: 'POST',
