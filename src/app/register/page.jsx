@@ -62,11 +62,11 @@ export default function Register() {
       if (response.ok) {
         setLoading(true);
 
-        const res = await fetch('/api/auth/register', {
+        const res = await fetch('/api/auth/user', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${process.env.NEXT_PUBLIC_REGISTER_TOKEN}`
+            'Authorization': `Bearer ${process.env.NEXT_PUBLIC_CLIENT_AUTH}`
           },
           body: JSON.stringify({ ...formData })
         });

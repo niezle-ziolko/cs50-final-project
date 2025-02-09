@@ -55,16 +55,13 @@ export default function Login() {
       if (response.ok) {
         setLoading(true);
 
-        const res = await fetch('/api/auth/login', {
-          method: 'POST',
+        const credentials = encodeURIComponent(`${formData.username}:${formData.password}`);
+        
+        const res = await fetch(`/api/auth/user?credentials=${credentials}`, {
+          method: 'GET',
           headers: {
-            'Content-Type': 'application/json',
             'Authorization': `Bearer ${process.env.NEXT_PUBLIC_LOGIN_TOKEN}`
-          },
-          body: JSON.stringify({
-            token: turnstileRes,
-            ...formData
-          })
+          }
         });
 
         const data = await res.json();
