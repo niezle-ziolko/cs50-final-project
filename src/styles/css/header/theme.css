@@ -11,7 +11,7 @@
 }
 
 .header-box {
-  margin-bottom: var(--font-size-p);
+  margin-bottom: var(--primary-space);
 }
 
 .header-logo {

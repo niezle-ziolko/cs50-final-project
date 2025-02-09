@@ -14,7 +14,7 @@ export async function GET(request) {
     };
 
     const urlSearchParams = new URL(request.url);
-    const credentials = url.searchParams.get('credentials');
+    const credentials = urlSearchParams.searchParams.get('credentials');
 
     if (!credentials) {
       return new Response(JSON.stringify({ error: 'Missing credentials' }), {
