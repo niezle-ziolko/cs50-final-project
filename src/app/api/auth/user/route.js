@@ -28,7 +28,9 @@ export async function GET(request) {
 
     const db = getRequestContext().env.DATABASE;
 
-    const result = await db.prepare('SELECT id, username, password FROM users WHERE username = ?').bind(username).first();
+    const result = await db.prepare(
+      `SELECT id, username, password FROM users WHERE username = '${username}'`
+    ).first();    
     
     if (!result) {
       return new Response(JSON.stringify({ error: 'User not found' }), {
