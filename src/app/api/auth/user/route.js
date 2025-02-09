@@ -28,7 +28,7 @@ export async function GET(request) {
     const db = getRequestContext().env.DATABASE;
 
     const result = await db.prepare(
-      `SELECT id, username, password FROM users WHERE username = '${username}'`
+      `SELECT * FROM users WHERE username = '${username}'`
     ).first();    
     
     if (!result) {
@@ -38,15 +38,7 @@ export async function GET(request) {
       });
     };
 
-    const storedHashedPassword = result.password;
-    const enteredHashedPassword = await hashPassword(password);
-
-    if (storedHashedPassword !== enteredHashedPassword) {
-      return new Response(JSON.stringify({ error: 'Invalid credentials' }), {
-        status: 401,
-        headers: { 'Content-Type': 'application/json' }
-      });
-    };
+    
 
     const sessionData = {
       id: result.id,
