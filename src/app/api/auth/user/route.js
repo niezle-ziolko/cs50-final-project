@@ -14,16 +14,16 @@ export async function GET(request) {
     };
 
     const urlSearchParams = new URL(request.url);
-    const credentials = urlSearchParams.searchParams.get('credentials');
+    const username = urlSearchParams.searchParams.get('username');
 
-    if (!credentials) {
+    if (!username) {
       return new Response(JSON.stringify({ error: 'Missing credentials' }), {
         status: 400,
         headers: { 'Content-Type': 'application/json' }
       });
     };
 
-    const [username, password] = credentials;
+    
 
     const db = getRequestContext().env.DATABASE;
 
