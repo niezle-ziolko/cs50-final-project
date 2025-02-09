@@ -40,6 +40,8 @@ export default function Login() {
         return;
       };
 
+      console.log(`turnstileRes: ${turnstileRes}`)
+
       const response = await fetch('/api/auth/challenge', {
         method: 'POST',
         headers: {
@@ -60,7 +62,8 @@ export default function Login() {
         const res = await fetch(`/api/auth/user?credentials=${credentials}`, {
           method: 'GET',
           headers: {
-            'Authorization': `Bearer ${process.env.NEXT_PUBLIC_LOGIN_TOKEN}`
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${process.env.NEXT_PUBLIC_CLIENT_AUTH}`
           }
         });
 

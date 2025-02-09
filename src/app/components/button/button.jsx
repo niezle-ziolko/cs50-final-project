@@ -13,11 +13,11 @@ export default function Switch() {
     <div className='menu-container'>
       <ul className='menu-list'>
         <li className='menu-item'>
-          <Link href={'/login'} aria-label='login-page'>Sign in</Link>
+          <Link href={'/auth/login'} aria-label='login-page'>Sign in</Link>
         </li>
         /
         <li className='menu-item'>
-          <Link href={'/register'} aria-label='login-page'>Sign up</Link>
+          <Link href={'/auth/register'} aria-label='login-page'>Sign up</Link>
         </li>
       </ul>
       <div className='switch-wrapper'>

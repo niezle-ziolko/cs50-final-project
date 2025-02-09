@@ -1,9 +1,11 @@
+import { getRequestContext } from '@cloudflare/next-on-pages';
+
 import { corsHeaders, bearerHeaders } from 'utils/headers';
 
 
 export async function POST(request) {
   try {
-    const authToken = process.env.CHALLENGE_AUTH;
+    const authToken = getRequestContext().env.CHALLENGE_AUTH;
     const authResponse = bearerHeaders(request, authToken);
 
     if (authResponse) {
@@ -29,7 +31,7 @@ export async function POST(request) {
     };
 
     let formData = new FormData();
-    formData.append('secret', process.env.SECRET_KEY || '');
+    formData.append('secret', getRequestContext().env.SECRET_KEY || '');
     formData.append('response', token);
     formData.append('remoteip', ip);
 
