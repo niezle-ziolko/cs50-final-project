@@ -23,8 +23,7 @@ export async function GET(request) {
       });
     };
 
-    const decodedCredentials = decodeURIComponent(credentials);
-    const [username, password] = decodedCredentials.split(':');
+    const [username, password] = credentials;
 
     const db = getRequestContext().env.DATABASE;
 
