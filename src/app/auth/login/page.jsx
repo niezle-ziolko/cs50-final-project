@@ -40,8 +40,6 @@ export default function Login() {
         return;
       };
 
-      console.log(`turnstileRes: ${turnstileRes}`);
-
       const response = await fetch('/api/auth/challenge', {
         method: 'POST',
         headers: {
@@ -57,7 +55,7 @@ export default function Login() {
       if (response.ok) {
         setLoading(true);
 
-        const credentials = encodeURIComponent(`${formData.username}:${formData.password}`);
+        const credentials = Buffer.from(`${formData.username}:${formData.password}`).toString('base64');
         
         const res = await fetch(`/api/auth/user?credentials=${credentials}`, {
           method: 'GET',
