@@ -11,3 +11,5 @@ export default function MyAccount() {
 
   return <div>{user.id}</div>;
 };
+
+export const runtime = 'edge';

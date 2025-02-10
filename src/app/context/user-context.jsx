@@ -43,8 +43,8 @@ export function SessionProvider({ children }) {
       {children}
     </SessionContext.Provider>
   );
-}
+};
 
 export function useSession() {
   return useContext(SessionContext);
-}
+};
