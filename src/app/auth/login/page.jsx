@@ -1,20 +1,18 @@
 'use client';
 import { useState } from 'react';
 import Script from 'next/script';
-
-import { useSession } from 'context/user-context';
+import { useRouter } from 'next/router';
 
 import 'styles/css/theme/forms.css';
 
-
 export default function Login() {
-  const { saveSession } = useSession();
   const [errorMessage, setErrorMessage] = useState('');
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     username: '',
     password: ''
   });
+  const router = useRouter();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -29,19 +27,11 @@ export default function Login() {
 
     if (!turnstileRes || turnstileRes === 'error') {
       setErrorMessage('Turnstile verification failed.');
-      
       return;
-    };
+    }
 
     try {
       setLoading(true);
-
-      if (!turnstileRes || turnstileRes === 'error') {
-        setErrorMessage('Turnstile verification failed.');
-        setLoading(false);
-
-        return;
-      };
 
       const response = await fetch('/api/auth/challenge', {
         method: 'POST',
@@ -56,7 +46,6 @@ export default function Login() {
       });
 
       if (response.ok) {
-        setLoading(true);
         const credentials = Buffer.from(`${formData.username}:${formData.password}`).toString('base64');
         
         const res = await fetch('/api/auth/user', {
@@ -72,20 +61,17 @@ export default function Login() {
         setLoading(false);
 
         if (res.ok) {
-          const setCookieHeader = res.headers.get('Set-Cookie');
-
-          if (setCookieHeader) {
-            saveSession(setCookieHeader);
-          };
+          localStorage.setItem('user', JSON.stringify(data));
+          router.push('/auth/my-account');
         } else {
           setErrorMessage(`Error: ${data.error}`);
-        };
-      };
+        }
+      }
     } catch (error) {
       setErrorMessage('An unexpected error occurred.');
       console.error('Login error:', error);
       setLoading(false);
-    };
+    }
   };
 
   const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_SITE_KEY;
