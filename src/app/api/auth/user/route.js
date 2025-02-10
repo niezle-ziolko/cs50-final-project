@@ -11,7 +11,7 @@ export async function GET(request) {
 
     if (authResponse) {
       return authResponse;
-    }
+    };
 
     const credentialsHeader = request.headers.get('Credentials');
 
@@ -20,16 +20,26 @@ export async function GET(request) {
         status: 400,
         headers: { 'Content-Type': 'application/json' }
       });
-    }
+    };
 
-    const [username, password] = credentialsHeader.split(':');
+    let decodedCredentials;
+    try {
+      decodedCredentials = Buffer.from(credentialsHeader, 'base64').toString('utf-8');
+    } catch (err) {
+      return new Response(JSON.stringify({ error: 'Invalid Base64 encoding' }), {
+        status: 400,
+        headers: { 'Content-Type': 'application/json' }
+      });
+    };
+
+    const [username, password] = decodedCredentials.split(':');
 
     if (!username || !password) {
       return new Response(JSON.stringify({ error: 'Invalid credentials format' }), {
         status: 400,
         headers: { 'Content-Type': 'application/json' }
       });
-    }
+    };
 
     const db = getRequestContext().env.DATABASE;
 
@@ -42,7 +52,7 @@ export async function GET(request) {
         status: 404,
         headers: { 'Content-Type': 'application/json' }
       });
-    }
+    };
 
     const storedHashedPassword = result.password;
     const enteredHashedPassword = await hashPassword(password);
@@ -52,7 +62,7 @@ export async function GET(request) {
         status: 401,
         headers: { 'Content-Type': 'application/json' }
       });
-    }
+    };
 
     const sessionData = {
       id: result.id,
@@ -69,7 +79,7 @@ export async function GET(request) {
       status: 500,
       headers: { 'Content-Type': 'application/json' }
     });
-  }
+  };
 };
 
 export async function POST(request) {

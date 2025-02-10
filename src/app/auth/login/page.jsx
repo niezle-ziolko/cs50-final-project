@@ -54,13 +54,14 @@ export default function Login() {
 
       if (response.ok) {
         setLoading(true);
+        const credentials = Buffer.from(`${formData.username}:${formData.password}`).toString('base64');
         
         const res = await fetch('/api/auth/user', {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${process.env.NEXT_PUBLIC_CLIENT_AUTH}`,
-            'Credentials': `${formData.username}:${formData.password}`
+            'Credentials': credentials
           }
         });
 
@@ -88,8 +89,8 @@ export default function Login() {
       <div className='login-form'>
         <form className='form' onSubmit={handleSubmit}>
           <p className='heading'>Sign in</p>
-          <input className='input' placeholder='Username' type='text' onChange={handleChange} required />
-          <input className='input' placeholder='Password' type='password' onChange={handleChange} required /> 
+          <input className='input' name='username' placeholder='Username' type='text' value={formData.username} onChange={handleChange} required />
+          <input className='input' name='password' placeholder='Password' type='password' value={formData.password} onChange={handleChange} required />
           <div className='cf-turnstile' data-sitekey={TURNSTILE_SITE_KEY} data-callback='javascriptCallback' data-theme='dark' />
           {errorMessage && <p className="error-message">{errorMessage}</p>}
           <button className="btn" type="submit" disabled={loading}>
