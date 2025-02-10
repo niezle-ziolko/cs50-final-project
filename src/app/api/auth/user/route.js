@@ -58,7 +58,7 @@ export async function GET(request) {
     const enteredHashedPassword = await hashPassword(password);
 
     if (storedHashedPassword !== enteredHashedPassword) {
-      return new Response(JSON.stringify({ error: 'Invalid credentials', password: password, enteredHashedPassword: enteredHashedPassword }), {
+      return new Response(JSON.stringify({ error: 'Invalid credentials' }), {
         status: 401,
         headers: { 'Content-Type': 'application/json' }
       });
@@ -67,7 +67,7 @@ export async function GET(request) {
     const sessionData = {
       id: result.id,
       username: result.username,
-      expires: Date.now() + 30 * 24 * 60 * 60 * 1000
+      expires: Date.now()
     };
 
     return new Response(JSON.stringify({ success: true }), {
@@ -124,7 +124,7 @@ export async function POST(request) {
     const userId = crypto.randomUUID();
     const hashedPassword = await hashPassword(password);
     
-    const result = await db.prepare(
+    await db.prepare(
       'INSERT INTO users (id, username, email, password) VALUES (?, ?, ?, ?)'
     ).bind(userId, username, email, hashedPassword).run();
 

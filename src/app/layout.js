@@ -1,6 +1,7 @@
 import localFont from 'next/font/local';
 
-import { ThemeProvider } from './context/theme-context';
+import { ThemeProvider } from 'context/theme-context';
+import { SessionProvider } from 'context/user-context';
 
 import Header from 'components/header';
 
@@ -27,10 +28,12 @@ export default function RootLayout({ children }) {
     <html lang='en'>
       <body className={`${lucidaFax.variable} ${comicSans.variable}`}>
         <ThemeProvider>
-          <Header />
-          <main>
-            {children}
-          </main>
+          <SessionProvider>
+            <Header />
+            <main>
+              {children}
+            </main>
+          </SessionProvider>
         </ThemeProvider>
       </body>
     </html>

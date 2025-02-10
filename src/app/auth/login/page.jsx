@@ -2,10 +2,13 @@
 import { useState } from 'react';
 import Script from 'next/script';
 
+import { useSession } from 'context/user-context';
+
 import 'styles/css/theme/forms.css';
 
 
 export default function Login() {
+  const { saveSession } = useSession();
   const [errorMessage, setErrorMessage] = useState('');
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
@@ -69,7 +72,11 @@ export default function Login() {
         setLoading(false);
 
         if (res.ok) {
-          alert('Login successful!');
+          const setCookieHeader = res.headers.get('Set-Cookie');
+
+          if (setCookieHeader) {
+            saveSession(setCookieHeader);
+          };
         } else {
           setErrorMessage(`Error: ${data.error}`);
         };
