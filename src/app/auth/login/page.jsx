@@ -6,7 +6,6 @@ import { useAuth } from 'context/auth-context';
 
 import 'styles/css/theme/forms.css';
 
-
 export default function Login() {
   const router = useRouter();
   const { updateUser } = useAuth();

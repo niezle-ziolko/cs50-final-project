@@ -128,7 +128,24 @@ export async function POST(request) {
       'INSERT INTO users (id, username, email, password) VALUES (?, ?, ?, ?)'
     ).bind(userId, username, email, hashedPassword).run();
 
-    return new Response(JSON.stringify({ message: 'User registered successfully', userId }), {
+    const result = await db.prepare(
+      `SELECT * FROM users WHERE id = '${userId}'`
+    ).first();
+
+    if (!result) {
+      return new Response(JSON.stringify({ error: 'Created user not found' }), {
+        status: 404,
+        headers: { 'Content-Type': 'application/json' }
+      });
+    };
+
+    const sessionData = {
+      id: result.id,
+      username: result.username,
+      expiresDate: new Date().toISOString()
+    };
+
+    return new Response(JSON.stringify(sessionData), {
       status: 200,
       headers: { 'Content-Type': 'application/json' }
     });

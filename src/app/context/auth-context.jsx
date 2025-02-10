@@ -1,11 +1,14 @@
 'use client';
 import { createContext, useContext, useState, useEffect } from 'react';
-
+import { useRouter, usePathname } from 'next/navigation';
 
 const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const router = useRouter();
+  const pathname = usePathname();
 
   useEffect(() => {
     const storedUser = localStorage.getItem('user');
@@ -26,9 +29,21 @@ export function AuthProvider({ children }) {
         }
       } catch (error) {
         console.error('Error parsing session data:', error);
-      }
-    }
+      };
+    };
+
+    setIsLoading(false);
   }, []);
+
+  useEffect(() => {
+    if (!isLoading) {
+      if (!user && ['/auth/my-account', '/auth/library', '/auth/my-books'].includes(pathname)) {
+        router.push('/auth/login');
+      } else if (user && ['/auth/login', '/auth/register'].includes(pathname)) {
+        router.push('/');
+      };
+    };
+  }, [user, pathname, router, isLoading]);
 
   const updateUser = (data) => {
     localStorage.setItem('user', JSON.stringify(data));
