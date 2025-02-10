@@ -40,7 +40,7 @@ export function AuthProvider({ children }) {
       if (!user && ['/auth/my-account', '/auth/library', '/auth/my-books'].includes(pathname)) {
         router.push('/auth/login');
       } else if (user && ['/auth/login', '/auth/register'].includes(pathname)) {
-        router.push('/');
+        router.push('/auth/my-account');
       };
     };
   }, [user, pathname, router, isLoading]);
