@@ -78,6 +78,7 @@ input:hover:checked + .slider:before {
   gap: 50px;
   font-family: 'lucidaFax';
   font-size: 20px;
+  align-items: center;
 }
 
 .menu-item {
@@ -88,4 +89,8 @@ input:hover:checked + .slider:before {
   font-weight: bold;
   cursor: pointer;
   transition: all 0.3s;
+}
+
+.logout-button {
+  padding: 8px 25px;
 }

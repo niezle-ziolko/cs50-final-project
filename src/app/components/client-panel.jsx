@@ -12,7 +12,7 @@ export default function ClientPanel() {
           <p>Your ID: {user.id}</p>
         </>
       ) : (
-        <p>Loading user data...</p>
+        <p>⚙️Loading...</p>
       )}
     </div>
   );
