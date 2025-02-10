@@ -1,5 +1,7 @@
 'use client';
 import { createContext, useContext, useEffect, useState } from 'react';
+import Cookies from 'js-cookie';
+
 
 const SessionContext = createContext(null);
 
@@ -7,34 +9,32 @@ export function SessionProvider({ children }) {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    const storedSession = localStorage.getItem('user');
-
-    if (storedSession) {
-      try {
+    try {
+      const storedSession = Cookies.get('session');
+      if (storedSession) {
         setUser(JSON.parse(storedSession));
-      } catch (error) {
-        console.error('Failed to parse session data:', error);
-        localStorage.removeItem('user');
-      };
+      }
+    } catch (error) {
+      console.error('Failed to parse session data:', error);
+      Cookies.remove('session');
     };
   }, []);
 
   const saveSession = (setCookieHeader) => {
-    const match = setCookieHeader.match(/session=({.*?});/);
-
-    if (match) {
-      try {
+    try {
+      const match = /session=({.*?})/.exec(setCookieHeader);
+      if (match && match[1]) {
         const sessionData = JSON.parse(match[1]);
-        localStorage.setItem('user', JSON.stringify(sessionData));
+        Cookies.set('session', JSON.stringify(sessionData), { path: '/', secure: true, sameSite: 'Strict' });
         setUser(sessionData);
-      } catch (error) {
-        console.error('Error parsing session data:', error);
-      };
+      }
+    } catch (error) {
+      console.error('Error parsing session data:', error);
     };
   };
 
   const clearSession = () => {
-    localStorage.removeItem('user');
+    Cookies.remove('session');
     setUser(null);
   };
 
@@ -43,8 +43,8 @@ export function SessionProvider({ children }) {
       {children}
     </SessionContext.Provider>
   );
-};
+}
 
 export function useSession() {
   return useContext(SessionContext);
-};
+}
