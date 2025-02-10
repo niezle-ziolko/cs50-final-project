@@ -1,11 +1,13 @@
 'use client';
 import { useState } from 'react';
 import Script from 'next/script';
+import { useRouter } from 'next/router';
 
 import 'styles/css/theme/forms.css';
 
 
 export default function Login() {
+  const router = useRouter();
   const [errorMessage, setErrorMessage] = useState('');
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
