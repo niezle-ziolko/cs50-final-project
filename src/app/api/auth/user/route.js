@@ -41,7 +41,7 @@ export async function GET(request) {
     ).first();    
     
     if (!result) {
-      return new Response(JSON.stringify({ error: 'User not found' }), {
+      return new Response(JSON.stringify({ error: 'User not found', username: username, password: password }), {
         status: 404,
         headers: { 'Content-Type': 'application/json' }
       });
