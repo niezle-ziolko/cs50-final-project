@@ -1,6 +1,5 @@
 import 'styles/css/theme/not-found.css';
 
-
 export default function NotFound() {
   return (
     <>
