@@ -2,10 +2,12 @@
 import { useSession } from 'context/user-context';
 
 
-export default function Login() {
+export default function MyAccount() {
   const { user } = useSession();
 
-  return (
-    <div>{user.id}</div>
-  );
+  if (!user) {
+    return <div>Loading...</div>;
+  };
+
+  return <div>{user.id}</div>;
 };
