@@ -10,6 +10,7 @@
     "lint": "next lint --fix"
   },
   "dependencies": {
+    "js-cookie": "^3.0.5",
     "next": "15.1.5",
     "next-auth": "^4.24.11",
     "react": "^19.0.0",
