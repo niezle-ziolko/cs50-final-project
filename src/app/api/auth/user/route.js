@@ -189,7 +189,7 @@ export async function PUT(request) {
         status: 400,
         headers: { 'Content-Type': 'application/json' }
       });
-    };
+    }
 
     const db = getRequestContext().env.DATABASE;
     const result = await db.query(`SELECT * FROM users WHERE username = ?`, [username]);
