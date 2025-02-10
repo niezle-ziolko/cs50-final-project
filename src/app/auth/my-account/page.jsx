@@ -12,4 +12,4 @@ export default function MyAccount() {
   return <div>{user.id}</div>;
 };
 
-export const runtime = 'edge';
+export const runtime = 'force-dynamic';
