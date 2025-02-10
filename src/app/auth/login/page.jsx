@@ -1,7 +1,8 @@
 'use client';
 import { useState } from 'react';
 import Script from 'next/script';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
+import { useAuth } from 'context/auth-context';
 
 import 'styles/css/theme/forms.css';
 
@@ -74,7 +75,8 @@ export default function Login() {
           const setCookieHeader = res.headers.get('Set-Cookie');
 
           if (setCookieHeader) {
-            localStorage.setItem('session', setCookieHeader);
+            document.cookie = setCookieHeader;
+            updateUser(data);
           };
           
           router.push('/auth/my-account');

@@ -1,17 +1,17 @@
 'use client';
 import { memo } from 'react';
 
-import { SessionProvider } from 'context/user-context';
+import { AuthProvider } from 'context/auth-context';
 
 import Header from 'components/header';
 
 
 function Layout({ children }) {
   return (
-    <SessionProvider>
+    <AuthProvider>
       <Header />
       <main>{children}</main>
-    </SessionProvider>
+    </AuthProvider>
   );
 };
 

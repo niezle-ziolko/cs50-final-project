@@ -1,18 +1,8 @@
 'use client';
-import { useEffect, useState } from 'react';
-
+import { useAuth } from 'context/auth-context';
 
 export default function ClientPanel() {
-  const [user, setUser] = useState(null);
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const storedUser = localStorage.getItem('session');
-      if (storedUser) {
-        setUser(JSON.parse(storedUser));
-      }
-    }
-  }, []);
+  const { user } = useAuth();
 
   return (
     <div>
