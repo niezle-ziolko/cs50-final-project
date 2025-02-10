@@ -7,14 +7,14 @@ export function SessionProvider({ children }) {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    const storedSession = localStorage.getItem('session');
+    const storedSession = localStorage.getItem('user');
 
     if (storedSession) {
       try {
         setUser(JSON.parse(storedSession));
       } catch (error) {
         console.error('Failed to parse session data:', error);
-        localStorage.removeItem('session');
+        localStorage.removeItem('user');
       };
     };
   }, []);
@@ -25,7 +25,7 @@ export function SessionProvider({ children }) {
     if (match) {
       try {
         const sessionData = JSON.parse(match[1]);
-        localStorage.setItem('session', JSON.stringify(sessionData));
+        localStorage.setItem('user', JSON.stringify(sessionData));
         setUser(sessionData);
       } catch (error) {
         console.error('Error parsing session data:', error);
@@ -34,7 +34,7 @@ export function SessionProvider({ children }) {
   };
 
   const clearSession = () => {
-    localStorage.removeItem('session');
+    localStorage.removeItem('user');
     setUser(null);
   };
 

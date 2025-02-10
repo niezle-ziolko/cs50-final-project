@@ -1,6 +1,7 @@
 'use client';
 import { useState } from 'react';
 import Script from 'next/script';
+import { useRouter } from 'next/navigation';
 
 import { useSession } from 'context/user-context';
 
@@ -8,6 +9,7 @@ import 'styles/css/theme/forms.css';
 
 
 export default function Login() {
+  const router = useRouter();
   const { saveSession } = useSession();
   const [errorMessage, setErrorMessage] = useState('');
   const [loading, setLoading] = useState(false);
@@ -77,6 +79,8 @@ export default function Login() {
           if (setCookieHeader) {
             saveSession(setCookieHeader);
           };
+
+          router.push('/auth/my-account');
         } else {
           setErrorMessage(`Error: ${data.error}`);
         };
