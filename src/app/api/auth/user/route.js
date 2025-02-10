@@ -184,15 +184,17 @@ export async function PUT(request) {
     };
 
     const { username, email, password, photo } = requestBody;
+
     if (!username) {
       return new Response(JSON.stringify({ error: 'Username is required' }), {
         status: 400,
         headers: { 'Content-Type': 'application/json' }
       });
-    }
+    };
 
     const db = getRequestContext().env.DATABASE;
-    const result = await db.query(`SELECT * FROM users WHERE username = ?`, [username]);
+    const result = await db.query('SELECT * FROM users WHERE username = ?', [username]);
+    
     if (result.length === 0) {
       return new Response(JSON.stringify({ error: 'User not found' }), {
         status: 404,
