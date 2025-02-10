@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import Switch from './buttons/button';
+import Switch from './buttons/switch';
 
 import LogoIcon from 'styles/icons/logo';
 

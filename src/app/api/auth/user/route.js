@@ -67,12 +67,12 @@ export async function GET(request) {
     const sessionData = {
       id: result.id,
       username: result.username,
-      expires: Date.now()
+      expiresDate: new Date().toISOString()
     };
 
     return new Response(JSON.stringify(sessionData), {
       status: 200,
-      headers: { 'Set-Cookie': `session=${JSON.stringify(sessionData)}; Max-Age=2592000; Path=/; HttpOnly; Secure; SameSite=Strict` }
+      headers: { 'Content-Type': 'application/json' }
     });
   } catch (error) {
     return new Response(JSON.stringify({ error: error.message }), {
