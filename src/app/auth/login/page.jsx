@@ -72,13 +72,7 @@ export default function Login() {
         setLoading(false);
 
         if (res.ok) {
-          const setCookieHeader = res.headers.get('Set-Cookie');
-
-          if (setCookieHeader) {
-            document.cookie = setCookieHeader;
-            updateUser(data);
-          };
-          
+          updateUser(data);
           router.push('/auth/my-account');
         } else {
           setErrorMessage(`Error: ${data.error}`);

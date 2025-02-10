@@ -1,6 +1,5 @@
 'use client';
 import { createContext, useContext, useState, useEffect } from 'react';
-import Cookies from 'js-cookie';
 
 const AuthContext = createContext();
 
@@ -8,19 +7,19 @@ export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    const sessionCookie = Cookies.get('session');
-    if (sessionCookie) {
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
       try {
-        const userData = JSON.parse(sessionCookie);
+        const userData = JSON.parse(storedUser);
         setUser(userData);
       } catch (error) {
-        console.error('Error parsing session cookie:', error);
+        console.error('Error parsing session data:', error);
       }
     }
   }, []);
 
   const updateUser = (sessionData) => {
-    Cookies.set('session', JSON.stringify(sessionData), { expires: 7 });
+    localStorage.setItem('user', JSON.stringify(sessionData));
     setUser(sessionData);
   };
 
@@ -29,7 +28,7 @@ export function AuthProvider({ children }) {
       {children}
     </AuthContext.Provider>
   );
-};
+}
 
 export function useAuth() {
   return useContext(AuthContext);

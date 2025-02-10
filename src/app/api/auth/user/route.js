@@ -70,7 +70,7 @@ export async function GET(request) {
       expires: Date.now()
     };
 
-    return new Response(JSON.stringify({ operation: true }), {
+    return new Response(JSON.stringify(sessionData), {
       status: 200,
       headers: { 'Set-Cookie': `session=${JSON.stringify(sessionData)}; Max-Age=2592000; Path=/; HttpOnly; Secure; SameSite=Strict` }
     });
