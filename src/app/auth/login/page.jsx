@@ -9,6 +9,7 @@ import 'styles/css/theme/forms.css';
 
 export default function Login() {
   const router = useRouter();
+  const { updateUser } = useAuth();
   const [errorMessage, setErrorMessage] = useState('');
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
