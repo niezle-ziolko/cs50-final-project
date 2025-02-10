@@ -11,41 +11,38 @@ export async function GET(request) {
 
     if (authResponse) {
       return authResponse;
-    };
+    }
 
-    const urlSearchParams = new URL(request.url);
-    const credentials = urlSearchParams.searchParams.get('credentials');
+    const credentialsHeader = request.headers.get('Credentials');
 
-    if (!credentials) {
+    if (!credentialsHeader) {
       return new Response(JSON.stringify({ error: 'Missing credentials' }), {
         status: 400,
         headers: { 'Content-Type': 'application/json' }
       });
-    };
+    }
 
-    const decodedCredentials = Buffer.from(credentials, 'base64').toString('utf-8');
+    const [username, password] = credentialsHeader.split(':');
 
-    if (!decodedCredentials.includes(':')) {
+    if (!username || !password) {
       return new Response(JSON.stringify({ error: 'Invalid credentials format' }), {
         status: 400,
         headers: { 'Content-Type': 'application/json' }
       });
-    };
-
-    const [username, password] = decodedCredentials.split(':');
+    }
 
     const db = getRequestContext().env.DATABASE;
 
     const result = await db.prepare(
-      `SELECT id, username, password FROM users WHERE username = '${username}'`
-    ).first();    
-    
+      `SELECT * FROM users WHERE username = '${username}'`
+    ).first();
+
     if (!result) {
-      return new Response(JSON.stringify({ error: 'User not found', username: username, password: password }), {
+      return new Response(JSON.stringify({ error: 'User not found' }), {
         status: 404,
         headers: { 'Content-Type': 'application/json' }
       });
-    };
+    }
 
     const storedHashedPassword = result.password;
     const enteredHashedPassword = await hashPassword(password);
@@ -55,7 +52,7 @@ export async function GET(request) {
         status: 401,
         headers: { 'Content-Type': 'application/json' }
       });
-    };
+    }
 
     const sessionData = {
       id: result.id,
@@ -72,7 +69,7 @@ export async function GET(request) {
       status: 500,
       headers: { 'Content-Type': 'application/json' }
     });
-  };
+  }
 };
 
 export async function POST(request) {

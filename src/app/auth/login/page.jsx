@@ -54,14 +54,13 @@ export default function Login() {
 
       if (response.ok) {
         setLoading(true);
-
-        const credentials = Buffer.from(`${formData.username}:${formData.password}`).toString('base64');
         
-        const res = await fetch(`/api/auth/user?credentials=${credentials}`, {
+        const res = await fetch('/api/auth/user', {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${process.env.NEXT_PUBLIC_CLIENT_AUTH}`
+            'Authorization': `Bearer ${process.env.NEXT_PUBLIC_CLIENT_AUTH}`,
+            'Credentials': `${formData.username}:${formData.password}`
           }
         });
 
