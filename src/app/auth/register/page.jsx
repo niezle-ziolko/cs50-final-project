@@ -1,11 +1,14 @@
 'use client';
 import { useState } from 'react';
 import Script from 'next/script';
+import { useRouter } from 'next/navigation';
+import { useAuth } from 'context/auth-context';
 
 import 'styles/css/theme/forms.css';
 
-
 export default function Register() {
+  const router = useRouter();
+  const { updateUser } = useAuth();
   const [errorMessage, setErrorMessage] = useState('');
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
@@ -75,7 +78,8 @@ export default function Register() {
         setLoading(false);
 
         if (res.ok) {
-          alert('Registration successful!');
+          updateUser(data);
+          router.push('/auth/my-account');
         } else {
           setErrorMessage(`Error: ${data.error}`);
         };
