@@ -70,9 +70,9 @@ export async function GET(request) {
       expires: Date.now()
     };
 
-    return new Response(JSON.stringify(sessionData), {
+    return new Response(JSON.stringify({ operation: true }), {
       status: 200,
-      headers: { 'Content-Type': 'application/json' }
+      headers: { 'Set-Cookie': `session=${JSON.stringify(sessionData)}; Max-Age=2592000; Path=/; HttpOnly; Secure; SameSite=Strict` }
     });
   } catch (error) {
     return new Response(JSON.stringify({ error: error.message }), {
