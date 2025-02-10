@@ -48,7 +48,7 @@ export async function GET(request) {
     const enteredHashedPassword = await hashPassword(password);
 
     if (storedHashedPassword !== enteredHashedPassword) {
-      return new Response(JSON.stringify({ error: 'Invalid credentials' }), {
+      return new Response(JSON.stringify({ error: 'Invalid credentials', password: password, enteredHashedPassword: enteredHashedPassword }), {
         status: 401,
         headers: { 'Content-Type': 'application/json' }
       });
