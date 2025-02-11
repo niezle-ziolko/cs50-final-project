@@ -185,20 +185,28 @@ export async function PUT(request) {
 
     const { username, email, password, photo } = requestBody;
 
-    const hashedPassword = await hashPassword(password);
+    let hashedPassword;
+    if (password) {
+      hashedPassword = await hashPassword(password);
+    }
 
     if (!username) {
       return new Response(JSON.stringify({ error: 'Username is required' }), {
         status: 400,
         headers: { 'Content-Type': 'application/json' }
       });
-    }
+    } else if (typeof username !== 'string' || !username.match(/^[a-zA-Z0-9_-]+$/)) {
+      return new Response(JSON.stringify({ error: 'Invalid username' }), {
+        status: 400,
+        headers: { 'Content-Type': 'application/json' }
+      });
+    };
 
     const db = getRequestContext().env.DATABASE;
 
     const user = await db.prepare(
-      `SELECT * FROM users WHERE username = '${username}'`
-    ).first();
+      'SELECT * FROM users WHERE username = ?'
+    ).bind(username).first();
 
     if (!user) {
       return new Response(JSON.stringify({ error: 'User not found' }), {
@@ -227,10 +235,9 @@ export async function PUT(request) {
 
     if (updates.length > 0) {
       params.push(username);
-      await db
-        .prepare(`UPDATE users SET ${updates.join(', ')} WHERE username = ${username}`)
-        .bind(...params)
-        .run();
+      await db.prepare(
+        `UPDATE users SET ${updates.join(', ')} WHERE username = ?`
+      ).bind(...params).run();
     }
 
     return new Response(JSON.stringify({ message: 'User updated successfully' }), {
