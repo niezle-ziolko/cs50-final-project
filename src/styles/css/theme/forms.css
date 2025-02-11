@@ -18,8 +18,8 @@
   margin-top: 2em;
   padding-left: 1em;
   padding-right: 1em;
-  align-items: center;
-  justify-content: center;
+  align-items: var(--center);
+  justify-content: var(--center);
 }
 
 .login-form {
@@ -37,13 +37,13 @@
   height: 200px;
   display: flex;
   border-radius: 100%;
-  align-items: center;
-  justify-content: center;
-  border: 2px solid #222831;
+  align-items: var(--center);
+  justify-content: var(--center);
+  border: 2px solid var(--primary-color);
 }
 
 .login-form .box {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: var(--center);
+  justify-content: var(--center);
 }
