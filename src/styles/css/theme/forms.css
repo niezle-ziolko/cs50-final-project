@@ -12,10 +12,14 @@
 }
 
 .form .btn {
+  height: 43px;
+  display: flex;
   padding: 0.7em;
   margin-top: 2em;
   padding-left: 1em;
   padding-right: 1em;
+  align-items: center;
+  justify-content: center;
 }
 
 .login-form {
@@ -26,4 +30,20 @@
 .error-message {
   color: #E63946;
   font-weight: bold;
+}
+
+.profile-picture {
+  width: 200px;
+  height: 200px;
+  display: flex;
+  border-radius: 100%;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #222831;
+}
+
+.login-form .box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

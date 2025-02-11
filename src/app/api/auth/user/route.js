@@ -128,10 +128,11 @@ export async function POST(request) {
 
     const userId = crypto.randomUUID();
     const hashedPassword = await hashPassword(password);
+    const defaultPhotoUrl = 'https://cdn.niezleziolko.app/final-project/profile-photo/default-profile-picture.webp';
     
     await db.prepare(
-      'INSERT INTO users (id, username, email, password) VALUES (?, ?, ?, ?)'
-    ).bind(userId, username, email, hashedPassword).run();
+      'INSERT INTO users (id, username, email, password, photo) VALUES (?, ?, ?, ?, ?)'
+    ).bind(userId, username, email, hashedPassword, defaultPhotoUrl).run();
 
     const result = await db.prepare(
       `SELECT * FROM users WHERE id = '${userId}'`

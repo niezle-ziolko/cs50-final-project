@@ -1,10 +1,12 @@
 'use client';
-import ClientPanel from 'components/client-panel';
+import EditForm from 'components/forms/edit';
+
+import 'styles/css/theme/forms.css';
 
 export default function MyAccount() {
   return (
     <div>
-      <ClientPanel />
+      <EditForm />
     </div>
   );
 };

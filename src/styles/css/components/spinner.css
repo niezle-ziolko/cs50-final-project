@@ -1,16 +1,16 @@
 .spinner {
   position: absolute;
-  width: 9px;
-  height: 9px;
+  width: 3px;
+  height: 4px;
 }
 
 .spinner div {
-  position: absolute;
   width: 50%;
   height: 150%;
+  position: absolute;
   background: #222831;
-  transform: rotate(calc(var(--rotation) * 1deg)) translate(0, calc(var(--translation) * 1%));
   animation: spinner-fzua35 1s calc(var(--delay) * 1s) infinite ease;
+  transform: rotate(calc(var(--rotation) * 1deg)) translate(0, calc(var(--translation) * 1%));
 }
 
 .spinner div:nth-child(1) {
