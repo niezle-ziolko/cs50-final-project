@@ -4,6 +4,8 @@ import Script from 'next/script';
 import { useRouter } from 'next/navigation';
 import { useAuth } from 'context/auth-context';
 
+import Spinner from 'components/spinner';
+
 import 'styles/css/theme/forms.css';
 
 export default function Login() {

@@ -1,6 +1,8 @@
 'use client';
 import { useAuth } from 'context/auth-context';
 
+import Spinner from './spinner';
+
 export default function ClientPanel() {
   const { user } = useAuth();
 
@@ -12,7 +14,7 @@ export default function ClientPanel() {
           <p>Your ID: {user.id}</p>
         </>
       ) : (
-        <p>⚙️Loading...</p>
+        <Spinner />
       )}
     </div>
   );

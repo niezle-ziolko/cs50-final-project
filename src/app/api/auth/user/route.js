@@ -181,42 +181,63 @@ export async function PUT(request) {
         status: 400,
         headers: { 'Content-Type': 'application/json' }
       });
-    };
+    }
 
     const { username, email, password, photo } = requestBody;
+
+    const hashedPassword = await hashPassword(password);
 
     if (!username) {
       return new Response(JSON.stringify({ error: 'Username is required' }), {
         status: 400,
         headers: { 'Content-Type': 'application/json' }
       });
-    };
+    }
 
     const db = getRequestContext().env.DATABASE;
-    const result = await db.query('SELECT * FROM users WHERE username = ?', [username]);
-    
-    if (result.length === 0) {
+
+    const user = await db.prepare(
+      `SELECT * FROM users WHERE username = '${username}'`
+    ).first();
+
+    if (!user) {
       return new Response(JSON.stringify({ error: 'User not found' }), {
         status: 404,
         headers: { 'Content-Type': 'application/json' }
       });
-    };
+    }
 
     const updates = [];
     const params = [];
-    if (email) { updates.push('email = ?'); params.push(email); }
-    if (password) { updates.push('password = ?'); params.push(password); }
-    if (photo) { updates.push('photo = ?'); params.push(photo); }
+
+    if (email) {
+      updates.push('email = ?');
+      params.push(email);
+    }
+
+    if (hashedPassword) {
+      updates.push('password = ?');
+      params.push(hashedPassword);
+    }
+
+    if (photo) {
+      updates.push('photo = ?');
+      params.push(photo);
+    }
 
     if (updates.length > 0) {
       params.push(username);
-      await db.query(`UPDATE users SET ${updates.join(', ')} WHERE username = ?`, params);
-    };
+      await db
+        .prepare(`UPDATE users SET ${updates.join(', ')} WHERE username = ${username}`)
+        .bind(...params)
+        .run();
+    }
 
     return new Response(JSON.stringify({ message: 'User updated successfully' }), {
       status: 200,
       headers: { 'Content-Type': 'application/json' }
     });
+
   } catch (error) {
     return new Response(JSON.stringify({ error: error.message }), {
       status: 500,
