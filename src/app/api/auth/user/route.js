@@ -178,28 +178,28 @@ export async function PUT(request) {
     try {
       requestBody = JSON.parse(await request.text());
     } catch {
-      return new Response(JSON.stringify({ error: "Invalid JSON format" }), {
+      return new Response(JSON.stringify({ error: 'Invalid JSON format' }), {
         status: 400,
-        headers: { "Content-Type": "application/json" },
+        headers: { 'Content-Type': 'application/json' },
       });
     };
 
     const { username, email, password, photo } = requestBody;
 
-    if (!username || typeof username !== "string" || !username.match(/^[a-zA-Z0-9_-]{3,20}$/)) {
-      return new Response(JSON.stringify({ error: "Invalid username" }), {
+    if (!username || typeof username !== 'string' || !username.match(/^[a-zA-Z0-9_-]{3,20}$/)) {
+      return new Response(JSON.stringify({ error: 'Invalid username' }), {
         status: 400,
-        headers: { "Content-Type": "application/json" },
+        headers: { 'Content-Type': 'application/json' },
       });
     };
 
     const db = env.DATABASE;
-    const user = await db.prepare("SELECT * FROM users WHERE username = ?").bind(username).first();
+    const user = await db.prepare('SELECT * FROM users WHERE username = ?').bind(username).first();
 
     if (!user) {
-      return new Response(JSON.stringify({ error: "User not found" }), {
+      return new Response(JSON.stringify({ error: 'User not found' }), {
         status: 404,
-        headers: { "Content-Type": "application/json" },
+        headers: { 'Content-Type': 'application/json' },
       });
     };
 
@@ -208,21 +208,21 @@ export async function PUT(request) {
 
     if (email && email !== user.email) {
       if (!email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
-        return new Response(JSON.stringify({ error: "Invalid email format" }), {
+        return new Response(JSON.stringify({ error: 'Invalid email format' }), {
           status: 400,
-          headers: { "Content-Type": "application/json" },
+          headers: { 'Content-Type': 'application/json' },
         });
       };
 
-      const emailExists = await db.prepare("SELECT 1 FROM users WHERE email = ?").bind(email).first();
+      const emailExists = await db.prepare('SELECT 1 FROM users WHERE email = ?').bind(email).first();
       if (emailExists) {
-        return new Response(JSON.stringify({ error: "Email already in use" }), {
+        return new Response(JSON.stringify({ error: 'Email already in use' }), {
           status: 400,
-          headers: { "Content-Type": "application/json" },
+          headers: { 'Content-Type': 'application/json' },
         });
       };
 
-      updates.push("email = ?");
+      updates.push('email = ?');
       params.push(email);
     };
 
@@ -230,33 +230,33 @@ export async function PUT(request) {
     if (password) {
       hashedPassword = await hashPassword(password);
       if (hashedPassword !== user.password) {
-        updates.push("password = ?");
+        updates.push('password = ?');
         params.push(hashedPassword);
       };
     };
 
     if (photo && photo !== user.photo) {
       if (!photo.match(/^https?:\/\/.+\..+/)) {
-        return new Response(JSON.stringify({ error: "Invalid photo URL" }), {
+        return new Response(JSON.stringify({ error: 'Invalid photo URL' }), {
           status: 400,
-          headers: { "Content-Type": "application/json" },
+          headers: { 'Content-Type': 'application/json' },
         });
       };
 
-      updates.push("photo = ?");
+      updates.push('photo = ?');
       params.push(photo);
     };
 
     if (updates.length === 0) {
-      return new Response(JSON.stringify({ message: "No changes detected" }), {
+      return new Response(JSON.stringify({ message: 'No changes detected' }), {
         status: 200,
-        headers: { "Content-Type": "application/json" },
+        headers: { 'Content-Type': 'application/json' },
       });
     };
 
     params.push(username);
     await db.prepare(
-      `UPDATE users SET ${updates.join(", ")} WHERE username = ?`
+      `UPDATE users SET ${updates.join(', ')} WHERE username = ?`
     ).bind(...params).run();
 
     const result = await db.prepare(
@@ -285,7 +285,7 @@ export async function PUT(request) {
   } catch (error) {
     return new Response(JSON.stringify({ error: error.message }), {
       status: 500,
-      headers: { "Content-Type": "application/json" },
+      headers: { 'Content-Type': 'application/json' }
     });
   };
 };
