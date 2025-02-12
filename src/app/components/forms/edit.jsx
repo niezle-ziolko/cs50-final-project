@@ -1,4 +1,5 @@
 'use client';
+import { getRequestContext } from '@cloudflare/next-on-pages';
 import { useState, useRef, useEffect } from 'react';
 import { useAuth } from 'context/auth-context';
 
@@ -26,7 +27,7 @@ export default function EditForm() {
         ...prev,
         username: user.username
       }));
-    };
+    }
   }, [user]);
 
   const handleChange = (e) => {
@@ -44,7 +45,7 @@ export default function EditForm() {
       const reader = new FileReader();
       reader.onloadend = () => setPreview(reader.result);
       reader.readAsDataURL(file);
-    };
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -54,7 +55,7 @@ export default function EditForm() {
     if (formData.password && formData.password !== formData.confirmPassword) {
       setErrorMessage('Passwords do not match!');
       return;
-    };
+    }
 
     try {
       setLoading(true);
@@ -62,7 +63,20 @@ export default function EditForm() {
       Object.entries(formData).forEach(([key, value]) => {
         if (value.trim() !== '') payload.append(key, value);
       });
-      if (imageFile) payload.append('photo', imageFile);
+
+      let r2ImageUrl = null;
+
+      if (imageFile) {
+        const filename = `${user?.username}.webp`;
+        const imageKey = `final-project/profile-photo/${filename}`;
+        await getRequestContext().env.R2.put(imageKey, imageFile);
+        
+        r2ImageUrl = `https://niezleziolko.app/${imageKey}`;
+      }
+
+      if (r2ImageUrl) {
+        payload.append('photo', r2ImageUrl);
+      }
 
       const res = await fetch('/api/auth/user', {
         method: 'PUT',
@@ -79,11 +93,11 @@ export default function EditForm() {
         updateUser(data);
       } else {
         setErrorMessage(`Error: ${data.error || 'Failed to update user.'}`);
-      };
+      }
     } catch (error) {
       setErrorMessage('An unexpected error occurred.');
       setLoading(false);
-    };
+    }
   };
 
   return (
@@ -113,3 +127,5 @@ export default function EditForm() {
     </div>
   );
 };
+
+export const runtime = 'edge';

@@ -24,6 +24,12 @@
       "database_id": "e7af7a4f-4f32-4aaa-9fe3-33db3653c0b7"
     }
   ],
+  "r2_buckets": [
+    {
+      "binding": "R2",
+      "bucket_name": "cs50"
+    }
+  ],
   "vars": {
     "CLIENT_AUTH": "ZE8RhKKIQC2G9xPHVe9FNtodUn9s9wD1",
     "NEXT_PUBLIC_CLIENT_AUTH": "ZE8RhKKIQC2G9xPHVe9FNtodUn9s9wD1",
