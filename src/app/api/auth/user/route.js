@@ -177,18 +177,10 @@ export async function PUT(request) {
     const authResponse = bearerHeaders(request, authToken);
     if (authResponse) return authResponse;
 
-    let requestBody;
-    try {
-      requestBody = JSON.parse(await request.text());
-    } catch {
-      return new Response(JSON.stringify({ error: 'Invalid JSON format' }), {
-        status: 400,
-        headers: { 'Content-Type': 'application/json' },
-      });
-    };
+    const formData = await request.formData();
+    const { username, email, password, confirmPassword, photo } = Object.fromEntries(formData);
 
-    const { username, email, password, photo } = requestBody;
-
+    // Input validation
     if (!username || typeof username !== 'string' || !username.match(/^[a-zA-Z0-9_-]{3,20}$/)) {
       return new Response(JSON.stringify({ error: 'Invalid username' }), {
         status: 400,
@@ -209,6 +201,7 @@ export async function PUT(request) {
     const updates = [];
     const params = [];
 
+    // Email validation
     if (email && email !== user.email) {
       if (!email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
         return new Response(JSON.stringify({ error: 'Invalid email format' }), {
@@ -229,27 +222,35 @@ export async function PUT(request) {
       params.push(email);
     };
 
+    // Password update logic
     let hashedPassword;
+    if (password && password !== confirmPassword) {
+      return new Response(JSON.stringify({ error: 'Passwords do not match' }), {
+        status: 400,
+        headers: { 'Content-Type': 'application/json' },
+      });
+    }
+    
     if (password) {
       hashedPassword = await hashPassword(password);
-      if (hashedPassword !== user.password) {
-        updates.push('password = ?');
-        params.push(hashedPassword);
-      };
+      updates.push('password = ?');
+      params.push(hashedPassword);
     };
 
-    if (photo && photo !== user.photo) {
-      if (!photo.match(/^https?:\/\/.+\..+/)) {
-        return new Response(JSON.stringify({ error: 'Invalid photo URL' }), {
-          status: 400,
-          headers: { 'Content-Type': 'application/json' },
-        });
-      };
-
+    // Photo handling
+    let newPhoto = user.photo; // Default to current photo
+    if (photo) {
+      const filename = `${user?.username}.webp`;
+      const imageKey = `final-project/profile-photo/${filename}`;
+      await getRequestContext().env.R2.put(imageKey, photo);
+        
+      const r2ImageUrl = `https://cdn.niezleziolko.app/${imageKey}`;
+      newPhoto = r2ImageUrl;
       updates.push('photo = ?');
-      params.push(photo);
-    };
+      params.push(r2ImageUrl);
+    }
 
+    // If no updates, return early
     if (updates.length === 0) {
       return new Response(JSON.stringify({ message: 'No changes detected' }), {
         status: 200,
@@ -262,9 +263,10 @@ export async function PUT(request) {
       `UPDATE users SET ${updates.join(', ')} WHERE username = ?`
     ).bind(...params).run();
 
+    // Fetch updated user data
     const result = await db.prepare(
-      `SELECT * FROM users WHERE username = '${username}'`
-    ).first();
+      'SELECT * FROM users WHERE username = ?'
+    ).bind(username).first();
 
     if (!result) {
       return new Response(JSON.stringify({ error: 'Created user not found' }), {
