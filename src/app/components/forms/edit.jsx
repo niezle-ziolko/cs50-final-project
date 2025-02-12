@@ -101,7 +101,7 @@ export default function EditForm() {
           </div>
           <input type='file' ref={fileInputRef} style={{ display: 'none' }} onChange={handleImageChange} accept='image/*' />
         </div>
-        <input className='input' name='email' placeholder={user?.email} type='email' value={formData.email} onChange={handleChange} required />
+        <input className='input' name='email' placeholder={user?.email} type='email' value={formData.email} onChange={handleChange} />
         <input className='input' name='password' placeholder='Password' type='password' onChange={handleChange} />
         <input className='input' name='confirmPassword' placeholder='Confirm password' type='password' onChange={handleChange} />
         <span className='span'>Enter only the data you want to change.</span>
