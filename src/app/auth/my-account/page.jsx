@@ -1,11 +1,15 @@
 'use client';
+import ClientPanel from 'components/panel';
 import EditForm from 'components/forms/edit';
 
 import 'styles/css/theme/forms.css';
 
 export default function MyAccount() {
+  const title = 'My books';
+
   return (
-    <div>
+    <div className='account-page'>
+      <ClientPanel title={title} />
       <EditForm />
     </div>
   );

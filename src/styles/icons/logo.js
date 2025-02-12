@@ -7,7 +7,7 @@ export default function LogoIcon() {
         id='logo'
         width='510'
         height='641'
-        className='header-logo'
+        className='logo'
         viewBox='0 0 510 641'
         xmlns='http://www.w3.org/2000/svg'
       >

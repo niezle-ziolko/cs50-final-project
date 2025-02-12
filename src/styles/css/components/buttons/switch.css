@@ -66,13 +66,13 @@ input:hover:checked + .slider:before {
   box-shadow: 0 0.3em 0 var(--primary-color);
 }
 
-.menu-container {
+.menu .container {
   display: var(--flex);
   align-items: var(--center);
   gap: 50px;
 }
 
-.menu-list {
+.menu .list {
   padding: 0px;
   display: var(--flex);
   gap: 50px;
@@ -81,11 +81,11 @@ input:hover:checked + .slider:before {
   align-items: center;
 }
 
-.menu-item {
+.menu .item {
   display: var(--flex);
 }
 
-.menu-item:hover {
+.menu .item:hover {
   font-weight: bold;
   cursor: pointer;
   transition: all 0.3s;

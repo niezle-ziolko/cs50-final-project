@@ -27,6 +27,7 @@ body {
 
 main {
   display: grid;
+  padding: 15px 20px;
   justify-content: center;
 }
 
@@ -96,4 +97,9 @@ a {
 p {
   color: var(--primary-color);
   font-size: var(--primary-space);
+}
+
+.account-page {
+  display: flex;
+  gap: 50px;
 }

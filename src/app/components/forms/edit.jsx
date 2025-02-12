@@ -87,7 +87,7 @@ export default function EditForm() {
   };
 
   return (
-    <div className='login-form'>
+    <div className='login-form' style={{ alignSelf: 'auto' }}>
       <form className='form' onSubmit={handleSubmit}>
         <p className='heading'>Edit your data</p>
         <div className='box'>

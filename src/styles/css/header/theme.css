@@ -3,23 +3,32 @@
   margin-bottom: 20px;
 }
 
-.header-element {
+.header .element {
   padding: 0px 30px;
   display: var(--flex);
   justify-content: space-between;
   border-bottom: 2px solid var(--primary-color);
 }
 
-.header-box {
+.header .box {
+  gap: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin-bottom: var(--primary-space);
 }
 
-.header-logo {
+.header .logo {
   width: 75px;
   height: 75px;
 }
 
-.header-menu {
+.header .picture {
+  border-radius: 100%;
+  border: 2px solid var(--primary-color);
+}
+
+.header .menu {
   height: 100%;
   display: var(--flex);
   text-align: var(--center);

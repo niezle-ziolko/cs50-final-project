@@ -1,25 +1,37 @@
+'use client';
 import Link from 'next/link';
 
-import Switch from './buttons/switch';
+import { useAuth } from 'context/auth-context';
 
+import Switch from './buttons/switch';
 import LogoIcon from 'styles/icons/logo';
 
 import 'styles/css/header/theme.css';
 
-
 export default function Header() {
+  const { user } = useAuth();
+
   return (
     <header className='header'>
-      <div className='header-element'>
-        <div className='header-box'>
+      <div className='element'>
+        <div className='box'>
           <div>
             <Link href='/'>
               <LogoIcon />
             </Link>
           </div>
+          {user ? (
+            <>
+              <img className='picture' src={user?.photo} alt='profile-picture' width='70' height='70' />
+            </>
+          ) : (
+            <>
+              <img className='picture' src='https://cdn.niezleziolko.app/final-project/profile-photo/default-profile-picture.webp' alt='profile-picture' width='70' height='70' />
+            </>
+          )}
         </div>
-        <div className='header-box'>
-          <div className='header-menu'>
+        <div className='box'>
+          <div className='menu'>
             <Switch />
           </div>
         </div>

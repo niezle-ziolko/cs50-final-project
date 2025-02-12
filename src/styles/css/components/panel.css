@@ -1,0 +1,36 @@
+.panel {
+  gap: 10px;
+  padding: 2.5em;
+  border-radius: 25px;
+  border: var(--border);
+  flex-direction: column;
+  transition: .4s ease-in-out;
+  background-color: var(--secondary-color);
+  display: grid;
+}
+
+.panel:hover, .panel tr:hover {
+  box-shadow: 10px 10px 0px var(--primary-color);
+  transform: translateX(-0.5em) translateY(-0.5em);
+}
+
+.panel table {
+  width: 875px;
+}
+
+.panel tbody {
+  gap: 20px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.panel tr {
+  width: 270px;
+  height: 280px;
+  text-align: center;
+  gap: 10px;
+  border-radius: 25px;
+  border: var(--border);
+  transition: .4s ease-in-out;
+  display: grid;
+}
