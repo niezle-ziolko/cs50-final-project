@@ -60,13 +60,13 @@
   cursor: pointer;
 }
 
-.image-icon {
+.login-form .icon {
   justify-content: center;
   display: flex;
   fill: #e8e8e8;
 }
 
-span {
+.login-form .span {
   font-size: 13px;
   margin-top: 5px;
 }

@@ -3,7 +3,7 @@ export default function ImageIcon() {
     <div className='background-icon'>
       <svg
         xmlns='http://www.w3.org/2000/svg'
-        className='image-icon'
+        className='icon'
         viewBox='0 0 512 512'
         width='25'
         height='25'

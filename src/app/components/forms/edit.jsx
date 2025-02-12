@@ -12,6 +12,7 @@ export default function EditForm() {
   const [preview, setPreview] = useState(user?.photo || '');
   const [imageFile, setImageFile] = useState(null);
   const [formData, setFormData] = useState({
+    username: user?.username,
     email: '',
     password: '',
     confirmPassword: ''
@@ -21,8 +22,11 @@ export default function EditForm() {
 
   useEffect(() => {
     if (user) {
-      setFormData((prev) => ({ ...prev, email: user.email }));
-    }
+      setFormData((prev) => ({
+        ...prev,
+        username: user.username
+      }));
+    };
   }, [user]);
 
   const handleChange = (e) => {
@@ -40,7 +44,7 @@ export default function EditForm() {
       const reader = new FileReader();
       reader.onloadend = () => setPreview(reader.result);
       reader.readAsDataURL(file);
-    }
+    };
   };
 
   const handleSubmit = async (e) => {
@@ -50,7 +54,7 @@ export default function EditForm() {
     if (formData.password && formData.password !== formData.confirmPassword) {
       setErrorMessage('Passwords do not match!');
       return;
-    }
+    };
 
     try {
       setLoading(true);
@@ -75,11 +79,11 @@ export default function EditForm() {
         updateUser(data);
       } else {
         setErrorMessage(`Error: ${data.error || 'Failed to update user.'}`);
-      }
+      };
     } catch (error) {
       setErrorMessage('An unexpected error occurred.');
       setLoading(false);
-    }
+    };
   };
 
   return (
@@ -97,7 +101,7 @@ export default function EditForm() {
           </div>
           <input type='file' ref={fileInputRef} style={{ display: 'none' }} onChange={handleImageChange} accept='image/*' />
         </div>
-        <input className='input' name='email' placeholder='E-mail' type='email' value={formData.email} onChange={handleChange} required />
+        <input className='input' name='email' placeholder={user?.email} type='email' value={formData.email} onChange={handleChange} required />
         <input className='input' name='password' placeholder='Password' type='password' onChange={handleChange} />
         <input className='input' name='confirmPassword' placeholder='Confirm password' type='password' onChange={handleChange} />
         <span className='span'>Enter only the data you want to change.</span>
@@ -108,4 +112,4 @@ export default function EditForm() {
       </form>
     </div>
   );
-}
+};
