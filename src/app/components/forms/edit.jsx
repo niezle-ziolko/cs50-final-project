@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useAuth } from 'context/auth-context';
 
 import Spinner from 'components/spinner';
@@ -9,35 +9,63 @@ export default function EditForm() {
   const { updateUser, user } = useAuth();
   const [errorMessage, setErrorMessage] = useState('');
   const [loading, setLoading] = useState(false);
+  const [preview, setPreview] = useState(user?.photo || '');
+  const [imageFile, setImageFile] = useState(null);
   const [formData, setFormData] = useState({
     email: '',
     password: '',
     confirmPassword: ''
   });
 
+  const fileInputRef = useRef(null);
+
+  useEffect(() => {
+    if (user) {
+      setFormData((prev) => ({ ...prev, email: user.email }));
+    }
+  }, [user]);
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleImageClick = () => {
+    fileInputRef.current.click();
+  };
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setImageFile(file);
+      const reader = new FileReader();
+      reader.onloadend = () => setPreview(reader.result);
+      reader.readAsDataURL(file);
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setErrorMessage('');
 
-    if (formData.password !== formData.confirmPassword) {
+    if (formData.password && formData.password !== formData.confirmPassword) {
       setErrorMessage('Passwords do not match!');
       return;
     }
 
     try {
       setLoading(true);
+      const payload = new FormData();
+      Object.entries(formData).forEach(([key, value]) => {
+        if (value.trim() !== '') payload.append(key, value);
+      });
+      if (imageFile) payload.append('photo', imageFile);
 
       const res = await fetch('/api/auth/user', {
         method: 'PUT',
         headers: {
-          'Content-Type': 'application/json',
           'Authorization': `Bearer ${process.env.NEXT_PUBLIC_CLIENT_AUTH}`
         },
-        body: JSON.stringify({ ...formData })
+        body: payload
       });
 
       const data = await res.json();
@@ -46,12 +74,12 @@ export default function EditForm() {
       if (res.ok) {
         updateUser(data);
       } else {
-        setErrorMessage(`Error: ${data.error}`);
+        setErrorMessage(`Error: ${data.error || 'Failed to update user.'}`);
       }
     } catch (error) {
       setErrorMessage('An unexpected error occurred.');
       setLoading(false);
-    };
+    }
   };
 
   return (
@@ -59,20 +87,20 @@ export default function EditForm() {
       <form className='form' onSubmit={handleSubmit}>
         <p className='heading'>Edit your data</p>
         <div className='box'>
-          {user?.photo ? (
-            <div className='profile-picture'>
-              <img src={user.photo} alt='profile-picture' width='200' height='200' style={{ borderRadius: '100%' }} />
-              <ImageIcon />
-            </div>
-          ) : (
-            <div className='profile-picture'>
-              <Spinner />
-            </div>
-          )}
+          <div className='profile-picture' onClick={handleImageClick} style={{ cursor: 'pointer' }}>
+            {preview ? (
+              <img src={preview} alt='profile' width='200' height='200' style={{ borderRadius: '100%' }} />
+            ) : (
+              <img src={user?.photo} alt='profile' width='200' height='200' style={{ borderRadius: '100%' }} />
+            )}
+            <ImageIcon />
+          </div>
+          <input type='file' ref={fileInputRef} style={{ display: 'none' }} onChange={handleImageChange} accept='image/*' />
         </div>
-        <input className='input' name='email' placeholder={user ? user.email : 'E-mail'} type='email' onChange={handleChange} required />
-        <input className='input' name='password' placeholder='Password' type='password' onChange={handleChange} required />
-        <input className='input' name='confirmPassword' placeholder='Confirm password' type='password' onChange={handleChange} required />
+        <input className='input' name='email' placeholder='E-mail' type='email' value={formData.email} onChange={handleChange} required />
+        <input className='input' name='password' placeholder='Password' type='password' onChange={handleChange} />
+        <input className='input' name='confirmPassword' placeholder='Confirm password' type='password' onChange={handleChange} />
+        <span className='span'>Enter only the data you want to change.</span>
         {errorMessage && <p className='error-message'>{errorMessage}</p>}
         <button className='btn' type='submit' disabled={loading}>
           {loading ? <Spinner /> : 'Submit'}
@@ -80,4 +108,4 @@ export default function EditForm() {
       </form>
     </div>
   );
-};
+}

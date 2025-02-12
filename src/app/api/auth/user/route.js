@@ -6,7 +6,8 @@ import { hashPassword } from 'utils/utils';
 
 export async function GET(request) {
   try {
-    const authToken = getRequestContext().env.CLIENT_AUTH;
+    const { env } = getRequestContext();
+    const authToken = env.CLIENT_AUTH;
     const authResponse = bearerHeaders(request, authToken);
 
     if (authResponse) {
@@ -41,7 +42,7 @@ export async function GET(request) {
       });
     };
 
-    const db = getRequestContext().env.DATABASE;
+    const db = env.DATABASE;
 
     const result = await db.prepare(
       `SELECT * FROM users WHERE username = '${username}'`
@@ -88,7 +89,8 @@ export async function GET(request) {
 };
 
 export async function POST(request) {
-  const authToken = getRequestContext().env.CLIENT_AUTH;
+  const { env } = getRequestContext();
+  const authToken = env.CLIENT_AUTH;
   const authResponse = bearerHeaders(request, authToken);
 
   if (authResponse) return authResponse;
@@ -112,7 +114,7 @@ export async function POST(request) {
     });
   };
 
-  const db = getRequestContext().env.DATABASE;
+  const db = env.DATABASE;
   
   try {
     const existingUser = await db.prepare(
@@ -175,34 +177,35 @@ export async function PUT(request) {
     const authResponse = bearerHeaders(request, authToken);
     if (authResponse) return authResponse;
 
-    let requestBody;
-    try {
-      requestBody = JSON.parse(await request.text());
-    } catch {
-      return new Response(JSON.stringify({ error: 'Invalid JSON format' }), {
+    const contentType = request.headers.get('content-type');
+    if (!contentType || !contentType.startsWith('multipart/form-data')) {
+      return new Response(JSON.stringify({ error: 'Invalid content type' }), {
         status: 400,
         headers: { 'Content-Type': 'application/json' },
       });
-    };
+    }
 
-    const { username, email, password, photo } = requestBody;
+    const formData = await request.formData();
+    const username = formData.get('username');
+    const email = formData.get('email');
+    const password = formData.get('password');
+    const photo = formData.get('photo');
 
     if (!username || typeof username !== 'string' || !username.match(/^[a-zA-Z0-9_-]{3,20}$/)) {
       return new Response(JSON.stringify({ error: 'Invalid username' }), {
         status: 400,
         headers: { 'Content-Type': 'application/json' },
       });
-    };
+    }
 
     const db = env.DATABASE;
     const user = await db.prepare('SELECT * FROM users WHERE username = ?').bind(username).first();
-
     if (!user) {
       return new Response(JSON.stringify({ error: 'User not found' }), {
         status: 404,
         headers: { 'Content-Type': 'application/json' },
       });
-    };
+    }
 
     const updates = [];
     const params = [];
@@ -213,73 +216,50 @@ export async function PUT(request) {
           status: 400,
           headers: { 'Content-Type': 'application/json' },
         });
-      };
-
-      const emailExists = await db.prepare('SELECT 1 FROM users WHERE email = ?').bind(email).first();
-      if (emailExists) {
-        return new Response(JSON.stringify({ error: 'Email already in use' }), {
-          status: 400,
-          headers: { 'Content-Type': 'application/json' },
-        });
-      };
-
+      }
       updates.push('email = ?');
       params.push(email);
-    };
+    }
 
     let hashedPassword;
     if (password) {
       hashedPassword = await hashPassword(password);
-      if (hashedPassword !== user.password) {
-        updates.push('password = ?');
-        params.push(hashedPassword);
-      };
-    };
+      updates.push('password = ?');
+      params.push(hashedPassword);
+    }
 
-    if (photo && photo !== user.photo) {
-      if (!photo.match(/^https?:\/\/.+\..+/)) {
-        return new Response(JSON.stringify({ error: 'Invalid photo URL' }), {
+    let uploadedPhotoUrl = user.photo;
+    if (photo && photo instanceof File) {
+      const mimeType = photo.type;
+      if (!mimeType.startsWith('image/')) {
+        return new Response(JSON.stringify({ error: 'Invalid photo format' }), {
           status: 400,
           headers: { 'Content-Type': 'application/json' },
         });
-      };
+      }
 
+      const arrayBuffer = await photo.arrayBuffer();
+      const imageKey = `users/${username}/${photo.name}`;
+      await env.R2.put(imageKey, arrayBuffer, { httpMetadata: { contentType: mimeType } });
+      uploadedPhotoUrl = `https://cdn.niezleziolko.app/${imageKey}`;
       updates.push('photo = ?');
-      params.push(photo);
-    };
+      params.push(uploadedPhotoUrl);
+    }
 
-    if (updates.length === 0) {
-      return new Response(JSON.stringify({ message: 'No changes detected' }), {
-        status: 200,
-        headers: { 'Content-Type': 'application/json' },
-      });
-    };
+    if (updates.length > 0) {
+      params.push(username);
+      await db.prepare(
+        `UPDATE users SET ${updates.join(', ')} WHERE username = ?`
+      ).bind(...params).run();
+    }
 
-    params.push(username);
-    await db.prepare(
-      `UPDATE users SET ${updates.join(', ')} WHERE username = ?`
-    ).bind(...params).run();
-
-    const result = await db.prepare(
-      `SELECT * FROM users WHERE username = '${username}'`
-    ).first();
-
-    if (!result) {
-      return new Response(JSON.stringify({ error: 'Created user not found' }), {
-        status: 404,
-        headers: { 'Content-Type': 'application/json' }
-      });
-    };
-
-    const userData = {
-      id: result.id,
-      username: result.username,
-      email: result.email,
-      photo: result.photo,
+    return new Response(JSON.stringify({
+      id: user.id,
+      username: user.username,
+      email: email || user.email,
+      photo: uploadedPhotoUrl,
       expiresDate: new Date().toISOString()
-    };
-
-    return new Response(JSON.stringify(userData), {
+    }), {
       status: 200,
       headers: { 'Content-Type': 'application/json' }
     });
@@ -288,7 +268,8 @@ export async function PUT(request) {
       status: 500,
       headers: { 'Content-Type': 'application/json' }
     });
-  };
-};
+  }
+}
+
 
 export const runtime = 'edge';

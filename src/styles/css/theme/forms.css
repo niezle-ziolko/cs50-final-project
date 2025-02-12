@@ -65,3 +65,8 @@
   display: flex;
   fill: #e8e8e8;
 }
+
+span {
+  font-size: 13px;
+  margin-top: 5px;
+}
