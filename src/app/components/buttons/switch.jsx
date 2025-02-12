@@ -21,21 +21,15 @@ export default function Switch() {
             </li>
             |
             <li className='menu-item'>
-              <Link href='/auth/my-account' aria-label='account-page'>My account</Link>
-            </li>
-            |
-            <li className='menu-item'>
               <Link href='/auth/my-books' aria-label='my-books-page'>My books</Link>
             </li>
             |
             <li className='menu-item'>
-              <button 
-                onClick={logoutUser} 
-                aria-label='logout-page'
-                className="logout-button"
-              >
-                Logout
-              </button>
+              <Link href='/auth/my-account' aria-label='account-page'>My account</Link>
+            </li>
+            |
+            <li className='menu-item'>
+              <button onClick={logoutUser} aria-label='logout-page' className="logout-button">Logout</button>
             </li>
           </>
         ) : (

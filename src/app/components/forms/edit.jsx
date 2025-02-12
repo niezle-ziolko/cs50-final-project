@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useAuth } from 'context/auth-context';
 
 import Spinner from 'components/spinner';
+import ImageIcon from 'styles/icons/image';
 
 export default function EditForm() {
   const { updateUser, user } = useAuth();
@@ -59,14 +60,17 @@ export default function EditForm() {
         <p className='heading'>Edit your data</p>
         <div className='box'>
           {user?.photo ? (
-            <img className='profile-picture' src={user.photo} alt='profile-picture' />
+            <div className='profile-picture'>
+              <img src={user.photo} alt='profile-picture' width='200' height='200' style={{ borderRadius: '100%' }} />
+              <ImageIcon />
+            </div>
           ) : (
             <div className='profile-picture'>
               <Spinner />
             </div>
           )}
         </div>
-        <input className='input' name='email' placeholder='E-mail' type='email' onChange={handleChange} required />
+        <input className='input' name='email' placeholder={user ? user.email : 'E-mail'} type='email' onChange={handleChange} required />
         <input className='input' name='password' placeholder='Password' type='password' onChange={handleChange} required />
         <input className='input' name='confirmPassword' placeholder='Confirm password' type='password' onChange={handleChange} required />
         {errorMessage && <p className='error-message'>{errorMessage}</p>}

@@ -40,10 +40,28 @@
   align-items: var(--center);
   justify-content: var(--center);
   border: 2px solid var(--primary-color);
+  border-radius: 100%;
 }
 
 .login-form .box {
-  display: flex;
   align-items: var(--center);
   justify-content: var(--center);
+  display: inherit;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-form .background-icon {
+  position: absolute;
+  border-radius: 100%;
+  background-color: rgba(15, 6, 25, 0.40);
+  backdrop-filter: blur(4px);
+  padding: 25px;
+  cursor: pointer;
+}
+
+.image-icon {
+  justify-content: center;
+  display: flex;
+  fill: #e8e8e8;
 }
