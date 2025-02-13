@@ -22,10 +22,17 @@
   justify-content: var(--center);
 }
 
-.form-element {
+.form-login {
   width: 24em;
   position: relative;
   align-self: var(--center);
+}
+
+.form-edit {
+  width: 24em;
+  align-self: auto;
+  min-height: 43em;
+  position: relative;
 }
 
 .error-message {
@@ -33,7 +40,7 @@
   font-weight: bold;
 }
 
-.form-element .picture {
+.form-edit .picture {
   width: 200px;
   height: 200px;
   display: flex;
@@ -44,7 +51,7 @@
   border-radius: 100%;
 }
 
-.form-element .box {
+.form-edit .box {
   align-items: var(--center);
   justify-content: var(--center);
   display: inherit;
@@ -52,7 +59,7 @@
   align-items: center;
 }
 
-.form-element .background-icon {
+.form-edit .background-icon {
   padding: 25px;
   cursor: pointer;
   position: absolute;
@@ -61,13 +68,13 @@
   backdrop-filter: blur(4px);
 }
 
-.form-element .icon {
+.form-edit .icon {
   justify-content: center;
   display: flex;
   fill: #e8e8e8;
 }
 
-.form-element .span {
+.form-edit .span {
   font-size: 13px;
   margin-top: 5px;
 }
