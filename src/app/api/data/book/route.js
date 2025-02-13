@@ -13,45 +13,56 @@ export async function GET(request) {
     const urlSearchParams = new URL(request.url);
     const id = urlSearchParams.searchParams.get('id');
 
-    if (!id) {
-      return new Response(JSON.stringify({ error: 'Missing required variables.' }), {
-        status: 400,
-        headers: { 'Content-Type': 'application/json' }
-      });
-    };
-
     const db = env.DATABASE;
 
-    const result = await db.prepare(
-      `SELECT * FROM books WHERE id = '${id}'`
-    ).first();
+    let result;
 
-    if (!result) {
-      return new Response(JSON.stringify({ error: 'Book not found' }), {
-        status: 404,
+    if (!id) {
+      result = await db.prepare(`SELECT * FROM books`).all();
+      
+      if (result.length === 0) {
+        return new Response(JSON.stringify({ error: 'No books found' }), {
+          status: 404,
+          headers: { 'Content-Type': 'application/json' }
+        });
+      }
+
+      return new Response(JSON.stringify(result), {
+        status: 200,
         headers: { 'Content-Type': 'application/json' }
       });
-    };
+    } else {
+      result = await db.prepare(
+        `SELECT * FROM books WHERE id = '${id}'`
+      ).first();
 
-    const bookData = {
-      id: result.id,
-      title: result.title,
-      description: result.description,
-      link: result.link,
-      picture: result.picture,
-      author: result.author
-    };
+      if (!result) {
+        return new Response(JSON.stringify({ error: 'Book not found' }), {
+          status: 404,
+          headers: { 'Content-Type': 'application/json' }
+        });
+      }
 
-    return new Response(JSON.stringify(bookData), {
-      status: 200,
-      headers: { 'Content-Type': 'application/json' }
-    });
+      const bookData = {
+        id: result.id,
+        title: result.title,
+        description: result.description,
+        file: result.file,
+        picture: result.picture,
+        author: result.author
+      };
+
+      return new Response(JSON.stringify(bookData), {
+        status: 200,
+        headers: { 'Content-Type': 'application/json' }
+      });
+    }
   } catch (error) {
     return new Response(JSON.stringify({ error: error.message }), {
       status: 500,
       headers: { 'Content-Type': 'application/json' }
     });
-  };
+  }
 };
 
 export async function POST(request) {
