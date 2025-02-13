@@ -1,5 +1,6 @@
 'use client';
 import Link from 'next/link';
+import Image from 'next/image';
 
 import { useAuth } from 'context/auth-context';
 
@@ -22,11 +23,11 @@ export default function Header() {
           </div>
           {user ? (
             <>
-              <img className='picture' src={user?.photo} alt='profile-picture' width='70' height='70' />
+              <Image className='picture' src={user?.photo} alt='profile-picture' width='70' height='70' />
             </>
           ) : (
             <>
-              <img className='picture' src='https://cdn.niezleziolko.app/final-project/profile-photo/default-profile-picture.webp' alt='profile-picture' width='70' height='70' />
+              <Image className='picture' src='https://cdn.niezleziolko.app/final-project/profile-photo/default-profile-picture.webp' alt='profile-picture' width='70' height='70' />
             </>
           )}
         </div>

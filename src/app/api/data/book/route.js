@@ -18,7 +18,7 @@ export async function GET(request) {
     let result;
 
     if (!id) {
-      result = await db.prepare(`SELECT * FROM books`).all();
+      result = await db.prepare('SELECT * FROM books').all();
       
       if (result.length === 0) {
         return new Response(JSON.stringify({ error: 'No books found' }), {
