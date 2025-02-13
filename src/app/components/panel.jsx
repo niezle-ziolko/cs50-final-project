@@ -13,9 +13,15 @@ export default function ClientPanel({ title }) {
     const fetchBooks = async () => {
       try {
         const responses = await Promise.all(
-          ids.map(id => fetch(`/api/data/book?id=${id}`).then(res => res.json()))
+          ids.map(id => 
+            fetch(`/api/data/book?id=${id}`, {
+              headers: {
+                'Authorization': `Bearer ${process.env.NEXT_PUBLIC_BOOK_AUTH}`
+              }
+            }).then(res => res.json())
+          )
         );
-        setBooks(responses);
+        setBooks(responses.filter(book => book && book.picture));
       } catch (error) {
         console.error('Error fetching books:', error);
       };
@@ -40,4 +46,4 @@ export default function ClientPanel({ title }) {
       </table>
     </div>
   );
-}
+};

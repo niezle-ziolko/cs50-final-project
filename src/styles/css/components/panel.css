@@ -1,6 +1,6 @@
 .panel {
   gap: 10px;
-  display: grid;
+  display: flex;
   padding: 2.5em;
   border-radius: 25px;
   border: var(--border);
