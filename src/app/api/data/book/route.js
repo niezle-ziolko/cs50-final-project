@@ -1,5 +1,4 @@
 import { getRequestContext } from '@cloudflare/next-on-pages';
-
 import { bearerHeaders } from 'utils/headers';
 
 export async function GET(request) {
@@ -27,7 +26,9 @@ export async function GET(request) {
         });
       }
 
-      return new Response(JSON.stringify(result), {
+      return new Response(JSON.stringify({
+        results: result
+      }), {
         status: 200,
         headers: { 'Content-Type': 'application/json' }
       });
@@ -64,6 +65,7 @@ export async function GET(request) {
     });
   }
 };
+
 
 export async function POST(request) {
   const { env } = getRequestContext();

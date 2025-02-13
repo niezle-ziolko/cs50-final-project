@@ -1,7 +1,6 @@
 'use client';
 import { useState, useRef, useEffect } from 'react';
 import { useAuth } from 'context/auth-context';
-import Image from 'next/image';
 
 import Spinner from 'components/spinner';
 import ImageIcon from 'styles/icons/image';
@@ -94,9 +93,9 @@ export default function EditForm() {
         <div className='box'>
           <div className='picture' onClick={handleImageClick} style={{ cursor: 'pointer' }}>
             {preview ? (
-              <Image src={preview} alt='profile-picture' width='200' height='200' style={{ borderRadius: '100%' }} />
+              <img src={preview} alt='profile-picture' width='200' height='200' style={{ borderRadius: '100%' }} />
             ) : (
-              <Image src={user?.photo} alt='profile-picture' width='200' height='200' style={{ borderRadius: '100%' }} />
+              <img src={user?.photo} alt='profile-picture' width='200' height='200' style={{ borderRadius: '100%' }} />
             )}
             <ImageIcon />
           </div>
