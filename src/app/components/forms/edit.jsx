@@ -88,7 +88,7 @@ export default function EditForm() {
 
   return (
     <div className='form-element' style={{ alignSelf: 'auto' }}>
-      <form className='form' onSubmit={handleSubmit}>
+      <form className='form' style={{ position: 'absolute' }} onSubmit={handleSubmit}>
         <p className='heading'>Edit your data</p>
         <div className='box'>
           <div className='picture' onClick={handleImageClick} style={{ cursor: 'pointer' }}>

@@ -75,6 +75,10 @@ button:active {
 }
 
 form {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;    
   gap: 10px;
   display: flex;
   padding: 2.5em;

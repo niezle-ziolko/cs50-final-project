@@ -6,8 +6,6 @@ import { useAuth } from 'context/auth-context';
 
 import Spinner from 'components/spinner';
 
-import 'styles/css/theme/forms.css';
-
 export default function SignUpForm() {
   const router = useRouter();
   const { updateUser } = useAuth();

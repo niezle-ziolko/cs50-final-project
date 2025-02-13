@@ -1,7 +1,7 @@
 'use client';
 import CreateForm from 'components/forms/create-book';
 
-import 'styles/css/theme/forms.css';
+import 'styles/css/components/forms.css';
 
 export default function MyAccount() {
   return (
