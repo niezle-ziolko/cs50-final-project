@@ -26,9 +26,7 @@ export async function GET(request) {
         });
       };
 
-      return new Response(JSON.stringify({
-        results: result.results
-      }), {
+      return new Response(JSON.stringify(result.results), {
         status: 200,
         headers: { 'Content-Type': 'application/json' }
       });
@@ -53,7 +51,7 @@ export async function GET(request) {
         author: result.author
       };
 
-      return new Response(JSON.stringify({ result: bookData }), {
+      return new Response(JSON.stringify(bookData), {
         status: 200,
         headers: { 'Content-Type': 'application/json' }
       });
