@@ -3,12 +3,13 @@ import { getRequestContext } from '@cloudflare/next-on-pages';
 import { bearerHeaders } from 'utils/headers';
 import { hashPassword } from 'utils/utils';
 
-
 export async function GET(request) {
   try {
     const { env } = getRequestContext();
     const authToken = env.CLIENT_AUTH;
     const authResponse = bearerHeaders(request, authToken);
+
+    if (authResponse) return authResponse;
 
     if (authResponse) {
       return authResponse;
@@ -175,6 +176,7 @@ export async function PUT(request) {
     const { env } = getRequestContext();
     const authToken = env.CLIENT_AUTH;
     const authResponse = bearerHeaders(request, authToken);
+
     if (authResponse) return authResponse;
 
     const formData = await request.formData();

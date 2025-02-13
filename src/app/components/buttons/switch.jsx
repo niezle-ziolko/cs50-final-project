@@ -20,6 +20,10 @@ export default function Switch() {
             </li>
             |
             <li className='item'>
+              <Link href='/auth/create-book' aria-label='library-page'>Create</Link>
+            </li>
+            |
+            <li className='item'>
               <Link href='/auth/my-account' aria-label='account-page'>My account</Link>
             </li>
             |

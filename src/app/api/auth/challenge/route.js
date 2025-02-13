@@ -2,7 +2,6 @@ import { getRequestContext } from '@cloudflare/next-on-pages';
 
 import { corsHeaders, bearerHeaders } from 'utils/headers';
 
-
 export async function POST(request) {
   try {
     const authToken = getRequestContext().env.CHALLENGE_AUTH;

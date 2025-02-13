@@ -92,14 +92,14 @@ export default function SignInForm() {
   return (
     <div>
       <Script src='https://challenges.cloudflare.com/turnstile/v0/api.js' />
-      <div className='login-form'>
+      <div className='form-element'>
         <form className='form' onSubmit={handleSubmit}>
           <p className='heading'>Sign in</p>
           <input className='input' name='username' placeholder='Username' type='text' value={formData.username} onChange={handleChange} required />
           <input className='input' name='password' placeholder='Password' type='password' value={formData.password} onChange={handleChange} required />
           <div className='cf-turnstile' data-sitekey={TURNSTILE_SITE_KEY} data-callback='javascriptCallback' data-theme='dark' />
           {errorMessage && <p className='error-message'>{errorMessage}</p>}
-          <button className='btn' type='submit' disabled={loading}>
+          <button className='button' type='submit' disabled={loading}>
             {loading ? <Spinner /> : 'Submit'}
           </button>
         </form>

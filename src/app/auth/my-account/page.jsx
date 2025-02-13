@@ -8,7 +8,7 @@ export default function MyAccount() {
   const title = 'My books';
 
   return (
-    <div className='account-page'>
+    <div className='page'>
       <ClientPanel title={title} />
       <EditForm />
     </div>

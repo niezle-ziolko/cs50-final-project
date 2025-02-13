@@ -11,7 +11,7 @@
   padding: 0.7em;
 }
 
-.form .btn {
+.form .button {
   height: 43px;
   display: flex;
   padding: 0.7em;
@@ -22,7 +22,7 @@
   justify-content: var(--center);
 }
 
-.login-form {
+.form-element {
   width: 24em;
   align-self: var(--center);
 }
@@ -32,7 +32,7 @@
   font-weight: bold;
 }
 
-.profile-picture {
+.form-element .picture {
   width: 200px;
   height: 200px;
   display: flex;
@@ -43,7 +43,7 @@
   border-radius: 100%;
 }
 
-.login-form .box {
+.form-element .box {
   align-items: var(--center);
   justify-content: var(--center);
   display: inherit;
@@ -51,7 +51,7 @@
   align-items: center;
 }
 
-.login-form .background-icon {
+.form-element .background-icon {
   position: absolute;
   border-radius: 100%;
   background-color: rgba(15, 6, 25, 0.40);
@@ -60,13 +60,13 @@
   cursor: pointer;
 }
 
-.login-form .icon {
+.form-element .icon {
   justify-content: center;
   display: flex;
   fill: #e8e8e8;
 }
 
-.login-form .span {
+.form-element .span {
   font-size: 13px;
   margin-top: 5px;
 }

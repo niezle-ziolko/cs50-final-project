@@ -19,7 +19,7 @@ const lucidaFax = localFont({
 
 export const metadata = {
   title: 'EchoVerse',
-  description: 'A universe that speak to you',
+  description: 'A universe that speak to you'
 };
 
 export default function RootLayout({ children }) {

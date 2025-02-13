@@ -99,7 +99,7 @@ p {
   font-size: var(--primary-space);
 }
 
-.account-page {
+.page {
   display: flex;
   gap: 50px;
 }
