@@ -1,6 +1,6 @@
 'use client';
-import { useAuth } from 'context/auth-context';
 import { useEffect, useState } from 'react';
+import { useAuth } from 'context/auth-context';
 
 import Spinner from './spinner';
 
@@ -19,7 +19,7 @@ export default function ClientPanel({ title }) {
           ids = user.created.split(',').map(id => id.trim());
         } else if (title === 'Liked books' && user?.liked) {
           ids = user.liked.split(',').map(id => id.trim());
-        }
+        };
 
         let responses;
 
@@ -36,14 +36,14 @@ export default function ClientPanel({ title }) {
               }).then(res => res.json())
             )
           );
-        }
+        };
 
         setBooks(responses.filter(book => book && book.picture));
       } catch (error) {
         console.error('Error fetching books:', error);
       } finally {
         setLoading(false);
-      }
+      };
     };
 
     fetchBooks();

@@ -20,15 +20,9 @@ export default function Header() {
               <LogoIcon />
             </Link>
           </div>
-          {user ? (
-            <>
-              <img className='picture' src={user?.photo} alt='profile-picture' width='70' height='70' />
-            </>
-          ) : (
-            <>
-              <img className='picture' src='https://cdn.niezleziolko.app/final-project/profile-photo/default-profile-picture.webp' alt='profile-picture' width='70' height='70' />
-            </>
-          )}
+          {user && user.photo ? (
+            <img className='picture' src={user.photo} alt='profile-picture' width='70' height='70' />
+          ) : null}
         </div>
         <div className='box'>
           <div className='menu'>

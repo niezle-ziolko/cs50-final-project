@@ -1,6 +1,6 @@
 import 'styles/css/components/spinner.css';
 
-export default function Spinner({ spinnerId }) {
+export default function Spinner() {
   return (
     <div className='spinner'>
       <div></div>
