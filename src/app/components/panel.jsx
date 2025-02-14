@@ -15,7 +15,7 @@ export default function ClientPanel({ title }) {
         setLoading(true);
         let ids = [];
 
-        if (title === 'My book' && user?.created) {
+        if (title === 'My books' && user?.created) {
           ids = user.created.split(',').map(id => id.trim());
         } else if (title === 'Liked books' && user?.liked) {
           ids = user.liked.split(',').map(id => id.trim());
@@ -24,13 +24,11 @@ export default function ClientPanel({ title }) {
         let responses;
 
         if (title === 'Library') {
-          // W przypadku "Library" pobieramy wszystkie książki
           const response = await fetch('/api/data/book', {
             headers: { 'Authorization': `Bearer ${process.env.NEXT_PUBLIC_BOOK_AUTH}` }
           });
           responses = await response.json();
         } else {
-          // W przeciwnym razie pobieramy książki na podstawie ids
           responses = await Promise.all(
             ids.map(id => 
               fetch(`/api/data/book?id=${id}`, {
@@ -40,7 +38,6 @@ export default function ClientPanel({ title }) {
           );
         }
 
-        // Filtrujemy odpowiedzi, aby uzyskać tylko książki z obrazkiem
         setBooks(responses.filter(book => book && book.picture));
       } catch (error) {
         console.error('Error fetching books:', error);
@@ -50,7 +47,7 @@ export default function ClientPanel({ title }) {
     };
 
     fetchBooks();
-  }, [user, title]); // Dodajemy title do zależności
+  }, [user, title]);
 
   return (
     <div className='panel'>
