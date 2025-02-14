@@ -1,14 +1,16 @@
 'use client';
 import { useEffect, useState, useCallback } from 'react';
 import { useAuth } from 'context/auth-context';
+import { useAudio } from 'context/audio-context';
 
 import Spinner from './spinner';
 
 export default function ClientPanel({ title }) {
   const { user } = useAuth();
+  const { setCurrentFile } = useAudio(); // Pobieramy funkcję do ustawiania pliku MP3
+
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [currentFile, setCurrentFile] = useState(null);
 
   const fetchBooks = useCallback(async () => {
     if (!user) return;
@@ -83,14 +85,6 @@ export default function ClientPanel({ title }) {
           )}
         </tbody>
       </table>
-
-      {/* Odtwarzacz MP3 */}
-      {currentFile && (
-        <audio controls autoPlay key={currentFile} style={{ marginTop: '20px', width: '100%' }}>
-          <source src={currentFile} type="audio/mpeg" />
-          Your browser does not support the audio element.
-        </audio>
-      )}
     </div>
   );
 }

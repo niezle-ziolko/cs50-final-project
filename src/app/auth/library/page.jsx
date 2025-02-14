@@ -1,8 +1,9 @@
 'use client';
 import ClientPanel from 'components/panel';
-import EditForm from 'components/forms/edit';
+import AudioPlayer from 'components/player';
 
 import 'styles/css/components/forms.css';
+import 'styles/css/components/panel.css';
 
 export default function MyAccount() {
   const title = 'Library';
@@ -10,7 +11,7 @@ export default function MyAccount() {
   return (
     <div className='page'>
       <ClientPanel title={title} />
-      <EditForm />
+      <AudioPlayer />
     </div>
   );
 };
