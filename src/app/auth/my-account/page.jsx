@@ -6,7 +6,7 @@ import 'styles/css/components/forms.css';
 import 'styles/css/components/panel.css';
 
 export default function MyAccount() {
-  const title = 'My books';
+  const title = 'Liked books';
 
   return (
     <div className='page'>

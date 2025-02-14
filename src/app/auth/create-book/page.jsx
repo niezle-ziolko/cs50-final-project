@@ -1,12 +1,17 @@
 'use client';
-import CreateForm from 'components/forms/create-book';
+import ClientPanel from 'components/panel';
+import EditForm from 'components/forms/edit';
 
 import 'styles/css/components/forms.css';
+import 'styles/css/components/panel.css';
 
 export default function MyAccount() {
+  const title = 'My books';
+
   return (
     <div className='page'>
-      <CreateForm />
+      <ClientPanel title={title} />
+      <EditForm />
     </div>
   );
 };
