@@ -28,6 +28,7 @@ export default function SignUpForm() {
 
     if (formData.password !== formData.confirmPassword) {
       setErrorMessage('Passwords do not match!');
+      
       return;
     };
 

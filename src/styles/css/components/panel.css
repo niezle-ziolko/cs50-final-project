@@ -53,3 +53,7 @@
   justify-content: center;
   transition: .4s ease-in-out;
 }
+
+.panel .loading .spinner div {
+  background: var(--primary-color);
+}
