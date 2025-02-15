@@ -17,8 +17,8 @@ export default function AudioPlayer() {
       <media-controller audio>
         <audio
           slot="media"
-          src="https://stream.mux.com/O4h5z00885HEucNNa1rV02wZapcGp01FXXoJd35AHmGX7g/audio.m4a"
-          crossOrigin
+          src={file}
+          crossOrigin="true"
         />
         <media-control-bar>
           <media-seek-backward-button></media-seek-backward-button>
