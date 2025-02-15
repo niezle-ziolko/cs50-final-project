@@ -1,13 +1,13 @@
 'use client';
 import { useEffect, useState, useCallback } from 'react';
-import { useAuth } from 'context/auth-context';
 import { useAudio } from 'context/audio-context';
+import { useAuth } from 'context/auth-context';
 
 import Spinner from './spinner';
 
 export default function ClientPanel({ title }) {
   const { user } = useAuth();
-  const { setCurrentFile } = useAudio(); // Pobieramy funkcję do ustawiania pliku MP3
+  const { setFile } = useAudio();
 
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -30,7 +30,7 @@ export default function ClientPanel({ title }) {
           ids = user.created.split(',').map(id => id.trim());
         } else if (title === 'Liked books' && user?.liked) {
           ids = user.liked.split(',').map(id => id.trim());
-        }
+        };
 
         if (ids.length) {
           responses = await Promise.all(
@@ -38,15 +38,14 @@ export default function ClientPanel({ title }) {
               fetch(`/api/data/book?id=${id}`, { headers }).then(res => res.json())
             )
           );
-        }
-      }
+        };
+      };
 
-      // Pobieramy file z odpowiedzi API
       const formattedBooks = responses
         .filter(book => book?.picture)
         .map(book => ({
           ...book,
-          file: book?.file || null, // Upewniamy się, że file istnieje
+          file: book?.file || null
         }));
 
       setBooks(formattedBooks);
@@ -54,7 +53,7 @@ export default function ClientPanel({ title }) {
       console.error('Error fetching books:', error);
     } finally {
       setLoading(false);
-    }
+    };
   }, [user, title]);
 
   useEffect(() => {
@@ -76,7 +75,7 @@ export default function ClientPanel({ title }) {
             ))
           ) : (
             books.map(book => (
-              <tr key={book.id} onClick={() => book.file && setCurrentFile(book.file)}>
+              <tr key={book.id} onClick={() => book.file && setFile(book.file, book.picture)}>
                 <td>
                   <img src={book.picture} alt={book.title} style={{ cursor: 'pointer' }} />
                 </td>
@@ -87,4 +86,4 @@ export default function ClientPanel({ title }) {
       </table>
     </div>
   );
-}
+};
