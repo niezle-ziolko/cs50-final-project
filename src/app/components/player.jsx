@@ -9,7 +9,7 @@ export default function AudioPlayer() {
   return (
     <div className='player'>
       {currentPicture && (
-        <div>
+        <div className='image'>
           <img src={currentPicture} alt='Current Book Cover' />
         </div>
       )}

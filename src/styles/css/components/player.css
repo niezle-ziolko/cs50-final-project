@@ -1,9 +1,4 @@
 .player {
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0; 
-  gap: 10px;
   width: 24em;
   display: flex;
   padding: 2.5em;
@@ -17,6 +12,17 @@
 .player:hover {
   box-shadow: 10px 10px 0px var(--primary-color);
   transform: translateX(-0.5em) translateY(-0.5em);
+}
+
+.player .image {
+  display: flex;
+  justify-content: center;
+}
+
+.player img {
+  width: 350px;
+  border-radius: 25px;
+  border: var(--border);
 }
 
 .player .box {
@@ -59,6 +65,7 @@ media-seek-forward-button,
 media-seek-backward-button,
 media-mute-button {
   width: 75px;
+  margin: 10px;
   padding: 20px;
   font-size: 2em;
   border-radius: 100%;
@@ -74,4 +81,6 @@ media-seek-forward-button:hover,
 media-seek-backward-button:hover {
   color: var(--logo-color);
   border: 2px solid var(--logo-color);
+  box-shadow: 10px 10px 0px var(--primary-color);
+  transform: translateX(-0.5em) translateY(-0.5em);
 }
