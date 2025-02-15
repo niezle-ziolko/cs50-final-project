@@ -28,11 +28,8 @@ export default function RootLayout({ children }) {
   return (
     <html lang='en'>
       <head>
-        <Script 
-          src="https://cdn.jsdelivr.net/npm/media-chrome@3/+esm" 
-          type="module" 
-          strategy="afterInteractive" 
-        />
+        <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css' />
+        <Script src='https://cdn.jsdelivr.net/npm/media-chrome@3/+esm' type='module' strategy='afterInteractive' />
       </head>
       <body className={`${lucidaFax.variable} ${comicSans.variable}`}>
         <ThemeProvider>
