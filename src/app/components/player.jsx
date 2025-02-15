@@ -2,10 +2,15 @@
 import { useAudio } from 'context/audio-context';
 
 export default function AudioPlayer() {
-  const { currentFile } = useAudio();
+  const { currentFile, currentPicture } = useAudio();
 
   return (
     <div className='audio-player' style={{ marginTop: '20px', width: '100%', textAlign: 'center' }}>
+      {currentPicture && (
+        <div>
+          <img src={currentPicture} alt="Current Book Cover" />
+        </div>
+      )}
       <media-controller audio>
         <audio
           slot="media"
