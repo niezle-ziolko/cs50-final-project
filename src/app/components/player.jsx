@@ -13,10 +13,23 @@ export default function AudioPlayer() {
           style={{ maxWidth: '100%', height: 'auto', borderRadius: '10px', marginBottom: '10px' }}
         />
       )}
-      <audio controls autoPlay key={file} style={{ width: '100%' }}>
-        <source src={file} type="audio/mpeg" />
-          Your browser does not support the audio element.
-      </audio>
+
+      <media-controller audio>
+        <audio
+          slot="media"
+          src="https://stream.mux.com/O4h5z00885HEucNNa1rV02wZapcGp01FXXoJd35AHmGX7g/audio.m4a"
+          crossOrigin
+        />
+        <media-control-bar>
+          <media-seek-backward-button></media-seek-backward-button>
+          <media-play-button></media-play-button>
+          <media-seek-forward-button></media-seek-forward-button>
+          <media-time-display></media-time-display>
+          <media-time-range></media-time-range>
+          <media-duration-display></media-duration-display>
+          <media-mute-button></media-mute-button>
+        </media-control-bar>
+      </media-controller>
     </div>
   );
 }
