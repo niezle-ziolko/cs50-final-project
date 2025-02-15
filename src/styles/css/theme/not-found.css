@@ -31,8 +31,8 @@
   position: absolute;
   margin-left: 1.68em;
   transform: rotate(140deg);
-  background-color: transparent;
-  border: 4px solid transparent;
+  background-color: var(--transparent-color);
+  border: 4px solid var(--transparent-color);
   box-shadow:
     inset 0px 16px #a85103,
     inset 0px 16px 1px 1px #a85103;
