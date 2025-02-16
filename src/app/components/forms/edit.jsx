@@ -3,7 +3,6 @@ import { useState, useRef, useEffect } from 'react';
 import { useAuth } from 'context/auth-context';
 
 import Spinner from 'components/spinner';
-import ImageIcon from 'styles/icons/image';
 
 export default function EditForm() {
   const { updateUser, user } = useAuth();
@@ -97,7 +96,9 @@ export default function EditForm() {
             ) : (
               <img src={user?.photo} alt='profile-picture' width='200' height='200' style={{ borderRadius: '100%' }} />
             )}
-            <ImageIcon />
+            <div className='background-icon'>
+              <i className='fa-regular fa-image' id='icon'></i>
+            </div>
           </div>
           <input type='file' ref={fileInputRef} style={{ display: 'none' }} onChange={handleImageChange} accept='image/*' />
         </div>

@@ -59,19 +59,35 @@
   align-items: center;
 }
 
+.form-edit .picture::after {
+  z-index: 0;
+  opacity: 0;
+  content: "";
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  border-radius: 100%;
+  transition: all 0.4s;
+  background: rgba(15, 6, 25, 0.40);
+}
+
+.form-edit .picture:hover::after {
+  opacity: 1;
+}
+
 .form-edit .background-icon {
+  z-index: 1;
   padding: 25px;
   cursor: pointer;
   position: absolute;
   border-radius: 100%;
-  background-color: rgba(15, 6, 25, 0.40);
   backdrop-filter: blur(4px);
 }
 
-.form-edit .icon {
-  justify-content: center;
+.form-edit #icon {
   display: flex;
-  fill: #e8e8e8;
+  color: #e8e8e8;
+  justify-content: center;
 }
 
 .form-edit .span {

@@ -24,6 +24,9 @@ export default function AudioPlayer() {
               <media-duration-display></media-duration-display>
             </div>
             <div className='box'>
+              <div className='heart'>
+                <i className='fa-regular fa-heart'></i>
+              </div>
               <media-seek-backward-button>
                 <i slot='icon' className='fa-solid fa-arrow-rotate-left'></i>
               </media-seek-backward-button>
