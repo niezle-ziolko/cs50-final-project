@@ -1,6 +1,8 @@
 'use client';
 import { useAudio } from 'context/audio-context';
 
+import Placeholder from './placeholder';
+
 import 'styles/css/components/player.css';
 
 export default function AudioPlayer() {
@@ -10,18 +12,22 @@ export default function AudioPlayer() {
     <div className='player'>
       <div className='container'>
         <p className='heading'>Currently book playing</p>
-        {currentPicture && (
-          <div className='image'>
+        <div className='image'>
+          {currentPicture ? (
             <img src={currentPicture} alt='Currently book cover' />
-          </div>
-        )}
+          ) : (
+            <div className='placeholder'>
+              <Placeholder />
+            </div>
+          )}
+        </div>
         <media-controller audio>
           <audio slot='media' src={currentFile} crossOrigin='true' />
           <media-control-bar>
             <div className='box'>
-              <media-time-display></media-time-display>
-              <media-time-range></media-time-range>
-              <media-duration-display></media-duration-display>
+              <media-time-display />
+              <media-time-range />
+              <media-duration-display />
             </div>
             <div className='box'>
               <div className='heart'>

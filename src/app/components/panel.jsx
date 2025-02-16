@@ -3,7 +3,7 @@ import { useEffect, useState, useCallback } from 'react';
 import { useAuth } from 'context/auth-context';
 import { useAudio } from 'context/audio-context';
 
-import Spinner from './spinner';
+import Loader from './loader';
 
 export default function ClientPanel({ title }) {
   const { user } = useAuth();
@@ -69,7 +69,7 @@ export default function ClientPanel({ title }) {
             Array.from({ length: 8 }).map((_, index) => (
               <tr key={index}>
                 <td className='loading'>
-                  <Spinner />
+                  <Loader />
                 </td>
               </tr>
             ))

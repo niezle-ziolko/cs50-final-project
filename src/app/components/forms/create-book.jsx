@@ -2,7 +2,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { useAuth } from 'context/auth-context';
 
-import Spinner from 'components/spinner';
+import Loader from 'components/loader';
 import ImageIcon from 'styles/icons/image';
 import AudioIcon from 'styles/icons/audio';
 
@@ -122,7 +122,7 @@ export default function EditForm() {
         </div>
         {errorMessage && <p className='error-message'>{errorMessage}</p>}
         <button className='button' type='submit' disabled={loading}>
-          {loading ? <Spinner /> : 'Submit'}
+          {loading ? <Loader /> : 'Submit'}
         </button>
       </form>
     </div>

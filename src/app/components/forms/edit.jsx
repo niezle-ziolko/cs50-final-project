@@ -2,7 +2,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { useAuth } from 'context/auth-context';
 
-import Spinner from 'components/spinner';
+import Loader from 'components/loader';
 
 export default function EditForm() {
   const { updateUser, user } = useAuth();
@@ -108,7 +108,7 @@ export default function EditForm() {
         <span className='span'>Enter only the data you want to change.</span>
         {errorMessage && <p className='error-message'>{errorMessage}</p>}
         <button className='button' type='submit' disabled={loading}>
-          {loading ? <Spinner /> : 'Submit'}
+          {loading ? <Loader /> : 'Submit'}
         </button>
       </form>
     </div>

@@ -4,7 +4,7 @@ import Script from 'next/script';
 import { useRouter } from 'next/navigation';
 import { useAuth } from 'context/auth-context';
 
-import Spinner from 'components/spinner';
+import Loader from 'components/loader';
 
 export default function SignInForm() {
   const router = useRouter();
@@ -98,7 +98,7 @@ export default function SignInForm() {
           <div className='cf-turnstile' data-sitekey={TURNSTILE_SITE_KEY} data-callback='javascriptCallback' data-theme='dark' />
           {errorMessage && <p className='error-message'>{errorMessage}</p>}
           <button className='button' type='submit' disabled={loading}>
-            {loading ? <Spinner /> : 'Submit'}
+            {loading ? <Loader /> : 'Submit'}
           </button>
         </form>
       </div>

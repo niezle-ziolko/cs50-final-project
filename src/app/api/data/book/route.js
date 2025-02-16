@@ -40,7 +40,7 @@ export async function GET(request) {
           status: 404,
           headers: { 'Content-Type': 'application/json' }
         });
-      }
+      };
 
       const bookData = {
         id: result.id,
@@ -61,8 +61,15 @@ export async function GET(request) {
       status: 500,
       headers: { 'Content-Type': 'application/json' }
     });
-  }
+  };
 };
+
+export const runtime = 'edge';
+
+
+
+
+
 
 
 export async function POST(request) {
@@ -154,4 +161,3 @@ export async function POST(request) {
   };
 };
 
-export const runtime = 'edge';
