@@ -213,7 +213,7 @@
 .screen {
   width: 13em;
   height: 7.85em;
-  font-family: 'lucidaFax';
+  font-family: var(--primary-font-family);
   border: 2px solid #222831;
   background:
     repeating-radial-gradient(#000 0 0.0001%, #ffffff 0 0.0002%) 50% 0/2500px
@@ -237,7 +237,7 @@
   width: 13em;
   height: 7.85em;
   position: relative;
-  font-family: 'lucidaFax';
+  font-family: var(--primary-font-family);
   background: linear-gradient(
     to right,
     #002fc6 0%,

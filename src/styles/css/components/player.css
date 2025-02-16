@@ -1,7 +1,13 @@
 .player {
   width: 24em;
+  align-self: auto;
+  position: relative;
+}
+
+.player .container {
   display: flex;
   padding: 2.5em;
+  min-height: 48em;
   border-radius: 25px;
   border: var(--border);
   flex-direction: column;
@@ -9,7 +15,7 @@
   background-color: var(--secondary-color);
 }
 
-.player:hover {
+.player .container:hover {
   box-shadow: 10px 10px 0px var(--primary-color);
   transform: translateX(-0.5em) translateY(-0.5em);
 }
@@ -42,7 +48,7 @@ media-control-bar {
 media-time-display,
 media-duration-display {
   font-weight: bold;
-  font-family: 'lucidaFax';
+  font-family: var(--secondary-font-family);
   color: var(--logo-color);
   background-color: var(--transparent-color);
 }
@@ -64,10 +70,10 @@ media-play-button,
 media-seek-forward-button,
 media-seek-backward-button,
 media-mute-button {
-  width: 75px;
+  width: 50px;
   margin: 10px;
-  padding: 20px;
-  font-size: 2em;
+  padding: 10px;
+  font-size: 25px;
   border-radius: 100%;
   transition: all 0.4s;
   border: var(--border);
