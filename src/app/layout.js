@@ -9,14 +9,14 @@ import Header from 'components/header';
 
 import 'styles/css/theme/theme.css';
 
-const comicSans = localFont({
-  src: '../styles/fonts/comic-sans-ms.woff', 
-  variable: '--font-comic-sans-ms'
+const proximaNova = localFont({
+  src: '../styles/fonts/proxima-nova.woff', 
+  variable: '--primary-font-family'
 });
 
-const lucidaFax = localFont({
-  src: '../styles/fonts/lucida-fax-regular-v2.woff',
-  variable: '--font-lucida-fax'
+const montserrat = localFont({
+  src: '../styles/fonts/montserrat.woff', 
+  variable: '--secondary-font-family'
 });
 
 export const metadata = {
@@ -31,7 +31,7 @@ export default function RootLayout({ children }) {
         <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css' />
         <Script src='https://cdn.jsdelivr.net/npm/media-chrome@3/+esm' type='module' strategy='afterInteractive' />
       </head>
-      <body className={`${lucidaFax.variable} ${comicSans.variable}`}>
+      <body className={`${proximaNova.variable} ${montserrat.variable}`}>
         <ThemeProvider>
           <AuthProvider>
             <AudioProvider>

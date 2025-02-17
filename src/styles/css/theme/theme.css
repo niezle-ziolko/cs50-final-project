@@ -4,11 +4,10 @@
   --primary-color: #222831;
   --secondary-color: #f2f2f2;
   --transparent-color: transparent;
-  --primary-space: 15px;
-  --primary-font-family: 'lucidaFax';
-  --secondary-font-family: 'comicSans';
+  --secondary-font-family: 'montserrat';
   --flex: flex;
   --center: center;
+  --primary-space: 15px;
   --border: 2px solid var(--primary-color);
 }
 
@@ -35,11 +34,10 @@ main {
 
 input {
   margin-top: 10px;
-  border-radius: 5px;
   border: var(--border);
   transition: .4s ease-in-out;
   color: var(--primary-color);
-  font-family: var(--secondary-font-family);
+  font-family: var(--primary-font-family);
   font-size: var(--primary-space);
   background-color: var(--secondary-color);
 }
@@ -57,10 +55,9 @@ button {
   cursor: pointer;
   color: #222831;
   font-weight: bold;
-  border-radius: 10px;
   border: var(--border);
   transition: .4s ease-in-out;
-  font-family: var(--primary-font-family);
+  font-family: var(--secondary-font-family);
   font-size: var(--primary-space);
   background-color: var(--logo-color);
 }
@@ -84,7 +81,6 @@ form {
   gap: 10px;
   display: flex;
   padding: 2.5em;
-  border-radius: 25px;
   border: var(--border);
   flex-direction: column;
   transition: .4s ease-in-out;
@@ -94,6 +90,10 @@ form {
 form:hover {
   box-shadow: 10px 10px 0px var(--primary-color);
   transform: translateX(-0.5em) translateY(-0.5em);
+}
+
+h1 {
+  font-family: var(--secondary-font-family);
 }
 
 a {

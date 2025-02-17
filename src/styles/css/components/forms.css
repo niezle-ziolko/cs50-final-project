@@ -4,6 +4,7 @@
   text-align: var(--center);
   color: var(--primary-color);
   font-size: var(--primary-space);
+  font-family: var(--secondary-font-family);
 }
 
 .input {
@@ -48,7 +49,6 @@
   align-items: var(--center);
   justify-content: var(--center);
   border: 2px solid var(--primary-color);
-  border-radius: 100%;
 }
 
 .form-edit .box {

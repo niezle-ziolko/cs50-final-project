@@ -213,7 +213,7 @@
 .screen {
   width: 13em;
   height: 7.85em;
-  font-family: var(--primary-font-family);
+  font-family: var(--secondary-font-family);
   border: 2px solid #222831;
   background:
     repeating-radial-gradient(#000 0 0.0001%, #ffffff 0 0.0002%) 50% 0/2500px
@@ -237,7 +237,7 @@
   width: 13em;
   height: 7.85em;
   position: relative;
-  font-family: var(--primary-font-family);
+  font-family: var(--secondary-font-family);
   background: linear-gradient(
     to right,
     #002fc6 0%,
@@ -330,7 +330,7 @@
 .lines {
   display: var(--flex);
   column-gap: 0.1em;
-  align-self: var(--flex)-end;
+  align-self: flex-end;
 }
 
 .line1,

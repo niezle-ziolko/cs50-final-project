@@ -2,7 +2,6 @@
   gap: 10px;
   display: flex;
   padding: 2.5em;
-  border-radius: 25px;
   border: var(--border);
   flex-direction: column;
   transition: .4s ease-in-out;
@@ -49,7 +48,6 @@
   overflow: hidden;
   position: absolute;
   align-items: center;
-  border-radius: 25px;
   border: var(--border);
   justify-content: center;
   transition: .4s ease-in-out;
