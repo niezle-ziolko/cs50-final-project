@@ -68,7 +68,7 @@ export default function ClientPanel({ title }) {
           {loading ? (
             Array.from({ length: 8 }).map((_, index) => (
               <tr key={index}>
-                <td className='loading'>
+                <td>
                   <Loader />
                 </td>
               </tr>
@@ -82,7 +82,7 @@ export default function ClientPanel({ title }) {
                 };
               }}>
                 <td>
-                  <img src={book.picture} alt={book.title} style={{ cursor: 'pointer' }} />
+                  <img src={book.picture} alt={book.title} width='205' height='290' />
                   <div className='background-icon'>
                     <i className='fa-solid fa-play' />
                   </div>

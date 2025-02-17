@@ -9,7 +9,7 @@
   background-color: var(--secondary-color);
 }
 
-.panel:hover, .panel img:hover, .panel .loading:hover {
+.panel:hover, .panel .loading:hover {
   box-shadow: 10px 10px 0px var(--primary-color);
   transform: translateX(-0.5em) translateY(-0.5em);
 }
@@ -35,7 +35,7 @@
   justify-content: center;
 }
 
-.panel img, .panel .loading {
+.panel td {
   top: 0;
   left: 0;
   right: 0;
@@ -46,14 +46,11 @@
   cursor: pointer;
   max-width: 100%;
   max-height: 100%;
+  overflow: hidden;
   position: absolute;
   align-items: center;
   border-radius: 25px;
   border: var(--border);
   justify-content: center;
   transition: .4s ease-in-out;
-}
-
-.panel .loading .spinner div {
-  background: var(--primary-color);
 }
