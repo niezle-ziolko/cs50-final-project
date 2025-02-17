@@ -1,43 +1,46 @@
 .playing {
+  gap: 1px;
+  width: 16px;
+  height: 16px;
+  padding: 25px;
   display: flex;
   position: relative;
+  border-radius: 100%;
   justify-content: center;
-  gap: 1px;
-  width: 30px;
-  height: 20px;
+  background: rgba(15, 6, 25, 0.40);
 }
 
 .greenline {
-  background-color: var(--);
-  height: 20px;
   width: 2px;
+  height: 20px;
   position: relative;
   transform-origin: bottom;
+  background-color: #24b3fb;
 }
 
 .line-1 {
-  animation: infinite playing 1s ease-in-out;
   animation-delay: 0.2s;
+  animation: infinite playing 1s ease-in-out;
 }
 
 .line-2 {
-  animation: infinite playing 1s ease-in-out;
   animation-delay: 0.5s;
+  animation: infinite playing 1s ease-in-out;
 }
 
 .line-3 {
-  animation: infinite playing 1s ease-in-out;
   animation-delay: 0.6s;
+  animation: infinite playing 1s ease-in-out;
 }
 
 .line-4 {
-  animation: infinite playing 1s ease-in-out;
   animation-delay: 0s;
+  animation: infinite playing 1s ease-in-out;
 }
 
 .line-5 {
-  animation: infinite playing 1s ease-in-out;
   animation-delay: 0.4s;
+  animation: infinite playing 1s ease-in-out;
 }
 
 @keyframes playing {

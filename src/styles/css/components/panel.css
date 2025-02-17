@@ -60,11 +60,14 @@
   z-index: 1;
   width: 205px;
   height: 290px;
+  display: flex;
   cursor: pointer;
   position: absolute;
   text-align: center;
+  align-items: center;
   transition: all 0.4s;
   align-content: center;
+  justify-content: center;
   background: rgba(15, 6, 25, 0.40);
 }
 
