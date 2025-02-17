@@ -79,25 +79,28 @@ export default function ClientPanel({ title }) {
             books.map(book => (
               <tr key={book.id}>
                 <td>
-                  {title === 'Library' ? (
-                    <>
-                      <img src={book.picture} alt={book.title} width='205' height='290' onClick={() => {
-                        if (book.file) {
-                          setCurrentFile(book.file);
-                          setCurrentPicture(book.picture);
-                          setSelectedBookId(book.id);
-                        };
-                      }}/>
-                      <div className='background-icon'>
-                        {selectedBookId === book.id ? (
-                          <Playing />
-                        ) : (
-                          <i className='fa-solid fa-play' id='icon' />
-                        )}
-                      </div>
-                    </>
-                  ) : (
-                    <img src={book.picture} alt={book.title} width='205' height='290' />
+                  <img 
+                    src={book.picture} 
+                    alt={book.title} 
+                    width='205' 
+                    height='290' 
+                    onClick={() => {
+                      if (title === 'Library' && book.file) {
+                        setCurrentFile(book.file);
+                        setCurrentPicture(book.picture);
+                        setSelectedBookId(book.id);
+                      }
+                    }} 
+                  />
+                  {title === 'Library' && selectedBookId === book.id && (
+                    <div className='background-icon'>
+                      <Playing />
+                    </div>
+                  )}
+                  {title === 'Library' && selectedBookId !== book.id && (
+                    <div className='background-icon'>
+                      <i className='fa-solid fa-play' id='icon' />
+                    </div>
                   )}
                 </td>
               </tr>
