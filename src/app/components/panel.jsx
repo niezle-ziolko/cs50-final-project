@@ -4,6 +4,7 @@ import { useAuth } from 'context/auth-context';
 import { useAudio } from 'context/audio-context';
 
 import Loader from './loader';
+import Playing from './playing';
 
 export default function ClientPanel({ title }) {
   const { user } = useAuth();
@@ -11,6 +12,7 @@ export default function ClientPanel({ title }) {
 
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [selectedBookId, setSelectedBookId] = useState(null);
 
   const fetchBooks = useCallback(async () => {
     if (!user) return;
@@ -79,12 +81,17 @@ export default function ClientPanel({ title }) {
                 if (book.file) {
                   setCurrentFile(book.file);
                   setCurrentPicture(book.picture);
+                  setSelectedBookId(book.id);
                 };
               }}>
                 <td>
                   <img src={book.picture} alt={book.title} width='205' height='290' />
                   <div className='background-icon'>
-                    <i className='fa-solid fa-play' id='icon' />
+                    {selectedBookId === book.id ? (
+                      <Playing />
+                    ) : (
+                      <i className='fa-solid fa-play' id='icon' />
+                    )}
                   </div>
                 </td>
               </tr>
