@@ -78,7 +78,7 @@ export default function ClientPanel({ title }) {
           ) : (
             books.map(book => (
               <tr key={book.id} onClick={() => {
-                if (book.file) {
+                if (title === 'Library' && book.file) {
                   setCurrentFile(book.file);
                   setCurrentPicture(book.picture);
                   setSelectedBookId(book.id);
