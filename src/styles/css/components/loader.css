@@ -13,6 +13,10 @@
   transform: rotate(calc(var(--rotation) * 1deg)) translate(0, calc(var(--translation) * 1%));
 }
 
+.loading .loader div {
+  background: var(--primary-color);
+}
+
 .loader div:nth-child(1) {
   --delay: 0.1;
   --rotation: 36;

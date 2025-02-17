@@ -9,7 +9,7 @@
   bottom: 0;
   width: 10px;
   height: 50%;
-  background: rgb(0, 0, 0);
+  background: var(--primary-color);
   transform-origin: center bottom;
   box-shadow: 1px 1px 0 rgba(0, 0, 0, 0.2);
 }
@@ -55,7 +55,7 @@
   left: 0;
   width: 10px;
   height: 10px;
-  background: rgb(44, 143, 255);
+  background: var(--logo-color);
   border-radius: 50%;
   -webkit-animation: ball624 4s infinite;
   animation: ball624 4s infinite;

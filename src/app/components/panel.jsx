@@ -81,8 +81,11 @@ export default function ClientPanel({ title }) {
                   setCurrentPicture(book.picture);
                 };
               }}>
-                <td className='loading'>
+                <td>
                   <img src={book.picture} alt={book.title} style={{ cursor: 'pointer' }} />
+                  <div className='background-icon'>
+                    <i className='fa-solid fa-play' />
+                  </div>
                 </td>
               </tr>
             ))
