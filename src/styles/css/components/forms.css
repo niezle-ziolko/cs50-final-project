@@ -86,7 +86,7 @@
 .form-edit #icon::before {
   padding: 25px;
   border-radius: 100%;
-  backdrop-filter: blur(4px);
+  background: rgba(15, 6, 25, .4);
 }
 
 .form-edit .span {
