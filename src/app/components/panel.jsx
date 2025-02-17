@@ -77,22 +77,28 @@ export default function ClientPanel({ title }) {
             ))
           ) : (
             books.map(book => (
-              <tr key={book.id} onClick={() => {
-                if (book.file) {
-                  setCurrentFile(book.file);
-                  setCurrentPicture(book.picture);
-                  setSelectedBookId(book.id);
-                };
-              }}>
+              <tr key={book.id}>
                 <td>
-                  <img src={book.picture} alt={book.title} width='205' height='290' />
-                  <div className='background-icon'>
-                    {selectedBookId === book.id ? (
-                      <Playing />
-                    ) : (
-                      <i className='fa-solid fa-play' id='icon' />
-                    )}
-                  </div>
+                  {title === 'Library' ? (
+                    <>
+                      <img src={book.picture} alt={book.title} width='205' height='290' onClick={() => {
+                        if (book.file) {
+                          setCurrentFile(book.file);
+                          setCurrentPicture(book.picture);
+                          setSelectedBookId(book.id);
+                        };
+                      }}/>
+                      <div className='background-icon'>
+                        {selectedBookId === book.id ? (
+                          <Playing />
+                        ) : (
+                          <i className='fa-solid fa-play' id='icon' />
+                        )}
+                      </div>
+                    </>
+                  ) : (
+                    <img src={book.picture} alt={book.title} width='205' height='290' />
+                  )}
                 </td>
               </tr>
             ))
