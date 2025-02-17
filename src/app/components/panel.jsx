@@ -86,13 +86,17 @@ export default function ClientPanel({ title }) {
               }}>
                 <td>
                   <img src={book.picture} alt={book.title} width='205' height='290' />
-                  <div className='background-icon'>
-                    {selectedBookId === book.id ? (
-                      <Playing />
-                    ) : (
-                      <i className='fa-solid fa-play' id='icon' />
-                    )}
-                  </div>
+                  {title === 'Library' ? (
+                    <div className='background-icon'>
+                      {selectedBookId === book.id ? (
+                        <Playing />
+                      ) : (
+                        <i className='fa-solid fa-play' id='icon' />
+                      )}
+                    </div>
+                  ) : (
+                    <></>
+                  )}
                 </td>
               </tr>
             ))
