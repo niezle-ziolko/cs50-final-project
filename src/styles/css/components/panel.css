@@ -9,7 +9,7 @@
   background-color: var(--secondary-color);
 }
 
-.panel:hover, .panel .loading:hover {
+.panel:hover, .panel td:hover {
   box-shadow: 10px 10px 0px var(--primary-color);
   transform: translateX(-0.5em) translateY(-0.5em);
 }
