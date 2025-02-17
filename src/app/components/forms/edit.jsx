@@ -97,7 +97,7 @@ export default function EditForm() {
               <img src={user?.photo} alt='profile-picture' width='200' height='200' style={{ borderRadius: '100%' }} />
             )}
             <div className='background-icon'>
-              <i className='fa-regular fa-image' id='icon'></i>
+              <i className='fa-regular fa-image' id='icon' />
             </div>
           </div>
           <input type='file' ref={fileInputRef} style={{ display: 'none' }} onChange={handleImageChange} accept='image/*' />

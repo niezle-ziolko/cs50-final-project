@@ -43,7 +43,7 @@ export async function GET(request) {
       });
     };
 
-    const db = env.DATABASE;
+    const db = env.D1;
 
     const result = await db.prepare(
       `SELECT * FROM users WHERE username = '${username}'`
@@ -115,7 +115,7 @@ export async function POST(request) {
     });
   };
 
-  const db = env.DATABASE;
+  const db = env.D1;
   
   try {
     const existingUser = await db.prepare(
@@ -189,7 +189,7 @@ export async function PUT(request) {
       });
     };
 
-    const db = env.DATABASE;
+    const db = env.D1;
     const user = await db.prepare('SELECT * FROM users WHERE username = ?').bind(username).first();
 
     if (!user) {

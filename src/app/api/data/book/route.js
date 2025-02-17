@@ -12,7 +12,7 @@ export async function GET(request) {
     const urlSearchParams = new URL(request.url);
     const id = urlSearchParams.searchParams.get('id');
 
-    const db = env.DATABASE;
+    const db = env.D1;
 
     let result;
 
@@ -98,7 +98,7 @@ export async function POST(request) {
     });
   };
 
-  const db = env.DATABASE;
+  const db = env.D1;
   
   try {
     const existingBook = await db.prepare(

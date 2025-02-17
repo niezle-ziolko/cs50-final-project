@@ -35,7 +35,7 @@
   justify-content: center;
 }
 
-.panel img, .panel .loading {
+.panel .loading {
   top: 0;
   left: 0;
   right: 0;

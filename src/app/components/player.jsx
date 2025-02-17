@@ -31,21 +31,21 @@ export default function AudioPlayer() {
             </div>
             <div className='box'>
               <div className='heart'>
-                <i className='fa-regular fa-heart'></i>
+                <i className='fa-regular fa-heart' />
               </div>
               <media-seek-backward-button>
-                <i slot='icon' className='fa-solid fa-arrow-rotate-left'></i>
+                <i slot='icon' className='fa-solid fa-arrow-rotate-left' />
               </media-seek-backward-button>
               <media-play-button>
-                <i slot='play' className='fa-solid fa-play'></i>
-                <i slot='pause' className='fa-solid fa-pause'></i>
+                <i slot='play' className='fa-solid fa-play' />
+                <i slot='pause' className='fa-solid fa-pause' />
               </media-play-button>
               <media-seek-forward-button>
-                <i slot='icon' className='fa-solid fa-arrow-rotate-right'></i>
+                <i slot='icon' className='fa-solid fa-arrow-rotate-right' />
               </media-seek-forward-button>
               <media-mute-button>
-                <i slot='high' className='fa-solid fa-volume-high'></i>
-                <i slot='off' className='fa-solid fa-volume-xmark'></i>
+                <i slot='high' className='fa-solid fa-volume-high' />
+                <i slot='off' className='fa-solid fa-volume-xmark' />
               </media-mute-button>
             </div>
           </media-control-bar>
