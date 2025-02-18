@@ -20,7 +20,7 @@ export default function HeartButton() {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${process.env.CLIENT_AUTH}`
+          'Authorization': `Bearer ${process.env.NEXT_PUBLIC_CLIENT_AUTH}`
         },
         body: JSON.stringify({
           id: currentBookId,
