@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 
 export default function HeartButton() {
   const { currentBookId } = useAudio();
-  const { user, setUser } = useAuth();
+  const { user, updateUser } = useAuth();
 
   const [isLiked, setIsLiked] = useState(false);
 
@@ -42,7 +42,7 @@ export default function HeartButton() {
 
       const data = await response.json();
       if (data.success && data.liked !== undefined) {
-        setUser(prevUser => prevUser ? { ...prevUser, liked: data.liked } : null);
+        updateUser(prevUser => prevUser ? { ...prevUser, liked: data.liked } : null);
 
         setIsLiked(!isLiked);
         console.log(`Book ${isLiked ? 'unliked' : 'liked'} successfully`);
