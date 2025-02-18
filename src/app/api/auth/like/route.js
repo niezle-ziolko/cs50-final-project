@@ -70,6 +70,9 @@ export async function POST(request) {
       username: result.username,
       email: result.email,
       photo: result.photo,
+      created: result.created,
+      currently: result.currently,
+      liked: result.liked,
       expiresDate: new Date().toISOString()
     };
     
@@ -152,6 +155,9 @@ export async function DELETE(request) {
       username: result.username,
       email: result.email,
       photo: result.photo,
+      created: result.created,
+      currently: result.currently,
+      liked: result.liked,
       expiresDate: new Date().toISOString()
     };
     

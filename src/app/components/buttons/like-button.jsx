@@ -13,8 +13,9 @@ export default function HeartButton() {
     if (!user?.liked) {
       setIsLiked(false);
       return;
-    }
-    const likedBooks = user.liked.split(',');
+    };
+
+    const likedBooks = user.liked.split(', ');
     setIsLiked(likedBooks.includes(currentBookId));
   }, [currentBookId, user?.liked]);
 
@@ -38,7 +39,7 @@ export default function HeartButton() {
       if (!response.ok) {
         console.error(`error: ${response.status} ${response.statusText}`);
         return;
-      }
+      };
 
       const data = await response.json();
       updateUser(data);
@@ -46,7 +47,7 @@ export default function HeartButton() {
       console.log(`Book ${isLiked ? 'unliked' : 'liked'} successfully`);
     } catch (error) {
       console.error('error:', error);
-    }
+    };
   };
 
   return (
