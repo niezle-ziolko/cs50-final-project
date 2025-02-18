@@ -2,6 +2,7 @@
 import { useAudio } from 'context/audio-context';
 
 import Placeholder from './placeholder';
+import LikeButton from './buttons/like-button';
 
 import 'styles/css/components/player.css';
 
@@ -30,9 +31,7 @@ export default function AudioPlayer() {
               <media-duration-display />
             </div>
             <div className='box'>
-              <div className='heart'>
-                <i className='fa-regular fa-heart' />
-              </div>
+              <LikeButton />
               <media-seek-backward-button>
                 <i slot='icon' className='fa-solid fa-arrow-rotate-left' />
               </media-seek-backward-button>
