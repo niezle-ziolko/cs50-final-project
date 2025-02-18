@@ -20,11 +20,12 @@ export default function HeartButton() {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${process.env.CLIENT_AUTH}`
         },
         body: JSON.stringify({
           id: currentBookId,
-          username: user.username,
-        }),
+          username: user.username
+        })
       });
 
       if (response.ok) {
@@ -35,10 +36,10 @@ export default function HeartButton() {
           console.log('Book liked successfully');
         } else {
           console.error(data);
-        }
+        };
       } else {
         console.error(response.statusText);
-      }
+      };
     } catch (error) {
       console.error(error);
     };
