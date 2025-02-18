@@ -1,16 +1,22 @@
 'use client';
 import { useAudio } from 'context/audio-context';
 import { useAuth } from 'context/auth-context';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function HeartButton() {
   const { currentBookId } = useAudio();
   const { user, setUser } = useAuth();
 
-  const [isLiked, setIsLiked] = useState(() => {
-    const likedBooks = user?.liked ? user.liked.split(',') : [];
-    return likedBooks.includes(currentBookId);
-  });
+  const [isLiked, setIsLiked] = useState(false);
+
+  useEffect(() => {
+    if (!user?.liked) {
+      setIsLiked(false);
+      return;
+    }
+    const likedBooks = user.liked.split(',');
+    setIsLiked(likedBooks.includes(currentBookId));
+  }, [currentBookId, user?.liked]);
 
   const handleLike = async () => {
     if (!currentBookId || !user) return;
@@ -18,10 +24,9 @@ export default function HeartButton() {
     try {
       const method = isLiked ? 'DELETE' : 'POST';
       const response = await fetch('/api/auth/like', {
-        method: method,
+        method,
         headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${process.env.NEXT_PUBLIC_CLIENT_AUTH}`
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify({
           id: currentBookId,
@@ -29,26 +34,35 @@ export default function HeartButton() {
         })
       });
 
-      if (response.ok) {
-        const data = await response.json();
-        if (data.success) {
-          setUser(prevUser => ({...prevUser, liked: data.liked}));
-          setIsLiked(!isLiked);
-          console.log(`Book ${isLiked ? 'unliked' : 'liked'} successfully`);
-        } else {
-          console.error(data);
-        }
+      if (!response.ok) {
+        console.error(`Error: ${response.status} ${response.statusText}`);
+        return;
+      }
+
+      const data = await response.json();
+      if (data.success && data.liked !== undefined) {
+        setUser(prevUser => {
+          if (!prevUser) return null;
+          const newUser = { ...prevUser, liked: data.liked };
+          setUser(null);
+          return newUser;
+        });
+
+        setIsLiked(!isLiked);
+        console.log(`Book ${isLiked ? 'unliked' : 'liked'} successfully`);
       } else {
-        console.error(response.statusText);
+        console.error('API error:', data);
       }
     } catch (error) {
-      console.error(error);
+      console.error('Network error:', error);
     }
   };
 
   return (
     <div className='heart' onClick={handleLike}>
-      <i className='fa-regular fa-heart' style={{ transition: 'all .4s', fontWeight: isLiked ? 'bold' : 'normal' }} />
+      <i className='fa-regular fa-heart' 
+        style={{ transition: 'all .4s', fontWeight: isLiked ? 'bold' : 'normal' }} 
+      />
     </div>
   );
 };
