@@ -26,7 +26,8 @@ export default function HeartButton() {
       const response = await fetch('/api/auth/like', {
         method,
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${process.env.NEXT_PUBLIC_CLIENT_AUTH}`
         },
         body: JSON.stringify({
           id: currentBookId,
@@ -35,7 +36,7 @@ export default function HeartButton() {
       });
 
       if (!response.ok) {
-        console.error(`Error: ${response.status} ${response.statusText}`);
+        console.error(`error: ${response.status} ${response.statusText}`);
         return;
       }
 
@@ -51,10 +52,10 @@ export default function HeartButton() {
         setIsLiked(!isLiked);
         console.log(`Book ${isLiked ? 'unliked' : 'liked'} successfully`);
       } else {
-        console.error('API error:', data);
+        console.error('error:', data);
       }
     } catch (error) {
-      console.error('Network error:', error);
+      console.error('error:', error);
     }
   };
 
