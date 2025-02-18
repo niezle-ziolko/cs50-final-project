@@ -53,8 +53,27 @@ export async function POST(request) {
     const updatedLiked = likedArray.join(', ');
 
     await db.prepare('UPDATE users SET liked = ? WHERE username = ?').bind(updatedLiked, username).run();
+
+    const result = await db.prepare(
+      'SELECT * FROM users WHERE username = ?'
+    ).bind(username).first();
+
+    if (!result) {
+      return new Response(JSON.stringify({ error: 'Created user not found' }), {
+        status: 404,
+        headers: { 'Content-Type': 'application/json' }
+      });
+    };
+
+    const userData = {
+      id: result.id,
+      username: result.username,
+      email: result.email,
+      photo: result.photo,
+      expiresDate: new Date().toISOString()
+    };
     
-    return new Response(JSON.stringify({ success: true, liked: updatedLiked }), {
+    return new Response(JSON.stringify(userData), {
       status: 200,
       headers: { 'Content-Type': 'application/json' }
     });
@@ -117,7 +136,26 @@ export async function DELETE(request) {
 
     await db.prepare('UPDATE users SET liked = ? WHERE username = ?').bind(updatedLiked, username).run();
 
-    return new Response(JSON.stringify({ success: true, liked: updatedLiked }), {
+    const result = await db.prepare(
+      'SELECT * FROM users WHERE username = ?'
+    ).bind(username).first();
+
+    if (!result) {
+      return new Response(JSON.stringify({ error: 'Created user not found' }), {
+        status: 404,
+        headers: { 'Content-Type': 'application/json' }
+      });
+    };
+
+    const userData = {
+      id: result.id,
+      username: result.username,
+      email: result.email,
+      photo: result.photo,
+      expiresDate: new Date().toISOString()
+    };
+    
+    return new Response(JSON.stringify(userData), {
       status: 200,
       headers: { 'Content-Type': 'application/json' }
     });

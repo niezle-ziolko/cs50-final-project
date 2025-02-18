@@ -41,17 +41,9 @@ export default function HeartButton() {
       }
 
       const data = await response.json();
-      if (data.success && typeof data.liked === 'string') {
-        updateUser(prevUser => ({
-          ...prevUser,
-          liked: data.liked
-        }));
-
-        setIsLiked(!isLiked);
-        console.log(`Book ${isLiked ? 'unliked' : 'liked'} successfully`);
-      } else {
-        console.error('error:', data);
-      }
+      updateUser(data);
+      setIsLiked(!isLiked);
+      console.log(`Book ${isLiked ? 'unliked' : 'liked'} successfully`);
     } catch (error) {
       console.error('error:', error);
     }
@@ -59,9 +51,7 @@ export default function HeartButton() {
 
   return (
     <div className='heart' onClick={handleLike}>
-      <i className='fa-regular fa-heart' 
-        style={{ transition: 'all .4s', fontWeight: isLiked ? 'bold' : 'normal' }} 
-      />
+      <i className='fa-regular fa-heart' style={{ transition: 'all .4s', fontWeight: isLiked ? 'bold' : 'normal' }} />
     </div>
   );
 };
