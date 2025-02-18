@@ -16,8 +16,9 @@ export default function HeartButton() {
     if (!currentBookId || !user) return;
 
     try {
+      const method = isLiked ? 'DELETE' : 'POST';
       const response = await fetch('/api/auth/like', {
-        method: 'POST',
+        method: method,
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${process.env.NEXT_PUBLIC_CLIENT_AUTH}`
@@ -32,22 +33,22 @@ export default function HeartButton() {
         const data = await response.json();
         if (data.success) {
           setUser(prevUser => ({...prevUser, liked: data.liked}));
-          setIsLiked(true);
-          console.log('Book liked successfully');
+          setIsLiked(!isLiked);
+          console.log(`Book ${isLiked ? 'unliked' : 'liked'} successfully`);
         } else {
           console.error(data);
-        };
+        }
       } else {
         console.error(response.statusText);
-      };
+      }
     } catch (error) {
       console.error(error);
-    };
+    }
   };
 
   return (
     <div className='heart' onClick={handleLike}>
-      <i className={isLiked ? 'fa-solid fa-heart' : 'fa-regular fa-heart'} />
+      <i className='fa-regular fa-heart' style={{ transition: 'all .4s', fontWeight: isLiked ? 'bold' : 'normal' }} />
     </div>
   );
 };
