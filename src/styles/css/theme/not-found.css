@@ -1,16 +1,16 @@
 .main_wrapper {
   height: 30em;
-  display: var(--flex);
-  align-items: var(--center);
-  justify-content: var(--center);
+  display: var(--display-flex);
+  align-items: var(--align-center);
+  justify-content: var(--align-center);
 }
 
 .main {
   margin-top: 5em;
-  display: var(--flex);
   flex-direction: column;
-  align-items: var(--center);
-  justify-content: var(--center);
+  display: var(--display-flex);
+  align-items: var(--align-center);
+  justify-content: var(--align-center);
 }
 
 .antenna {
@@ -20,17 +20,17 @@
   margin-left: 0em;
   border-radius: 50%;
   margin-bottom: -6em;
-  border: 2px solid #222831;
   background-color: #f27405;
+  border: 2px solid var(--primary-theme-color);
 }
 
 .antenna_shadow {
   width: 47px;
   height: 55px;
   border-radius: 45%;
-  position: absolute;
   margin-left: 1.68em;
   transform: rotate(140deg);
+  position: var(--position-absolute);
   background-color: var(--transparent-color);
   border: 4px solid var(--transparent-color);
   box-shadow:
@@ -42,15 +42,15 @@
 }
 
 .antenna::after {
-  width: 1em;
   content: "";
   height: 0.5em;
   border-radius: 50%;
-  position: absolute;
   margin-top: -9.4em;
   margin-left: 0.4em;
   transform: rotate(-25deg);
   background-color: #f69e50;
+  width: var(--primary-space);
+  position: var(--position-absolute);
 }
 
 .antenna::before {
@@ -58,11 +58,11 @@
   width: 1.5em;
   height: 0.8em;
   margin-top: 0.2em;
-  position: absolute;
   border-radius: 50%;
   margin-left: 1.25em;
   transform: rotate(-20deg);
   background-color: #f69e50;
+  position: var(--position-absolute);
 }
 
 .a1 {
@@ -70,16 +70,16 @@
   left: -120%;
   width: 12em;
   height: 5.5em;
-  position: relative;
   border-radius: 50px;
   transform: rotate(-29deg);
   background-image: linear-gradient(
-    #222831,
-    #222831,
+    var(--primary-theme-color),
+    var(--primary-theme-color),
     #353535,
     #353535,
-    #222831
+    var(--primary-theme-color)
   );
+  position: var(--position-relative);
   clip-path: polygon(50% 0%, 49% 100%, 52% 100%);
 }
 
@@ -90,10 +90,10 @@
   width: 0.5em;
   height: 0.5em;
   border-radius: 50%;
-  position: relative;
   transform: rotate(45deg);
-  border: 2px solid #222831;
   background-color: #979797;
+  position: var(--position-relative);
+  border: 2px solid var(--primary-theme-color);
 }
 
 .a2 {
@@ -102,10 +102,10 @@
   width: 12em;
   height: 4em;
   margin-right: 5em;
-  position: relative;
   border-radius: 50px;
   transform: rotate(-8deg);
-  background-color: #222831;
+  position: var(--position-relative);
+  background-color: var(--primary-theme-color);
   clip-path: polygon(
     47% 0,
     47% 0,
@@ -117,11 +117,11 @@
     30% 38%
   );
   background-image: linear-gradient(
-    #222831,
-    #222831,
+    var(--primary-theme-color),
+    var(--primary-theme-color),
     #353535,
     #353535,
-    #222831
+    var(--primary-theme-color)
   );
 }
 
@@ -132,22 +132,22 @@
   width: 0.5em;
   height: 0.5em;
   border-radius: 50%;
-  position: relative;
-  border: 2px solid #222831;
-  background-color: #979797;  
+  background-color: #979797;
+  position: var(--position-relative);
+  border: 2px solid var(--primary-theme-color);
 }
 
 .notfound_text {
-  background-color: #222831;
-  padding-left: 1em;
-  padding-right: 1em;
-  padding-top: 3px;
-  padding-bottom: 3px;
-  font-size: 0.75em;
+  z-index: 10;
   color: white;
+  padding-top: 3px;
+  font-size: 0.75em;
   letter-spacing: 0;
   border-radius: 5px;
-  z-index: 10;
+  padding-bottom: 3px;
+  padding-left: var(--primary-space);
+  padding-right: var(--primary-space);
+  background-color: var(--primary-theme-color);
 }
 
 .tv {
@@ -155,43 +155,43 @@
   height: 10em;
   margin-top: 3em;
   background-color: #d36604;
-  display: var(--flex);
-  justify-content: var(--center);
-  border: 2px solid #222831;
+  display: var(--display-flex);
   border-radius: var(--primary-space);
+  justify-content: var(--align-center);
   box-shadow: inset 0.2em 0.2em #e69635;
+  border: 2px solid var(--primary-theme-color);
 }
 
 .tv::after {
   content: "";
-  position: absolute;
   width: 18em;
   height: 10em;
-  border-radius: var(--primary-space);
+  opacity: 0.09;
   background:
     repeating-radial-gradient(#d36604 0 0.0001%, #00000070 0 0.0002%) 50% 0/2500px
       2500px,
     repeating-conic-gradient(#d36604 0 0.0001%, #00000070 0 0.0002%) 60% 60%/2500px
       2500px;
   background-blend-mode: difference;
-  opacity: 0.09;
+  position: var(--position-absolute);
+  border-radius: var(--primary-space);
 }
 
 .curve_svg {
-  fill: #222831;
-  position: absolute;
+  width: 12px;
+  height: 12px;
   margin-top: 0.25em;
   margin-left: -0.25em;
-  height: 12px;
-  width: 12px;
+  fill: var(--primary-theme-color);
+  position: var(--position-absolute);
 }
 
 .display_div {
-  display: var(--flex);
-  align-items: var(--center);
-  align-self: var(--center);
-  justify-content: var(--center);
+  display: var(--display-flex);
+  align-self: var(--align-center);
+  align-items: var(--align-center);
   border-radius: var(--primary-space);
+  justify-content: var(--align-center);
   box-shadow: 3.5px 6.5px 0px #e69635;
 }
 
@@ -204,39 +204,39 @@
 .screen_out1 {
   width: 11em;
   height: 7.75em;
-  display: var(--flex);
-  align-items: var(--center);
-  justify-content: var(--center);
   border-radius: 10px;
+  display: var(--display-flex);
+  align-items: var(--align-center);
+  justify-content: var(--align-center);
 }
 
 .screen {
+  z-index: 99;
   width: 13em;
   height: 7.85em;
-  font-family: var(--secondary-font-family);
-  border: 2px solid #222831;
+  color: #252525;
+  font-weight: bold;
+  border-radius: 10px;
+  letter-spacing: 0.15em;
   background:
     repeating-radial-gradient(#000 0 0.0001%, #ffffff 0 0.0002%) 50% 0/2500px
       2500px,
     repeating-conic-gradient(#000 0 0.0001%, #ffffff 0 0.0002%) 60% 60%/2500px
       2500px;
+  display: var(--display-flex);
+  text-align: var(--align-center);
+  align-items: var(--align-center);
   background-blend-mode: difference;
   animation: b 0.2s infinite alternate;
-  border-radius: 10px;
-  z-index: 99;
-  display: var(--flex);
-  align-items: var(--center);
-  justify-content: var(--center);
-  font-weight: bold;
-  color: #252525;
-  letter-spacing: 0.15em;
-  text-align: var(--center);
+  justify-content: var(--align-center);
+  font-family: var(--secondary-font-family);
+  border: 2px solid var(--primary-theme-color);
 }
 
 .screenM {
   width: 13em;
   height: 7.85em;
-  position: relative;
+  position: var(--position-relative);
   font-family: var(--secondary-font-family);
   background: linear-gradient(
     to right,
@@ -256,25 +256,25 @@
     #fafafa 100%
   );
   border-radius: 10px;
-  border: 2px solid #222831;
+  border: 2px solid var(--primary-theme-color);
   z-index: 99;
-  display: var(--flex);
-  align-items: var(--center);
-  justify-content: var(--center);
+  display: var(--display-flex);
+  align-items: var(--align-center);
+  justify-content: var(--align-center);
   font-weight: bold;
   color: #252525;
   letter-spacing: 0.15em;
-  text-align: var(--center);
+  text-align: var(--align-center);
   overflow: hidden;
 }
 
 .screenM:before,
 .screenM:after {
   content: "";
-  position: absolute;
+  position: var(--position-absolute);
   left: 0;
   z-index: 1;
-  width: 100%;
+  width: var(--full-space);
 }
 
 .screenM:before {
@@ -328,7 +328,7 @@
 }
 
 .lines {
-  display: var(--flex);
+  display: var(--display-flex);
   column-gap: 0.1em;
   align-self: flex-end;
 }
@@ -337,7 +337,7 @@
 .line3 {
   width: 2px;
   height: 0.5em;
-  background-color: #222831;
+  background-color: var(--primary-theme-color);
   border-radius: 25px 25px 0px 0px;
   margin-top: 0.5em;
 }
@@ -345,22 +345,22 @@
 .line2 {
   flex-grow: 1;
   width: 2px;
-  height: 1em;
-  background-color: #222831;
+  height: var(--primary-space);
+  background-color: var(--primary-theme-color);
   border-radius: 25px 25px 0px 0px;
 }
 
 .buttons_div {
   width: 4.25em;
-  align-self: var(--center);
+  align-self: var(--align-center);
   height: 8em;
   background-color: #e69635;
-  border: 2px solid #222831;
+  border: 2px solid var(--primary-theme-color);
   padding: 0.6em;
   border-radius: 10px;
-  display: var(--flex);
-  align-items: var(--center);
-  justify-content: var(--center);
+  display: var(--display-flex);
+  align-items: var(--align-center);
+  justify-content: var(--align-center);
   flex-direction: column;
   row-gap: 0.75em;
   box-shadow: 3px 2.5px 0px #e69635;
@@ -371,46 +371,46 @@
   height: 1.65em;
   border-radius: 50%;
   background-color: #7f5934;
-  border: 2px solid #222831;
+  border: 2px solid var(--primary-theme-color);
   box-shadow:
     inset 2px 2px 1px #b49577,
     -2px 0px #513721,
-    -2px 0px 0px 1px #222831;
+    -2px 0px 0px 1px var(--primary-theme-color);
 }
 
 .b1::before {
   content: "";
-  position: absolute;
-  margin-top: 1em;
+  position: var(--position-absolute);
+  margin-top: var(--primary-space);
   margin-left: 0.5em;
   transform: rotate(47deg);
   border-radius: 5px;
   width: 0.1em;
   height: 0.4em;
-  background-color: #222831;
+  background-color: var(--primary-theme-color);
 }
 
 .b1::after {
   content: "";
-  position: absolute;
+  position: var(--position-absolute);
   margin-top: 0.9em;
   margin-left: 0.8em;
   transform: rotate(47deg);
   border-radius: 5px;
   width: 0.1em;
   height: 0.55em;
-  background-color: #222831;
+  background-color: var(--primary-theme-color);
 }
 
 .b1 div {
   content: "";
-  position: absolute;
+  position: var(--position-absolute);
   margin-top: -0.1em;
   margin-left: 0.65em;
   transform: rotate(45deg);
   width: 0.15em;
   height: 1.5em;
-  background-color: #222831;
+  background-color: var(--primary-theme-color);
 }
 
 .b2 {
@@ -418,44 +418,44 @@
   height: 1.65em;
   border-radius: 50%;
   background-color: #7f5934;
-  border: 2px solid #222831;
+  border: 2px solid var(--primary-theme-color);
   box-shadow:
     inset 2px 2px 1px #b49577,
     -2px 0px #513721,
-    -2px 0px 0px 1px #222831;
+    -2px 0px 0px 1px var(--primary-theme-color);
 }
 
 .b2::before {
   content: "";
-  position: absolute;
+  position: var(--position-absolute);
   margin-top: 1.05em;
   margin-left: 0.8em;
   transform: rotate(-45deg);
   border-radius: 5px;
   width: 0.15em;
   height: 0.4em;
-  background-color: #222831;
+  background-color: var(--primary-theme-color);
 }
 
 .b2::after {
   content: "";
-  position: absolute;
+  position: var(--position-absolute);
   margin-top: -0.1em;
   margin-left: 0.65em;
   transform: rotate(-45deg);
   width: 0.15em;
   height: 1.5em;
-  background-color: #222831;
+  background-color: var(--primary-theme-color);
 }
 
 .speakers {
-  display: var(--flex);
+  display: var(--display-flex);
   flex-direction: column;
   row-gap: 0.5em;
 }
 
 .speakers .g1 {
-  display: var(--flex);
+  display: var(--display-flex);
   column-gap: 0.25em;
 }
 
@@ -466,60 +466,60 @@
   height: 0.65em;
   border-radius: 50%;
   background-color: #7f5934;
-  border: 2px solid #222831;
+  border: 2px solid var(--primary-theme-color);
   box-shadow: inset 1.25px 1.25px 1px #b49577;
 }
 
 .speakers .g {
   width: auto;
   height: 2px;
-  background-color: #222831;
+  background-color: var(--primary-theme-color);
 }
 
 .bottom {
-  width: 100%;
+  width: var(--full-space);
   height: auto;
-  display: var(--flex);
-  align-items: var(--center);
-  justify-content: var(--center);
+  display: var(--display-flex);
+  align-items: var(--align-center);
+  justify-content: var(--align-center);
   column-gap: 8.7em;
 }
 
 .base1 {
-  height: 1em;
-  width: 2em;
-  border: 2px solid #222831;
+  height: var(--primary-space);
+  width: var(--secondary-space);
+  border: 2px solid var(--primary-theme-color);
   background-color: #4d4d4d;
   margin-top: -0.15em;
   z-index: -1;
 }
 
 .base2 {
-  height: 1em;
-  width: 2em;
-  border: 2px solid #222831;
+  height: var(--primary-space);
+  width: var(--secondary-space);
+  border: 2px solid var(--primary-theme-color);
   background-color: #4d4d4d;
   margin-top: -0.15em;
   z-index: -1;
 }
 
 .base3 {
-  position: absolute;
+  position: var(--position-absolute);
   height: 0.15em;
   width: 17.5em;
-  background-color: #222831;
-  margin-top: 1em;
+  background-color: var(--primary-theme-color);
+  margin-top: var(--primary-space);
 }
 
 @media (max-width: 275px), (max-height: 520px) {
   .main {
-    position: relative;
+    position: var(--position-relative);
   }
 }
 
 @media only screen and (max-width: 1024px) {
   .screenM {
-    display: var(--flex);
+    display: var(--display-flex);
   }
   .screen {
     display: none;
@@ -528,7 +528,7 @@
 
 @media only screen and (min-width: 1025px) {
   .screen {
-    display: var(--flex);
+    display: var(--display-flex);
   }
   .screenM {
     display: none;

@@ -1,55 +1,53 @@
 .switch {
-  --switch_width: 2em;
-  --switch_height: 1em;
-  font-size: var(--font-size-p);
-  position: relative;
   display: inline-block;
-  width: var(--switch_width);
-  height: var(--switch_height);
+  height: var(--primary-space);
+  width: var(--secondary-space);
+  font-size: var(--font-size-p);
+  position: var(--position-relative);
 }
 
 .switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
+  width: var(--none-space);
+  height: var(--none-space);
+  opacity: var(--none-space);
 }
 
 .slider {
-  box-sizing: border-box;
-  border: var(--border);
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: var(--switch-color);
   transition: .15s;
-  border-radius: var(--switch_height);
+  border: var(--border);
+  box-sizing: border-box;
+  top: var(--none-space);
+  left: var(--none-space);
+  right: var(--none-space);
+  bottom: var(--none-space);
+  cursor: var(--cursor-pointer);
+  position: var(--position-absolute);
+  border-radius: var(--primary-space);
+  background-color: var(--third-color);
 }
 
 .slider:before {
-  box-sizing: border-box;
-  position: absolute;
-  content: "";
-  height: var(--switch_height);
-  width: var(--switch_height);
-  border: var(--border);
-  border-radius: 100%;
   left: -2px;
+  content: "";
   bottom: -2px;
-  background-color: var(--switch-color);
-  transform: translateY(-0.2em);
-  box-shadow: 0 0.2em 0 var(--primary-color);
   transition: .15s;
+  border: var(--border);
+  box-sizing: border-box;
+  width: var(--primary-space);
+  height: var(--primary-space);
+  transform: translateY(-0.2em);
+  border-radius: var(--full-space);
+  position: var(--position-absolute);
+  background-color: var(--third-color);
+  box-shadow: 0 0.2em 0 var(--primary-color);
 }
 
 input:checked + .slider {
-  background-color: var(--switch-color);
+  background-color: var(--third-color);
 }
 
 input:focus-visible + .slider {
-  box-shadow: 0 0 0 2px var(--switch-color);
+  box-shadow: 0 0 0 2px var(--third-color);
 }
 
 input:hover + .slider:before {
@@ -58,37 +56,37 @@ input:hover + .slider:before {
 }
 
 input:checked + .slider:before {
-  transform: translateX(calc(var(--switch_width) - var(--switch_height))) translateY(-0.2em);
+  transform: translateX(calc(var(--secondary-space) - var(--primary-space))) translateY(-0.2em);
 }
 
 input:hover:checked + .slider:before {
-  transform: translateX(calc(var(--switch_width) - var(--switch_height))) translateY(-0.3em);
   box-shadow: 0 0.3em 0 var(--primary-color);
+  transform: translateX(calc(var(--secondary-space) - var(--primary-space))) translateY(-0.3em);
 }
 
 .menu .container {
-  display: var(--flex);
-  align-items: var(--center);
   gap: 50px;
+  display: var(--display-flex);
+  align-items: var(--align-center);
 }
 
 .menu .list {
-  padding: 0px;
-  display: var(--flex);
   gap: 50px;
-  font-family: var(--primary-font-family);
+  padding: 0px;
   font-size: 20px;
-  align-items: center;
+  display: var(--display-flex);
+  align-items: var(--align-center);
+  font-family: var(--primary-font-family);
 }
 
 .menu .item {
-  display: var(--flex);
+  display: var(--display-flex);
 }
 
 .menu .item:hover {
   font-weight: bold;
-  cursor: pointer;
   transition: all 0.3s;
+  cursor: var(--cursor-pointer);
 }
 
 .logout-button {

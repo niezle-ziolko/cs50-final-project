@@ -100,7 +100,7 @@ export async function DELETE(request) {
         status: 404,
         headers: { 'Content-Type': 'application/json' }
       });
-    }
+    };
 
     const updatedLiked = likedArray.join(', ');
 

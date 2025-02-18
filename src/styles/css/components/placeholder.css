@@ -1,16 +1,16 @@
 .placeholder__box {
-  position: relative;
   width: 75px;
   height: 100px;
+  position: var(--position-relative);
 }
 
 .placeholder__bar {
-  position: absolute;
-  bottom: 0;
   width: 10px;
   height: 50%;
-  background: var(--primary-color);
+  bottom: var(--none-space);
   transform-origin: center bottom;
+  background: var(--primary-color);
+  position: var(--position-absolute);
   box-shadow: 1px 1px 0 rgba(0, 0, 0, 0.2);
 }
 
@@ -50,13 +50,13 @@
 }
 
 .placeholder__ball {
-  position: absolute;
-  bottom: 10px;
-  left: 0;
   width: 10px;
   height: 10px;
-  background: var(--logo-color);
+  bottom: 10px;
   border-radius: 50%;
+  left: var(--none-space);
+  position: var(--position-absolute);
+  background: var(--secondary-theme-color);
   -webkit-animation: ball624 4s infinite;
   animation: ball624 4s infinite;
 }

@@ -1,14 +1,14 @@
 .loader {
-  position: absolute;
   width: 3px;
   height: 4px;
+  position: var(--position-absolute);
 }
 
 .loader div {
   width: 50%;
   height: 150%;
-  position: absolute;
-  background: #222831;
+  position: var(--position-absolute);
+  background: var(--primary-theme-color);
   animation: loader-fzua35 1s calc(var(--delay) * 1s) infinite ease;
   transform: rotate(calc(var(--rotation) * 1deg)) translate(0, calc(var(--translation) * 1%));
 }

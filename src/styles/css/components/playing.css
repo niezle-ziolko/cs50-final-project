@@ -3,19 +3,19 @@
   width: 16px;
   height: 16px;
   padding: 25px;
-  display: flex;
-  position: relative;
-  border-radius: 100%;
-  justify-content: center;
+  display: var(--display-flex);
+  border-radius: var(--full-space);
+  position: var(--position-relative);
   background: rgba(15, 6, 25, 0.40);
+  justify-content: var(--align-center);
 }
 
 .greenline {
   width: 2px;
   height: 20px;
-  position: relative;
   transform-origin: bottom;
-  background-color: #24b3fb;
+  position: var(--position-relative);
+  background-color: var(--secondary-theme-color);
 }
 
 .line-1 {

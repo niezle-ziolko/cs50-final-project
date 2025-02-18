@@ -1,9 +1,9 @@
 .heading {
+  font-size: 18px;
   font-weight: bold;
-  padding-bottom: 2em;
-  text-align: var(--center);
   color: var(--primary-color);
-  font-size: var(--primary-space);
+  text-align: var(--align-center);
+  padding-bottom: var(--secondary-space);
   font-family: var(--secondary-font-family);
 }
 
@@ -14,30 +14,30 @@
 
 .form .button {
   height: 43px;
-  display: flex;
   padding: 0.7em;
-  margin-top: 2em;
-  padding-left: 1em;
-  padding-right: 1em;
-  align-items: var(--center);
-  justify-content: var(--center);
+  display: var(--display-flex);
+  align-items: var(--align-center);
+  margin-top: var(--secondary-space);
+  padding-left: var(--primary-space);
+  padding-right: var(--primary-space);
+  justify-content: var(--align-center);
 }
 
 .form-login {
   width: 24em;
-  position: relative;
-  align-self: var(--center);
+  align-self: var(--align-center);
+  position: var(--position-relative);
 }
 
 .form-edit {
   width: 24em;
   align-self: auto;
   min-height: 48em;
-  position: relative;
+  position: var(--position-relative);
 }
 
 .error-message {
-  color: #E63946;
+  color: #e63946;
   font-weight: bold;
 }
 
@@ -45,31 +45,31 @@
   width: 200px;
   height: 200px;
   display: flex;
-  border-radius: 100%;
-  align-items: var(--center);
-  justify-content: var(--center);
+  border-radius: var(--full-space);
+  align-items: var(--align-center);
+  justify-content: var(--align-center);
   border: 2px solid var(--primary-color);
 }
 
 .form-edit .box {
-  align-items: var(--center);
-  justify-content: var(--center);
   display: inherit;
-  justify-content: center;
-  align-items: center;
+  align-items: var(--align-center);
+  align-items: var(--align-center);
+  justify-content: var(--align-center);
+  justify-content: var(--align-center);
 }
 
 .form-edit .background-icon {
-  opacity: 0;
   z-index: 1;
   width: 200px;
   height: 200px;
-  cursor: pointer;
-  position: absolute;
-  text-align: center;
-  border-radius: 100%;
   transition: all 0.4s;
-  align-content: center;
+  opacity: var(--none-space);
+  cursor: var(--cursor-pointer);
+  text-align: var(--align-center);
+  border-radius: var(--full-space);
+  position: var(--position-absolute);
+  align-content: var(--align-center);
   background: rgba(15, 6, 25, 0.40);
 }
 
@@ -80,12 +80,12 @@
 .form-edit #icon {
   display: flex;
   color: #e8e8e8;
-  justify-content: center;
+  justify-content: var(--align-center);
 }
 
 .form-edit #icon::before {
   padding: 25px;
-  border-radius: 100%;
+  border-radius: var(--full-space);
   background: rgba(15, 6, 25, .4);
 }
 
