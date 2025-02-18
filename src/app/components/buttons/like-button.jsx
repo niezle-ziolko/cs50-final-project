@@ -42,12 +42,7 @@ export default function HeartButton() {
 
       const data = await response.json();
       if (data.success && data.liked !== undefined) {
-        setUser(prevUser => {
-          if (!prevUser) return null;
-          const newUser = { ...prevUser, liked: data.liked };
-          setUser(null);
-          return newUser;
-        });
+        setUser(prevUser => prevUser ? { ...prevUser, liked: data.liked } : null);
 
         setIsLiked(!isLiked);
         console.log(`Book ${isLiked ? 'unliked' : 'liked'} successfully`);
