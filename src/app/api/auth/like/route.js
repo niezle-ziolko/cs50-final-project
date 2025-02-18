@@ -38,12 +38,23 @@ export async function POST(request) {
         headers: { 'Content-Type': 'application/json' }
       });
     };
+
+    const likedArray = userQuery.liked ? userQuery.liked.split(',').map(item => item.trim()) : [];
     
-    const liked = userQuery.liked ? `${userQuery.liked}, ${id}` : id.toString();
+    if (likedArray.includes(id.toString())) {
+      return new Response(JSON.stringify({ error: 'ID has already been added.' }), {
+        status: 400,
+        headers: { 'Content-Type': 'application/json' }
+      });
+    };
+
+    likedArray.push(id.toString());
     
-    await db.prepare('UPDATE users SET liked = ? WHERE username = ?').bind(liked, username).run();
+    const updatedLiked = likedArray.join(', ');
+
+    await db.prepare('UPDATE users SET liked = ? WHERE username = ?').bind(updatedLiked, username).run();
     
-    return new Response(JSON.stringify({ success: true, liked }), {
+    return new Response(JSON.stringify({ success: true, liked: updatedLiked }), {
       status: 200,
       headers: { 'Content-Type': 'application/json' }
     });
