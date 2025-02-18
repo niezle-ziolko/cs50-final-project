@@ -4,8 +4,10 @@ import { createContext, useState, useContext, useEffect } from 'react';
 const AudioContext = createContext({
   currentFile: null,
   currentPicture: null,
+  currentBookId: null,
   setCurrentFile: () => {},
   setCurrentPicture: () => {},
+  setCurrentBookId: () => {}
 });
 
 export function AudioProvider({ children }) {
@@ -13,11 +15,12 @@ export function AudioProvider({ children }) {
     if (typeof window !== 'undefined') {
       return localStorage.getItem('currentFile') || null;
     };
-    
+
     return null;
   });
 
   const [currentPicture, setCurrentPicture] = useState(null);
+  const [currentBookId, setCurrentBookId] = useState(null);
 
   useEffect(() => {
     if (currentFile) {
@@ -28,7 +31,7 @@ export function AudioProvider({ children }) {
   }, [currentFile]);
 
   return (
-    <AudioContext.Provider value={{ currentFile, setCurrentFile, currentPicture, setCurrentPicture }}>
+    <AudioContext.Provider value={{ currentFile, setCurrentFile, currentPicture, setCurrentPicture, currentBookId, setCurrentBookId }}>
       {children}
     </AudioContext.Provider>
   );
