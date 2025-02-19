@@ -51,3 +51,5 @@ export default async function Page({ params }) {
     notFound();
   };
 };
+
+export const runtime = 'edge';
