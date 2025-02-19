@@ -41,7 +41,7 @@ export default function AudioPlayer() {
             </div>
           )}
         </div>
-        <p>{bookTitle}</p>
+        <p className='title'>{bookTitle}</p>
         <media-controller audio>
           <audio
             ref={audioRef}

@@ -57,6 +57,12 @@
   align-items: var(--align-center);
 }
 
+.player .title {
+  margin-top: 17px;
+  text-align: var(--align-center);
+  font-family: var(--secondary-font-family);
+}
+
 i.fa-solid.fa-volume-xmark {
   color: var(--secondary-theme-color);
 }

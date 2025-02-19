@@ -109,8 +109,8 @@ a {
 }
 
 p {
-  margin-top: 4px;
-  margin-bottom: 4px;
+  margin-top: 0px;
+  margin-bottom: 0px;
   color: var(--primary-color);
   font-size: var(--primary-space);
 }
