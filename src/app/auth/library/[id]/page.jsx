@@ -41,7 +41,10 @@ export default async function Page({ params }) {
 
     return (
       <>
-        
+        <h1>{book.title}</h1>
+        <p>{book.description}</p>
+        <p>Autor: {book.author}</p>
+        <img src={book.picture} alt={book.title} />
       </>
     );
   } catch (error) {
