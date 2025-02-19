@@ -1,5 +1,4 @@
 'use client';
-import { useEffect, useRef } from 'react';
 import { useAudio } from 'context/audio-context';
 
 import Placeholder from './placeholder';
@@ -9,29 +8,11 @@ import 'styles/css/components/player.css';
 
 export default function AudioPlayer() {
   const { bookFile, bookPicture, bookTitle } = useAudio();
-  const audioRef = useRef(null);
-
-  useEffect(() => {
-    const savedTime = localStorage.getItem('audioCurrentTime');
-    if (audioRef.current && savedTime) {
-      audioRef.current.currentTime = parseFloat(savedTime);
-    }
-  }, []);
-
-  const handlePause = () => {
-    if (audioRef.current) {
-      localStorage.setItem('audioCurrentTime', audioRef.current.currentTime);
-    }
-  };
-
-  const handleEnded = () => {
-    localStorage.removeItem('audioCurrentTime');
-  };
 
   return (
     <div className='player'>
       <div className='container'>
-        <p className='heading'>bookly book playing</p>
+        <p className='heading'>Currently book playing</p>
         <div className='image'>
           {bookPicture ? (
             <img src={bookPicture} alt='bookly book cover' />
@@ -43,14 +24,7 @@ export default function AudioPlayer() {
         </div>
         <p className='title'>{bookTitle}</p>
         <media-controller audio>
-          <audio
-            ref={audioRef}
-            slot='media'
-            src={bookFile}
-            crossOrigin='true'
-            onPause={handlePause}
-            onEnded={handleEnded}
-          />
+          <audio slot='media' src={bookFile} crossOrigin='true' />
           <media-control-bar>
             <div className='box'>
               <media-time-display />
