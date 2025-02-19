@@ -1,4 +1,5 @@
 'use client';
+import { useEffect, useState } from 'react';
 import { useAudio } from 'context/audio-context';
 
 import Placeholder from './placeholder';
@@ -8,6 +9,36 @@ import 'styles/css/components/player.css';
 
 export default function AudioPlayer() {
   const { bookFile, bookPicture, bookTitle } = useAudio();
+  const [currentTime, setCurrentTime] = useState(0);
+  const audioRef = useRef(null);
+
+  useEffect(() => {
+    const savedTime = localStorage.getItem('audioTime');
+    if (savedTime) {
+      setCurrentTime(parseFloat(savedTime));
+    }
+  }, []);
+
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.currentTime = currentTime;
+    }
+  }, [currentTime]);
+
+  const handleTimeUpdate = () => {
+    if (audioRef.current) {
+      setCurrentTime(audioRef.current.currentTime);
+    }
+  };
+
+  const handleEnded = () => {
+    localStorage.setItem('audioTime', '0');
+    setCurrentTime(0);
+  };
+
+  const handlePlay = () => {
+    localStorage.setItem('audioTime', currentTime);
+  };
 
   return (
     <div className='player'>
@@ -24,7 +55,15 @@ export default function AudioPlayer() {
         </div>
         <p className='title'>{bookTitle}</p>
         <media-controller audio>
-          <audio slot='media' src={bookFile} crossOrigin='true' />
+          <audio
+            ref={audioRef}
+            slot='media'
+            src={bookFile}
+            crossOrigin='true'
+            onTimeUpdate={handleTimeUpdate}
+            onEnded={handleEnded}
+            onPlay={handlePlay}
+          />
           <media-control-bar>
             <div className='box'>
               <media-time-display />
