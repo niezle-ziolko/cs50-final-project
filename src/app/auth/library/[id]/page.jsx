@@ -1,7 +1,5 @@
 import { notFound } from 'next/navigation';
 
-import AudioPlayer from 'components/player';
-
 export async function generateStaticParams() {
   try {
     const response = await fetch('https://cs50-final-project.niezleziolko.app/api/data/book', {
@@ -43,7 +41,7 @@ export default async function Page({ params }) {
 
     return (
       <>
-        <AudioPlayer />
+        
       </>
     );
   } catch (error) {
@@ -51,5 +49,3 @@ export default async function Page({ params }) {
     notFound();
   };
 };
-
-export const runtime = 'edge';
