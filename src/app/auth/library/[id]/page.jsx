@@ -1,5 +1,7 @@
 import { notFound } from 'next/navigation';
 
+import AudioPlayer from 'components/player';
+
 export async function generateStaticParams() {
   try {
     const response = await fetch('https://cs50-final-project.niezleziolko.app/api/data/book', {
@@ -41,10 +43,7 @@ export default async function Page({ params }) {
 
     return (
       <>
-        <h1>{book.title}</h1>
-        <p>{book.description}</p>
-        <p>Autor: {book.author}</p>
-        <img src={book.picture} alt={book.title} />
+        <AudioPlayer />
       </>
     );
   } catch (error) {
