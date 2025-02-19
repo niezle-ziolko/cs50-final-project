@@ -27,7 +27,12 @@ export function AudioProvider({ children }) {
     return null;
   });
 
-  const [bookId, setBookId] = useState(null);
+  const [bookId, setBookId] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return localStorage.getItem('bookId') || null;
+    };
+    return null;
+  });
 
   const [bookTitle, setBookTitle] = useState(() => {
     if (typeof window !== 'undefined') {
