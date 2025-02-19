@@ -15,53 +15,61 @@ const AudioContext = createContext({
 export function AudioProvider({ children }) {
   const [bookFile, setBookFile] = useState(() => {
     if (typeof window !== 'undefined') {
-      return localStorage.getItem('bookFile') || null;
+      return localStorage.getItem('book-file') || null;
     };
     return null;
   });
 
   const [bookPicture, setBookPicture] = useState(() => {
     if (typeof window !== 'undefined') {
-      return localStorage.getItem('bookPicture') || null;
+      return localStorage.getItem('book-picture') || null;
     };
     return null;
   });
 
   const [bookId, setBookId] = useState(() => {
     if (typeof window !== 'undefined') {
-      return localStorage.getItem('bookId') || null;
+      return localStorage.getItem('book-id') || null;
     };
     return null;
   });
 
   const [bookTitle, setBookTitle] = useState(() => {
     if (typeof window !== 'undefined') {
-      return localStorage.getItem('bookTitle') || null;
+      return localStorage.getItem('book-title') || null;
     };
     return null;
   });
 
   useEffect(() => {
     if (bookFile) {
-      localStorage.setItem('bookFile', bookFile);
+      localStorage.setItem('book-file', bookFile);
     } else {
-      localStorage.removeItem('bookFile');
+      localStorage.removeItem('book-file');
     };
   }, [bookFile]);
 
   useEffect(() => {
     if (bookPicture) {
-      localStorage.setItem('bookPicture', bookPicture);
+      localStorage.setItem('book-picture', bookPicture);
     } else {
-      localStorage.removeItem('bookPicture');
+      localStorage.removeItem('book-picture');
     };
   }, [bookPicture]);
 
   useEffect(() => {
     if (bookTitle) {
-      localStorage.setItem('bookTitle', bookTitle);
+      localStorage.setItem('book-id', bookTitle);
     } else {
-      localStorage.removeItem('bookTitle');
+      localStorage.removeItem('book-id');
+    };
+  }, [bookTitle]);
+
+  useEffect(() => {
+    if (bookTitle) {
+      localStorage.setItem('book-title', bookTitle);
+    } else {
+      localStorage.removeItem('book-title');
     };
   }, [bookTitle]);
 

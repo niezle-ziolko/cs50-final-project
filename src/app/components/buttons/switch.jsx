@@ -46,7 +46,8 @@ export default function Switch() {
       <div className='switch-wrapper'>
         <label className='switch'>
           <input type='checkbox' checked={isDarkMode} onChange={() => setIsDarkMode(!isDarkMode)} />
-          <span className='slider' />
+          <span className='slider'></span>
+          <span className='clouds-stars'></span>
         </label>
       </div>
     </div>
