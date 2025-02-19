@@ -63,6 +63,15 @@
   font-family: var(--secondary-font-family);
 }
 
+.heading {
+  font-size: 18px;
+  font-weight: bold;
+  color: var(--primary-color);
+  text-align: var(--align-center);
+  padding-bottom: var(--secondary-space);
+  font-family: var(--secondary-font-family);
+}
+
 i.fa-solid.fa-volume-xmark {
   color: var(--secondary-theme-color);
 }

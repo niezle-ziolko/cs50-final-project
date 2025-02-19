@@ -23,13 +23,13 @@
   justify-content: var(--align-center);
 }
 
-.form-login {
+.form.login {
   width: 24em;
   align-self: var(--align-center);
   position: var(--position-relative);
 }
 
-.form-edit {
+.form.edit {
   width: 24em;
   align-self: auto;
   min-height: 48em;
@@ -41,7 +41,7 @@
   font-weight: bold;
 }
 
-.form-edit .picture {
+.form.edit .picture {
   width: 200px;
   height: 200px;
   display: flex;
@@ -51,7 +51,7 @@
   border: 2px solid var(--primary-color);
 }
 
-.form-edit .box {
+.form.edit .box {
   display: inherit;
   align-items: var(--align-center);
   align-items: var(--align-center);
@@ -59,7 +59,7 @@
   justify-content: var(--align-center);
 }
 
-.form-edit .background-icon {
+.form.edit .background-icon {
   z-index: 1;
   width: 200px;
   height: 200px;
@@ -73,23 +73,23 @@
   background: rgba(15, 6, 25, 0.40);
 }
 
-.form-edit .background-icon:hover {
+.form.edit .background-icon:hover {
   opacity: 1;
 }
 
-.form-edit #icon {
+.form.edit #icon {
   display: flex;
   color: #e8e8e8;
   justify-content: var(--align-center);
 }
 
-.form-edit #icon::before {
+.form.edit #icon::before {
   padding: 25px;
   border-radius: var(--full-space);
   background: rgba(15, 6, 25, .4);
 }
 
-.form-edit .span {
+.form.edit .span {
   font-size: 13px;
   margin-top: 5px;
 }

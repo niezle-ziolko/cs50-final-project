@@ -8,6 +8,11 @@
   background-color: var(--secondary-color);
 }
 
+.panel.book {
+  min-width: 875px;
+  max-width: 875px;
+}
+
 .panel:hover, .panel td:hover {
   box-shadow: 10px 10px 0px var(--primary-color);
   transform: translateX(-0.5em) translateY(-0.5em);

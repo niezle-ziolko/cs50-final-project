@@ -86,7 +86,7 @@ export default function EditForm() {
   };
 
   return (
-    <div className='form-edit'>
+    <div className='form edit'>
       <form className='form' style={{ position: 'absolute' }} onSubmit={handleSubmit}>
         <p className='heading'>Edit your data</p>
         <div className='box'>

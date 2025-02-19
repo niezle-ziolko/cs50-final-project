@@ -3,8 +3,10 @@ import { useEffect, useState, useCallback } from 'react';
 import { useAudio } from 'context/audio-context';
 import { useAuth } from 'context/auth-context';
 
-import Loader from './loader';
-import Playing from './playing';
+import Loader from '../loader';
+import Playing from '../playing';
+
+import 'styles/css/components/panel.css';
 
 export default function ClientPanel({ title }) {
   const { user } = useAuth();

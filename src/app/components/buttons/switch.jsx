@@ -43,7 +43,7 @@ export default function Switch() {
           </>
         )}
       </ul>
-      <div className='switch-wrapper'>
+      <div>
         <label className='switch'>
           <input type='checkbox' checked={isDarkMode} onChange={() => setIsDarkMode(!isDarkMode)} />
           <span className='slider' />

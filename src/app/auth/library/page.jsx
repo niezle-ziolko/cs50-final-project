@@ -1,5 +1,5 @@
 'use client';
-import ClientPanel from 'components/panel';
+import ClientPanel from 'components/panel/panel';
 import AudioPlayer from 'components/player';
 
 import 'styles/css/components/forms.css';
@@ -11,7 +11,7 @@ export default function MyAccount() {
   return (
     <div className='page'>
       <ClientPanel title={title} />
-      <AudioPlayer />
+      <AudioPlayer title={title} />
     </div>
   );
 };

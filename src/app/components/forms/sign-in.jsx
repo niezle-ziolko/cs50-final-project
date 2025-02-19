@@ -90,7 +90,7 @@ export default function SignInForm() {
   return (
     <div>
       <Script src='https://challenges.cloudflare.com/turnstile/v0/api.js' />
-      <div className='form-login'>
+      <div className='form login'>
         <form className='form' onSubmit={handleSubmit}>
           <p className='heading'>Sign in</p>
           <input className='input' name='username' placeholder='Username' type='text' value={formData.username} onChange={handleChange} required />

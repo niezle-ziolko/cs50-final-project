@@ -7,7 +7,7 @@ import LikeButton from './buttons/like-button';
 
 import 'styles/css/components/player.css';
 
-export default function AudioPlayer() {
+export default function AudioPlayer({ title }) {
   const { bookId, bookFile, bookPicture, bookTitle } = useAudio();
 
   return (
@@ -23,7 +23,11 @@ export default function AudioPlayer() {
             </div>
           )}
         </div>
-        <Link href={`/auth/library/${bookId}`} className='title'>{bookTitle}</Link>
+        {title ? (
+          <Link href={`/auth/library/${bookId}`} className='title'>{bookTitle}</Link>
+        ):(
+          <p className='title'>{bookTitle}</p>
+        )}
         <media-controller audio>
           <audio slot='media' src={bookFile} crossOrigin='true' />
           <media-control-bar>
