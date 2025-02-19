@@ -7,23 +7,24 @@ import LikeButton from './buttons/like-button';
 import 'styles/css/components/player.css';
 
 export default function AudioPlayer() {
-  const { currentFile, currentPicture } = useAudio();
+  const { bookFile, bookPicture, bookTitle } = useAudio();
 
   return (
     <div className='player'>
       <div className='container'>
-        <p className='heading'>Currently book playing</p>
+        <p className='heading'>bookly book playing</p>
         <div className='image'>
-          {currentPicture ? (
-            <img src={currentPicture} alt='Currently book cover' />
+          {bookPicture ? (
+            <img src={bookPicture} alt='bookly book cover' />
           ) : (
             <div className='placeholder'>
               <Placeholder />
             </div>
           )}
         </div>
+        <p>{bookTitle}</p>
         <media-controller audio>
-          <audio slot='media' src={currentFile} crossOrigin='true' />
+          <audio slot='media' src={bookFile} crossOrigin='true' />
           <media-control-bar>
             <div className='box'>
               <media-time-display />

@@ -8,7 +8,7 @@ import Playing from './playing';
 
 export default function ClientPanel({ title }) {
   const { user } = useAuth();
-  const { setCurrentFile, setCurrentPicture, setCurrentBookId, currentBookId } = useAudio();
+  const { setBookFile, setBookPicture, setBookTitle, setBookId, bookId } = useAudio();
 
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -78,16 +78,17 @@ export default function ClientPanel({ title }) {
             books.map(book => (
               <tr key={book.id} onClick={() => {
                 if (title === 'Library' && book.file) {
-                  setCurrentFile(book.file);
-                  setCurrentBookId(book.id);
-                  setCurrentPicture(book.picture);
+                  setBookFile(book.file);
+                  setBookId(book.id);
+                  setBookTitle(book.title);
+                  setBookPicture(book.picture);
                 };
               }}>
                 <td>
                   <img src={book.picture} alt={book.title} width='205' height='290' />
                   {title === 'Library' ? (
                     <div className='background-icon'>
-                      {currentBookId === book.id ? (
+                      {bookId === book.id ? (
                         <Playing />
                       ) : (
                         <i className='fa-solid fa-play' id='icon' />

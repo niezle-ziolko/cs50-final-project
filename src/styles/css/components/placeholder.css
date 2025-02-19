@@ -1,10 +1,10 @@
-.placeholder__box {
+.placeholder-box {
   width: 75px;
   height: 100px;
   position: var(--position-relative);
 }
 
-.placeholder__bar {
+.placeholder-bar {
   width: 10px;
   height: 50%;
   bottom: var(--none-space);
@@ -14,42 +14,42 @@
   box-shadow: 1px 1px 0 rgba(0, 0, 0, 0.2);
 }
 
-.placeholder__bar:nth-child(1) {
+.placeholder-bar:nth-child(1) {
   left: 0px;
   transform: scale(1, 0.2);
   -webkit-animation: barUp1 4s infinite;
   animation: barUp1 4s infinite;
 }
 
-.placeholder__bar:nth-child(2) {
+.placeholder-bar:nth-child(2) {
   left: 15px;
   transform: scale(1, 0.4);
   -webkit-animation: barUp2 4s infinite;
   animation: barUp2 4s infinite;
 }
 
-.placeholder__bar:nth-child(3) {
+.placeholder-bar:nth-child(3) {
   left: 30px;
   transform: scale(1, 0.6);
   -webkit-animation: barUp3 4s infinite;
   animation: barUp3 4s infinite;
 }
 
-.placeholder__bar:nth-child(4) {
+.placeholder-bar:nth-child(4) {
   left: 45px;
   transform: scale(1, 0.8);
   -webkit-animation: barUp4 4s infinite;
   animation: barUp4 4s infinite;
 }
 
-.placeholder__bar:nth-child(5) {
+.placeholder-bar:nth-child(5) {
   left: 60px;
   transform: scale(1, 1);
   -webkit-animation: barUp5 4s infinite;
   animation: barUp5 4s infinite;
 }
 
-.placeholder__ball {
+.placeholder-ball {
   width: 10px;
   height: 10px;
   bottom: 10px;

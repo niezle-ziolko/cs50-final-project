@@ -1,4 +1,4 @@
-.main_wrapper {
+.main-wrapper {
   height: 30em;
   display: var(--display-flex);
   align-items: var(--align-center);
@@ -24,7 +24,7 @@
   border: 2px solid var(--primary-theme-color);
 }
 
-.antenna_shadow {
+.antenna-shadow {
   width: 47px;
   height: 55px;
   border-radius: 45%;
@@ -137,7 +137,7 @@
   border: 2px solid var(--primary-theme-color);
 }
 
-.notfound_text {
+.notfound-text {
   z-index: 10;
   color: white;
   padding-top: 3px;
@@ -177,7 +177,7 @@
   border-radius: var(--primary-space);
 }
 
-.curve_svg {
+.curve-svg {
   width: 12px;
   height: 12px;
   margin-top: 0.25em;
@@ -186,7 +186,7 @@
   position: var(--position-absolute);
 }
 
-.display_div {
+.display-div {
   display: var(--display-flex);
   align-self: var(--align-center);
   align-items: var(--align-center);
@@ -195,13 +195,13 @@
   box-shadow: 3.5px 6.5px 0px #e69635;
 }
 
-.screen_out {
+.screen-out {
   width: auto;
   height: auto;
   border-radius: 10px;
 }
 
-.screen_out1 {
+.screen-out1 {
   width: 11em;
   height: 7.75em;
   border-radius: 10px;
@@ -350,7 +350,7 @@
   border-radius: 25px 25px 0px 0px;
 }
 
-.buttons_div {
+.buttons-div {
   width: 4.25em;
   align-self: var(--align-center);
   height: 8em;
