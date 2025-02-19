@@ -37,7 +37,9 @@ export function AuthProvider({ children }) {
 
   useEffect(() => {
     if (!isLoading) {
-      if (!user && ['/auth/my-account', '/auth/library', '/auth/my-books'].includes(pathname) || pathname.startsWith('/auth/library/')) {
+      if (!user && ['/auth/my-account', '/auth/library', '/auth/my-books'].includes(pathname)) {
+        router.push('/auth/login');
+      } else if (!user && pathname.startsWith('/auth/library/')) {
         router.push('/auth/login');
       } else if (user && ['/auth/login', '/auth/register'].includes(pathname)) {
         router.push('/auth/my-account');
