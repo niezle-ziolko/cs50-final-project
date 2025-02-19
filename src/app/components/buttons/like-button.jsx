@@ -4,7 +4,7 @@ import { useAuth } from 'context/auth-context';
 import { useState, useEffect } from 'react';
 
 export default function HeartButton() {
-  const { currentBookId } = useAudio();
+  const { bookId } = useAudio();
   const { user, updateUser } = useAuth();
 
   const [isLiked, setIsLiked] = useState(false);
@@ -16,11 +16,11 @@ export default function HeartButton() {
     };
 
     const likedBooks = user.liked.split(', ');
-    setIsLiked(likedBooks.includes(currentBookId));
-  }, [currentBookId, user?.liked]);
+    setIsLiked(likedBooks.includes(bookId));
+  }, [bookId, user?.liked]);
 
   const handleLike = async () => {
-    if (!currentBookId || !user) return;
+    if (!bookId || !user) return;
 
     try {
       const method = isLiked ? 'DELETE' : 'POST';
@@ -31,7 +31,7 @@ export default function HeartButton() {
           'Authorization': `Bearer ${process.env.NEXT_PUBLIC_CLIENT_AUTH}`
         },
         body: JSON.stringify({
-          id: currentBookId,
+          id: bookId,
           username: user.username
         })
       });

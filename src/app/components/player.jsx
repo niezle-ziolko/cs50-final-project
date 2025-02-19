@@ -1,4 +1,5 @@
 'use client';
+import Link from 'next/link';
 import { useAudio } from 'context/audio-context';
 
 import Placeholder from './placeholder';
@@ -7,7 +8,7 @@ import LikeButton from './buttons/like-button';
 import 'styles/css/components/player.css';
 
 export default function AudioPlayer() {
-  const { bookFile, bookPicture, bookTitle } = useAudio();
+  const { bookId, bookFile, bookPicture, bookTitle } = useAudio();
 
   return (
     <div className='player'>
@@ -22,7 +23,7 @@ export default function AudioPlayer() {
             </div>
           )}
         </div>
-        <p className='title'>{bookTitle}</p>
+        <Link href={`/auth/library/${bookId}`} className='title'>{bookTitle}</Link>
         <media-controller audio>
           <audio slot='media' src={bookFile} crossOrigin='true' />
           <media-control-bar>
