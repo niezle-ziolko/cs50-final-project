@@ -6,7 +6,7 @@ export async function generateStaticParams() {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${process.env.NEXT_PUBLIC_CLIENT_AUTH}`
+        'Authorization': 'Bearer aGVCzBMZvmaIujfzlLovQGPuB93E1eId'
       }
     });
 
@@ -29,7 +29,7 @@ export default async function Page({ params }) {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${process.env.NEXT_PUBLIC_CLIENT_AUTH}`
+        'Authorization': 'Bearer aGVCzBMZvmaIujfzlLovQGPuB93E1eId'
       }
     });
 
