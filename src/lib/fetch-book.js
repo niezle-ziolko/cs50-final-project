@@ -1,5 +1,8 @@
+import { getRequestContext } from '@cloudflare/next-on-pages';
+
+const { env } = getRequestContext();
 const API_URL = 'https://cs50-final-project.niezleziolko.app/api/data/book';
-const API_KEY = `Bearer ${process.env.BOOK_AUTH}`;
+const API_KEY = `Bearer ${env.BOOK_AUTH}`;
 
 export async function getBookById(id) {
   try {
@@ -21,3 +24,5 @@ export async function getBookById(id) {
     return null;
   };
 };
+
+export const runtime = 'edge';
