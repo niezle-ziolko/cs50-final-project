@@ -1,5 +1,7 @@
 'use client';
 import { useEffect, useState, useCallback } from 'react';
+import Link from 'next/link';
+
 import { useAudio } from 'context/audio-context';
 import { useAuth } from 'context/auth-context';
 
@@ -89,7 +91,13 @@ export default function ClientPanel({ title }) {
                 };
               }}>
                 <td>
-                  <img src={book.picture} alt={book.title} width='205' height='290' />
+                  {title === 'My books' || title === 'Liked books' ? (
+                    <Link href={`/auth/library/${book.id}`}>
+                      <img src={book.picture} alt={book.title} width='205' height='290' />
+                    </Link>
+                  ) : (
+                    <img src={book.picture} alt={book.title} width='205' height='290' />
+                  )}
                   {title === 'Library' ? (
                     <div className='background-icon'>
                       {bookId === book.id ? (
