@@ -1,13 +1,17 @@
 'use client';
+import { useAudio } from 'context/audio-context';
+
 import 'styles/css/components/panel.css';
 
 export default function BookPanel({ book }) {
+  const { bookTitle, bookAuthor, bookDescription } = useAudio();
+
   return (
     <div className='panel book'>
-      <h1>{book.title}</h1>
+      <h1>{bookTitle}</h1>
       <hr />
-      <h2>Author: {book.author}</h2>
-      <p>{book.description}</p>
+      <h2>Author: {bookAuthor}</h2>
+      <p>{bookDescription}</p>
     </div>
   );
 };

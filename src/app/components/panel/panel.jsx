@@ -10,7 +10,7 @@ import 'styles/css/components/panel.css';
 
 export default function ClientPanel({ title }) {
   const { user } = useAuth();
-  const { setBookFile, setBookPicture, setBookTitle, setBookId, bookId } = useAudio();
+  const { setBookFile, setBookPicture, setBookTitle, setBookId, setBookAuthor, setBookDescription, bookId } = useAudio();
 
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -84,6 +84,8 @@ export default function ClientPanel({ title }) {
                   setBookId(book.id);
                   setBookTitle(book.title);
                   setBookPicture(book.picture);
+                  setBookAuthor(book.author);
+                  setBookDescription(book.description);
                 };
               }}>
                 <td>

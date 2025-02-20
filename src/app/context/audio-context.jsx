@@ -6,10 +6,14 @@ const AudioContext = createContext({
   bookPicture: null,
   bookId: null,
   bookTitle: null,
+  bookAuthor: null,
+  bookDescription: null,
   setBookFile: () => {},
   setBookPicture: () => {},
   setBookId: () => {},
-  setBookTitle: () => {}
+  setBookTitle: () => {},
+  setBookAuthor: () => {},
+  setBookDescription: () => {}
 });
 
 export function AudioProvider({ children }) {
@@ -37,6 +41,20 @@ export function AudioProvider({ children }) {
   const [bookTitle, setBookTitle] = useState(() => {
     if (typeof window !== 'undefined') {
       return localStorage.getItem('book-title') || null;
+    };
+    return null;
+  });
+  
+  const [bookAuthor, setBookAuthor] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return localStorage.getItem('book-author') || null;
+    };
+    return null;
+  });
+
+  const [bookDescription, setBookDescription] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return localStorage.getItem('book-description') || null;
     };
     return null;
   });
@@ -73,8 +91,24 @@ export function AudioProvider({ children }) {
     };
   }, [bookTitle]);
 
+  useEffect(() => {
+    if (bookAuthor) {
+      localStorage.setItem('book-author', bookAuthor);
+    } else {
+      localStorage.removeItem('book-author');
+    };
+  }, [bookAuthor]);
+
+  useEffect(() => {
+    if (bookDescription) {
+      localStorage.setItem('book-description', bookDescription);
+    } else {
+      localStorage.removeItem('book-description');
+    };
+  }, [bookDescription]);
+
   return (
-    <AudioContext.Provider value={{ bookFile, setBookFile, bookPicture, setBookPicture, bookId, setBookId, bookTitle, setBookTitle }}>
+    <AudioContext.Provider value={{ bookFile, setBookFile, bookPicture, setBookPicture, bookId, setBookId, bookTitle, setBookTitle, bookAuthor, setBookAuthor, bookDescription, setBookDescription }}>
       {children}
     </AudioContext.Provider>
   );
