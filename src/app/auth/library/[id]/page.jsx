@@ -25,7 +25,7 @@ export default async function Page({ params }) {
 
     return (
       <div className='page'>
-        <BookPanel book={book} />
+        <BookPanel />
         <AudioPlayer />
       </div>
     );

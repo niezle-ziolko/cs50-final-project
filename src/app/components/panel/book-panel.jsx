@@ -3,7 +3,7 @@ import { useAudio } from 'context/audio-context';
 
 import 'styles/css/components/panel.css';
 
-export default function BookPanel({ book }) {
+export default function BookPanel() {
   const { bookTitle, bookAuthor, bookDescription } = useAudio();
 
   return (

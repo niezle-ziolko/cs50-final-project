@@ -2,113 +2,65 @@
 import { createContext, useState, useContext, useEffect } from 'react';
 
 const AudioContext = createContext({
-  bookFile: null,
-  bookPicture: null,
   bookId: null,
+  bookFile: null,
   bookTitle: null,
   bookAuthor: null,
+  bookPicture: null,
   bookDescription: null,
-  setBookFile: () => {},
-  setBookPicture: () => {},
   setBookId: () => {},
+  setBookFile: () => {},
   setBookTitle: () => {},
   setBookAuthor: () => {},
+  setBookPicture: () => {},
   setBookDescription: () => {}
 });
 
+const useLocalStorageState = (key, initialValue) => {
+  const [state, setState] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return localStorage.getItem(key) || initialValue;
+    };
+
+    return initialValue;
+  });
+
+  useEffect(() => {
+    if (state) {
+      localStorage.setItem(key, state);
+    } else {
+      localStorage.removeItem(key);
+    }
+  }, [key, state]);
+
+  return [state, setState];
+};
+
 export function AudioProvider({ children }) {
-  const [bookFile, setBookFile] = useState(() => {
-    if (typeof window !== 'undefined') {
-      return localStorage.getItem('book-file') || null;
-    };
-    return null;
-  });
-
-  const [bookPicture, setBookPicture] = useState(() => {
-    if (typeof window !== 'undefined') {
-      return localStorage.getItem('book-picture') || null;
-    };
-    return null;
-  });
-
-  const [bookId, setBookId] = useState(() => {
-    if (typeof window !== 'undefined') {
-      return localStorage.getItem('book-id') || null;
-    };
-    return null;
-  });
-
-  const [bookTitle, setBookTitle] = useState(() => {
-    if (typeof window !== 'undefined') {
-      return localStorage.getItem('book-title') || null;
-    };
-    return null;
-  });
-  
-  const [bookAuthor, setBookAuthor] = useState(() => {
-    if (typeof window !== 'undefined') {
-      return localStorage.getItem('book-author') || null;
-    };
-    return null;
-  });
-
-  const [bookDescription, setBookDescription] = useState(() => {
-    if (typeof window !== 'undefined') {
-      return localStorage.getItem('book-description') || null;
-    };
-    return null;
-  });
-
-  useEffect(() => {
-    if (bookFile) {
-      localStorage.setItem('book-file', bookFile);
-    } else {
-      localStorage.removeItem('book-file');
-    };
-  }, [bookFile]);
-
-  useEffect(() => {
-    if (bookPicture) {
-      localStorage.setItem('book-picture', bookPicture);
-    } else {
-      localStorage.removeItem('book-picture');
-    };
-  }, [bookPicture]);
-
-  useEffect(() => {
-    if (bookId) {
-      localStorage.setItem('book-id', bookId);
-    } else {
-      localStorage.removeItem('book-id');
-    };
-  }, [bookId]);
-
-  useEffect(() => {
-    if (bookTitle) {
-      localStorage.setItem('book-title', bookTitle);
-    } else {
-      localStorage.removeItem('book-title');
-    };
-  }, [bookTitle]);
-
-  useEffect(() => {
-    if (bookAuthor) {
-      localStorage.setItem('book-author', bookAuthor);
-    } else {
-      localStorage.removeItem('book-author');
-    };
-  }, [bookAuthor]);
-
-  useEffect(() => {
-    if (bookDescription) {
-      localStorage.setItem('book-description', bookDescription);
-    } else {
-      localStorage.removeItem('book-description');
-    };
-  }, [bookDescription]);
+  const [bookId, setBookId] = useLocalStorageState('book-id', null);
+  const [bookFile, setBookFile] = useLocalStorageState('book-file', null);
+  const [bookTitle, setBookTitle] = useLocalStorageState('book-title', null);
+  const [bookAuthor, setBookAuthor] = useLocalStorageState('book-author', null);
+  const [bookPicture, setBookPicture] = useLocalStorageState('book-picture', null);
+  const [bookDescription, setBookDescription] = useLocalStorageState('book-description', null);
 
   return (
-    <AudioContext.Provider value={{ bookFile, setBookFile, bookPicture, setBookPicture, bookId, setBookId, bookTitle, setBookTitle, bookAuthor, setBookAuthor, bookDescription, setBookDescription }}>
+    <AudioContext.Provider
+      value={{
+        bookId,
+        setBookId,
+        bookFile,
+        setBookFile,
+        bookTitle,
+        setBookTitle,
+        bookAuthor,
+        setBookAuthor,
+        bookPicture,
+        setBookPicture,
+        bookDescription,
+        setBookDescription
+      }}
+    >
       {children}
     </AudioContext.Provider>
   );
