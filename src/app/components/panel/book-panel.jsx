@@ -5,7 +5,8 @@ export default function BookPanel({ book }) {
   return (
     <div className='panel book'>
       <h1>{book.title}</h1>
-      <h2>{book.author}</h2>
+      <hr />
+      <h2>Author: {book.author}</h2>
       <p>{book.description}</p>
     </div>
   );
