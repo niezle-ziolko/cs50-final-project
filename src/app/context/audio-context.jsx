@@ -58,12 +58,12 @@ export function AudioProvider({ children }) {
   }, [bookPicture]);
 
   useEffect(() => {
-    if (bookTitle) {
-      localStorage.setItem('book-id', bookTitle);
+    if (bookId) {
+      localStorage.setItem('book-id', bookId);
     } else {
       localStorage.removeItem('book-id');
     };
-  }, [bookTitle]);
+  }, [bookId]);
 
   useEffect(() => {
     if (bookTitle) {

@@ -1,8 +1,23 @@
-import { getRequestContext } from '@cloudflare/next-on-pages';
-
-const { env } = getRequestContext();
 const API_URL = 'https://cs50-final-project.niezleziolko.app/api/data/book';
-const API_KEY = `Bearer ${env.BOOK_AUTH}`;
+const API_KEY = `Bearer ${process.env.BOOK_AUTH}`;
+
+export async function fetchBooks() {
+  try {
+    const response = await fetch(API_URL, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': API_KEY
+      }
+    });
+
+    const books = await response.json();
+    return books;
+  } catch (error) {
+    console.error('Error:', error);
+    return [];
+  }
+}
 
 export async function getBookById(id) {
   try {
@@ -24,5 +39,3 @@ export async function getBookById(id) {
     return null;
   };
 };
-
-export const runtime = 'edge';

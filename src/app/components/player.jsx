@@ -1,4 +1,5 @@
 'use client';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useAudio } from 'context/audio-context';
 
@@ -9,6 +10,11 @@ import 'styles/css/components/player.css';
 
 export default function AudioPlayer({ title }) {
   const { bookId, bookFile, bookPicture, bookTitle } = useAudio();
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   return (
     <div className='player'>
@@ -23,10 +29,12 @@ export default function AudioPlayer({ title }) {
             </div>
           )}
         </div>
-        {title ? (
-          <Link href={`/auth/library/${bookId}`} className='title'>{bookTitle}</Link>
-        ):(
-          <p className='title'>{bookTitle}</p>
+        {isClient && (
+          title ? (
+            <Link href={`/auth/library/${bookId}`} className='title'>{bookTitle}</Link>
+          ) : (
+            <p className='title'>{bookTitle}</p>
+          )
         )}
         <media-controller audio>
           <audio slot='media' src={bookFile} crossOrigin='true' />

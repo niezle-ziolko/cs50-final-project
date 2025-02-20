@@ -1,20 +1,31 @@
-import { getRequestContext } from '@cloudflare/next-on-pages';
-
 import { notFound } from 'next/navigation';
 
 import AudioPlayer from 'components/player';
-import BookPanel from 'components/panel/book-panel';
+
+import { fetchBooks } from './fetchBooks';
+
+export async function generateStaticParams() {
+  try {
+    const books = await fetchBooks();
+    
+    return books.map(book => ({
+      id: book.id
+    }));
+  } catch (error) {
+    console.error('Error:', error);
+    return [];
+  }
+}
 
 export default async function Page({ params }) {
   const { id } = await params;
-  const { env } = getRequestContext();
 
   try {
     const response = await fetch(`https://cs50-final-project.niezleziolko.app/api/data/book?id=${id}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${env.NEXT_PUBLIC_CLIENT_AUTH}`
+        'Authorization': `Bearer ${process.env.NEXT_PUBLIC_CLIENT_AUTH}`
       }
     });
 
@@ -26,7 +37,6 @@ export default async function Page({ params }) {
 
     return (
       <>
-        <BookPanel book={book} />
         <AudioPlayer />
       </>
     );
@@ -35,5 +45,3 @@ export default async function Page({ params }) {
     notFound();
   };
 };
-
-export const runtime = 'edge';
