@@ -14,7 +14,7 @@ export default function HeartButton({ externalBookId }) {
     if (!user?.liked || !bookId) {
       setIsLiked(false);
       return;
-    }
+    };
 
     const likedBooks = user.liked.split(', ');
     setIsLiked(likedBooks.includes(bookId));
@@ -40,7 +40,7 @@ export default function HeartButton({ externalBookId }) {
       if (!response.ok) {
         console.error(`error: ${response.status} ${response.statusText}`);
         return;
-      }
+      };
 
       const data = await response.json();
       updateUser(data);
@@ -48,7 +48,7 @@ export default function HeartButton({ externalBookId }) {
       console.log(`Book ${isLiked ? 'unliked' : 'liked'} successfully`);
     } catch (error) {
       console.error('error:', error);
-    }
+    };
   };
 
   return (
