@@ -14,7 +14,9 @@ export default function ClientPanel({ title }) {
   const { setBookFile, setBookPicture, setBookTitle, setBookId, setBookAuthor, setBookDescription, bookId } = useAudio();
 
   const [books, setBooks] = useState([]);
+  const [filteredBooks, setFilteredBooks] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [searchQuery, setSearchQuery] = useState('');
 
   const fetchBooks = useCallback(async () => {
     if (!user) return;
@@ -34,7 +36,7 @@ export default function ClientPanel({ title }) {
           ids = user.created.split(',').map(id => id.trim());
         } else if (title === 'Liked books' && user?.liked) {
           ids = user.liked.split(',').map(id => id.trim());
-        };
+        }
 
         if (ids.length) {
           responses = await Promise.all(
@@ -42,8 +44,8 @@ export default function ClientPanel({ title }) {
               fetch(`/api/data/book?id=${id}`, { headers }).then(res => res.json())
             )
           );
-        };
-      };
+        }
+      }
 
       const formattedBooks = responses
         .filter(book => book?.picture)
@@ -53,20 +55,44 @@ export default function ClientPanel({ title }) {
         }));
 
       setBooks(formattedBooks);
+      setFilteredBooks(formattedBooks);
     } catch (error) {
       console.error('Error fetching books:', error);
     } finally {
       setLoading(false);
-    };
+    }
   }, [user, title]);
 
   useEffect(() => {
     fetchBooks();
   }, [fetchBooks]);
 
+  useEffect(() => {
+    if (searchQuery.trim() === '') {
+      setFilteredBooks(books);
+    } else {
+      const query = searchQuery.toLowerCase();
+      setFilteredBooks(
+        books.filter(book =>
+          book.title.toLowerCase().includes(query) ||
+          book.description.toLowerCase().includes(query)
+        )
+      );
+    }
+  }, [searchQuery, books]);
+
   return (
     <div className='panel'>
       <h1>{title}</h1>
+      {title === 'Library' && (
+        <input
+          type='text'
+          placeholder='Search books...'
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          className='search-input'
+        />
+      )}
       <table>
         <tbody>
           {loading ? (
@@ -78,7 +104,7 @@ export default function ClientPanel({ title }) {
               </tr>
             ))
           ) : (
-            books.map(book => (
+            filteredBooks.map(book => (
               <tr key={book.id} onClick={() => {
                 if (title === 'Library' && book.file) {
                   setBookFile(book.file);
@@ -87,7 +113,7 @@ export default function ClientPanel({ title }) {
                   setBookPicture(book.picture);
                   setBookAuthor(book.author);
                   setBookDescription(book.description);
-                };
+                }
               }}>
                 <td>
                   <img src={book.picture} alt={book.title} width='205' height='290' />
@@ -103,9 +129,7 @@ export default function ClientPanel({ title }) {
                         <LikeButton externalBookId={book.id} />
                       )}
                     </div>
-                  ) : (
-                    <></>
-                  )}
+                  ) : null}
                 </td>
               </tr>
             ))

@@ -3,7 +3,7 @@ import { useAudio } from 'context/audio-context';
 import { useAuth } from 'context/auth-context';
 import { useState, useEffect } from 'react';
 
-export default function HeartButton({ externalBookId }) {
+export default function LikeButton({ externalBookId }) {
   const { bookId: internalBookId } = useAudio();
   const { user, updateUser } = useAuth();
 
