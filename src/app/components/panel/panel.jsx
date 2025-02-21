@@ -5,6 +5,7 @@ import { useAuth } from 'context/auth-context';
 
 import Loader from '../loader';
 import Playing from '../playing';
+import SearchBar from '../forms/search';
 import LikeButton from '../buttons/like-button';
 
 import 'styles/css/components/panel.css';
@@ -86,16 +87,7 @@ export default function ClientPanel({ title }) {
       <div className='heading'>
         <h1>{title}</h1>
         {title === 'Library' && (
-          <div className='search'>
-            <input
-              type='text'
-              className='search'
-              value={searchQuery}
-              placeholder='Search books...'
-              onChange={(e) => setSearchQuery(e.target.value)}
-            />
-            <i className="fa-solid fa-magnifying-glass"></i>
-          </div>
+          <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
         )}
       </div>
       <table>
