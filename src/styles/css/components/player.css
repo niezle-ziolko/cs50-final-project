@@ -7,10 +7,10 @@
 .player .container {
   padding: 2.5em;
   min-height: 42em;
-  border: var(--border);
   flex-direction: column;
   transition: .4s ease-in-out;
   display: var(--display-flex);
+  border: var(--primary-border);
   background-color: var(--secondary-color);
 }
 
@@ -26,15 +26,15 @@
 
 .player img {
   height: 463px;
-  border: var(--border);
   width: var(--space-full);
+  border: var(--primary-border);
 }
 
 .player .placeholder {
   height: 463px;
-  border: var(--border);
   width: var(--space-full);
   display: var(--display-flex);
+  border: var(--primary-border);
   align-items: var(--align-center);
   justify-content: var(--align-center);
 }
@@ -113,8 +113,8 @@ media-seek-backward-button {
   padding: 10px;
   font-size: 25px;
   transition: all 0.4s;
-  border: var(--border);
   color: var(--primary-color);
+  border: var(--primary-border);
   border-radius: var(--space-full);
   background-color: var(--transparent-color);
 }

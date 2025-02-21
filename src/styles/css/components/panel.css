@@ -1,10 +1,10 @@
 .panel {
   gap: 10px;
   padding: 2.5em;
-  border: var(--border);
   flex-direction: column;
   transition: .4s ease-in-out;
   display: var(--display-flex);
+  border: var(--primary-border);
   background-color: var(--secondary-color);
 }
 
@@ -29,9 +29,9 @@
 .panel .heading .search {
   width: 250px;
   padding: 2px 7px;
-  border: var(--border);
   transition: .4s ease-in-out;
   display: var(--display-flex);
+  border: var(--primary-border);
   align-items: var(--align-center);
 }
 
@@ -71,7 +71,6 @@
 
 .panel td {
   overflow: hidden;
-  border: var(--border);
   top: var(--space-null);
   left: var(--space-null);
   right: var(--space-null);
@@ -83,20 +82,22 @@
   max-width: var(--space-full);
   cursor: var(--cursor-pointer);
   max-height: var(--space-full);
+  border: var(--primary-border);
   align-items: var(--align-center);
   position: var(--position-absolute);
   justify-content: var(--align-center);
 }
 
 .panel .none {
-  border: none;
-  text-align: start;
   display: block;
+  text-align: start;
+  cursor: var(--space-auto);
+  border: var(--space-none);
 }
 
 .panel .none:hover {
-  box-shadow: none;
-  transform: none;
+  transform: var(--space-none);
+  box-shadow: var(--space-none);
 }
 
 .panel .background-icon {

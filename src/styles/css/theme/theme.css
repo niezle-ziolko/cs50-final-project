@@ -18,7 +18,7 @@
   --position-absolute: absolute;
   --position-relative: relative;
   --cursor-pointer: pointer;
-  --border: 2px solid var(--primary-color);
+  --primary-border: 2px solid var(--primary-color);
 }
 
 .dark {
@@ -44,9 +44,9 @@ main {
 
 input {
   margin-top: 10px;
-  border: var(--border);
   transition: .4s ease-in-out;
   color: var(--primary-color);
+  border: var(--primary-border);
   font-size: var(--primary-font-size);
   font-family: var(--primary-font-family);
   background-color: var(--secondary-color);
@@ -63,9 +63,9 @@ input::placeholder {
 
 button {
   font-weight: bold;
-  border: var(--border);
   transition: .4s ease-in-out;
   cursor: var(--cursor-pointer);
+  border: var(--primary-border);
   color: var(--primary-theme-color);
   font-size: var(--primary-font-size);
   font-family: var(--secondary-font-family);
@@ -86,7 +86,6 @@ button:active {
 form {
   gap: 10px;
   padding: 2.5em;
-  border: var(--border);
   flex-direction: column;
   top: var(--space-null);
   left: var(--space-null);
@@ -94,6 +93,7 @@ form {
   bottom: var(--space-null);    
   transition: .4s ease-in-out;
   display: var(--display-flex);
+  border: var(--primary-border);
   background-color: var(--secondary-color);
 }
 

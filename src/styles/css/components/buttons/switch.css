@@ -14,13 +14,13 @@
 
 .slider {
   transition: .15s;
-  border: var(--border);
   box-sizing: border-box;
   top: var(--space-null);
   left: var(--space-null);
   right: var(--space-null);
   bottom: var(--space-null);
   cursor: var(--cursor-pointer);
+  border: var(--primary-border);
   position: var(--position-absolute);
   border-radius: var(--primary-space);
   background-color: var(--third-color);
@@ -31,11 +31,11 @@
   content: "";
   bottom: -2px;
   transition: .15s;
-  border: var(--border);
   box-sizing: border-box;
   width: var(--primary-space);
   height: var(--primary-space);
   transform: translateY(-0.2em);
+  border: var(--primary-border);
   border-radius: var(--space-full);
   position: var(--position-absolute);
   background-color: var(--third-color);
