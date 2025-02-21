@@ -101,35 +101,43 @@ export default function ClientPanel({ title }) {
               </tr>
             ))
           ) : (
-            filteredBooks.map(book => (
-              <tr key={book.id} onClick={() => {
-                if (title === 'Library' && book.file) {
-                  setBookFile(book.file);
-                  setBookId(book.id);
-                  setBookTitle(book.title);
-                  setBookPicture(book.picture);
-                  setBookAuthor(book.author);
-                  setBookDescription(book.description);
-                }
-              }}>
-                <td>
-                  <img src={book.picture} alt={book.title} width='205' height='290' />
-                  {title === 'Library' || title === 'Liked books' ? (
-                    <div className='background-icon'>
-                      {title === 'Library' ? (
-                        bookId === book.id ? (
-                          <Playing />
+            filteredBooks.length > 0 ? (
+              filteredBooks.map(book => (
+                <tr key={book.id} onClick={() => {
+                  if (title === 'Library' && book.file) {
+                    setBookFile(book.file);
+                    setBookId(book.id);
+                    setBookTitle(book.title);
+                    setBookPicture(book.picture);
+                    setBookAuthor(book.author);
+                    setBookDescription(book.description);
+                  }
+                }}>
+                  <td>
+                    <img src={book.picture} alt={book.title} width='205' height='290' />
+                    {title === 'Library' || title === 'Liked books' ? (
+                      <div className='background-icon'>
+                        {title === 'Library' ? (
+                          bookId === book.id ? (
+                            <Playing />
+                          ) : (
+                            <i className='fa-solid fa-play' id='icon' />
+                          )
                         ) : (
-                          <i className='fa-solid fa-play' id='icon' />
-                        )
-                      ) : (
-                        <LikeButton externalBookId={book.id} />
-                      )}
-                    </div>
-                  ) : null}
+                          <LikeButton externalBookId={book.id} />
+                        )}
+                      </div>
+                    ) : null}
+                  </td>
+                </tr>
+              ))
+            ):(
+              <tr>
+                <td colSpan="1" style={{ textAlign: 'center' }}>
+                  <p>Ups... Book not found.</p>
                 </td>
               </tr>
-            ))
+            )
           )}
         </tbody>
       </table>
