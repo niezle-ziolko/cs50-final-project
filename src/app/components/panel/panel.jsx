@@ -5,6 +5,7 @@ import { useAuth } from 'context/auth-context';
 
 import Loader from '../loader';
 import Playing from '../playing';
+import LikeButton from '../buttons/like-button';
 
 import 'styles/css/components/panel.css';
 
@@ -90,12 +91,16 @@ export default function ClientPanel({ title }) {
               }}>
                 <td>
                   <img src={book.picture} alt={book.title} width='205' height='290' />
-                  {title === 'Library' ? (
+                  {title === 'Library' || title === 'Liked books' ? (
                     <div className='background-icon'>
-                      {bookId === book.id ? (
-                        <Playing />
+                      {title === 'Library' ? (
+                        bookId === book.id ? (
+                          <Playing />
+                        ) : (
+                          <i className='fa-solid fa-play' id='icon' />
+                        )
                       ) : (
-                        <i className='fa-solid fa-play' id='icon' />
+                        <LikeButton externalBookId={book.id} />
                       )}
                     </div>
                   ) : (

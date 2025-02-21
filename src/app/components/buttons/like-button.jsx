@@ -3,17 +3,18 @@ import { useAudio } from 'context/audio-context';
 import { useAuth } from 'context/auth-context';
 import { useState, useEffect } from 'react';
 
-export default function HeartButton() {
-  const { bookId } = useAudio();
+export default function HeartButton({ externalBookId }) {
+  const { bookId: internalBookId } = useAudio();
   const { user, updateUser } = useAuth();
 
+  const bookId = externalBookId || internalBookId;
   const [isLiked, setIsLiked] = useState(false);
 
   useEffect(() => {
-    if (!user?.liked) {
+    if (!user?.liked || !bookId) {
       setIsLiked(false);
       return;
-    };
+    }
 
     const likedBooks = user.liked.split(', ');
     setIsLiked(likedBooks.includes(bookId));
@@ -39,7 +40,7 @@ export default function HeartButton() {
       if (!response.ok) {
         console.error(`error: ${response.status} ${response.statusText}`);
         return;
-      };
+      }
 
       const data = await response.json();
       updateUser(data);
@@ -47,7 +48,7 @@ export default function HeartButton() {
       console.log(`Book ${isLiked ? 'unliked' : 'liked'} successfully`);
     } catch (error) {
       console.error('error:', error);
-    };
+    }
   };
 
   return (
