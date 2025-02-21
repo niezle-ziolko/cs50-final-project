@@ -88,6 +88,17 @@
   justify-content: var(--align-center);
 }
 
+.panel .none {
+  border: none;
+  text-align: start;
+  display: block;
+}
+
+.panel .none:hover {
+  box-shadow: none;
+  transform: none;
+}
+
 .panel .background-icon {
   z-index: 1;
   width: 205px;

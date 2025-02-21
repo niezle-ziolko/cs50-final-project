@@ -34,10 +34,10 @@ export default function ClientPanel({ title }) {
       } else {
         let ids = [];
         if (title === 'My books' && user?.created) {
-          ids = user.created.split(',').map(id => id.trim());
+          ids = user.created.split(', ').map(id => id.trim());
         } else if (title === 'Liked books' && user?.liked) {
-          ids = user.liked.split(',').map(id => id.trim());
-        }
+          ids = user.liked.split(', ').map(id => id.trim());
+        };
 
         if (ids.length) {
           responses = await Promise.all(
@@ -45,8 +45,8 @@ export default function ClientPanel({ title }) {
               fetch(`/api/data/book?id=${id}`, { headers }).then(res => res.json())
             )
           );
-        }
-      }
+        };
+      };
 
       const formattedBooks = responses
         .filter(book => book?.picture)
@@ -61,7 +61,7 @@ export default function ClientPanel({ title }) {
       console.error('Error fetching books:', error);
     } finally {
       setLoading(false);
-    }
+    };
   }, [user, title]);
 
   useEffect(() => {
@@ -79,7 +79,7 @@ export default function ClientPanel({ title }) {
           book.description.toLowerCase().includes(query)
         )
       );
-    }
+    };
   }, [searchQuery, books]);
 
   return (
@@ -133,7 +133,7 @@ export default function ClientPanel({ title }) {
               ))
             ):(
               <tr>
-                <td colSpan="1" style={{ textAlign: 'center' }}>
+                <td colSpan="1" className='none'>
                   <p>Ups... Book not found.</p>
                 </td>
               </tr>
