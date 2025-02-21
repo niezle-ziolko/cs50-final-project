@@ -83,16 +83,21 @@ export default function ClientPanel({ title }) {
 
   return (
     <div className='panel'>
-      <h1>{title}</h1>
-      {title === 'Library' && (
-        <input
-          type='text'
-          placeholder='Search books...'
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          className='search-input'
-        />
-      )}
+      <div className='heading'>
+        <h1>{title}</h1>
+        {title === 'Library' && (
+          <div className='search'>
+            <input
+              type='text'
+              className='search'
+              value={searchQuery}
+              placeholder='Search books...'
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+            <i className="fa-solid fa-magnifying-glass"></i>
+          </div>
+        )}
+      </div>
       <table>
         <tbody>
           {loading ? (
