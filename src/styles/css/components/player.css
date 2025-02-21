@@ -1,6 +1,6 @@
 .player {
   width: 24em;
-  align-self: auto;
+  align-self: var(--space-auto);
   position: var(--position-relative);
 }
 
@@ -27,13 +27,13 @@
 .player img {
   height: 463px;
   border: var(--border);
-  width: var(--full-space);
+  width: var(--space-full);
 }
 
 .player .placeholder {
   height: 463px;
   border: var(--border);
-  width: var(--full-space);
+  width: var(--space-full);
   display: var(--display-flex);
   align-items: var(--align-center);
   justify-content: var(--align-center);
@@ -102,7 +102,7 @@ media-time-range {
 }
 
 media-time-range {
-  width: var(--full-space);
+  width: var(--space-full);
 }
 
 media-play-button,
@@ -115,7 +115,7 @@ media-seek-backward-button {
   transition: all 0.4s;
   border: var(--border);
   color: var(--primary-color);
-  border-radius: var(--full-space);
+  border-radius: var(--space-full);
   background-color: var(--transparent-color);
 }
 

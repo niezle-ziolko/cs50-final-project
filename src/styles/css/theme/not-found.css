@@ -196,9 +196,9 @@
 }
 
 .screen-out {
-  width: auto;
-  height: auto;
   border-radius: 10px;
+  width: var(--space-auto);
+  height: var(--space-auto);
 }
 
 .screen-out1 {
@@ -274,7 +274,7 @@
   position: var(--position-absolute);
   left: 0;
   z-index: 1;
-  width: var(--full-space);
+  width: var(--space-full);
 }
 
 .screenM:before {
@@ -455,8 +455,8 @@
 }
 
 .speakers .g1 {
-  display: var(--display-flex);
   column-gap: 0.25em;
+  display: var(--display-flex);
 }
 
 .speakers .g1 .g11,
@@ -471,27 +471,27 @@
 }
 
 .speakers .g {
-  width: auto;
   height: 2px;
+  width: var(--space-auto);
   background-color: var(--primary-theme-color);
 }
 
 .bottom {
-  width: var(--full-space);
-  height: auto;
+  column-gap: 8.7em;
+  width: var(--space-full);
+  height: var(--space-auto);
   display: var(--display-flex);
   align-items: var(--align-center);
   justify-content: var(--align-center);
-  column-gap: 8.7em;
 }
 
 .base1 {
+  z-index: -1;
+  margin-top: -0.15em;
+  background-color: #4d4d4d;
   height: var(--primary-space);
   width: var(--secondary-space);
   border: 2px solid var(--primary-theme-color);
-  background-color: #4d4d4d;
-  margin-top: -0.15em;
-  z-index: -1;
 }
 
 .base2 {
@@ -522,7 +522,7 @@
     display: var(--display-flex);
   }
   .screen {
-    display: none;
+    display: var(--space-none);
   }
 }
 
@@ -531,6 +531,6 @@
     display: var(--display-flex);
   }
   .screenM {
-    display: none;
+    display: var(--space-none);
   }
 }

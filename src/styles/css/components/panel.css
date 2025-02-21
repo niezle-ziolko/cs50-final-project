@@ -13,32 +13,39 @@
   max-width: 875px;
 }
 
-.panel:hover, .panel td:hover, .panel .heading .search:hover {
+.panel:hover,
+.panel td:hover,
+.panel .heading .search:hover {
   box-shadow: 10px 10px 0px var(--primary-color);
   transform: translateX(-0.5em) translateY(-0.5em);
 }
 
 .panel .heading {
-  display: flex;
+  display: var(--display-flex);
   justify-content: space-between;
-  align-items: center;
+  align-items: var(--align-center);
 }
 
 .panel .heading .search {
+  width: 250px;
+  padding: 2px 7px;
   border: var(--border);
   transition: .4s ease-in-out;
-  padding: 2px 7px;
+  display: var(--display-flex);
+  align-items: var(--align-center);
 }
 
 .panel .heading .search input {
-  margin-top: 0;
-  border: none;
-  transition: none;
+  width: 100%;
+  border: var(--space-none);
+  transition: var(--space-none);
+  margin-top: var(--space-null);
+  padding-left: var(--space-null);
 }
 
 .panel .heading .search input:hover {
-  box-shadow: none;
-  transform: none;
+  transform: var(--space-none);
+  box-shadow: var(--space-none);
 }
 
 .panel table {
@@ -65,17 +72,17 @@
 .panel td {
   overflow: hidden;
   border: var(--border);
-  top: var(--none-space);
-  left: var(--none-space);
-  right: var(--none-space);
-  width: var(--full-space);
-  height: var(--full-space);
-  bottom: var(--none-space);
+  top: var(--space-null);
+  left: var(--space-null);
+  right: var(--space-null);
+  width: var(--space-full);
+  height: var(--space-full);
+  bottom: var(--space-null);
   transition: .4s ease-in-out;
   display: var(--display-flex);
-  max-width: var(--full-space);
+  max-width: var(--space-full);
   cursor: var(--cursor-pointer);
-  max-height: var(--full-space);
+  max-height: var(--space-full);
   align-items: var(--align-center);
   position: var(--position-absolute);
   justify-content: var(--align-center);
@@ -86,7 +93,7 @@
   width: 205px;
   height: 290px;
   transition: all 0.4s;
-  opacity: var(--none-space);
+  opacity: var(--space-null);
   display: var(--display-flex);
   cursor: var(--cursor-pointer);
   text-align: var(--align-center);
@@ -115,6 +122,6 @@
 
 .panel #icon::before, .panel .fa-regular.fa-heart::before {
   padding: 25px;
-  border-radius: var(--full-space);
+  border-radius: var(--space-full);
   background: rgba(15, 6, 25, .4);
 }

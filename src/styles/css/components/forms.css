@@ -8,8 +8,8 @@
 }
 
 .input {
-  outline: none;
   padding: 0.7em;
+  outline: var(--space-none);
 }
 
 .form .button {
@@ -31,8 +31,8 @@
 
 .form.edit {
   width: 24em;
-  align-self: auto;
   min-height: 48em;
+  align-self: var(--space-auto);
   position: var(--position-relative);
 }
 
@@ -45,7 +45,7 @@
   width: 200px;
   height: 200px;
   display: flex;
-  border-radius: var(--full-space);
+  border-radius: var(--space-full);
   align-items: var(--align-center);
   justify-content: var(--align-center);
   border: 2px solid var(--primary-color);
@@ -64,10 +64,10 @@
   width: 200px;
   height: 200px;
   transition: all 0.4s;
-  opacity: var(--none-space);
+  opacity: var(--space-null);
   cursor: var(--cursor-pointer);
   text-align: var(--align-center);
-  border-radius: var(--full-space);
+  border-radius: var(--space-full);
   position: var(--position-absolute);
   align-content: var(--align-center);
   background: rgba(15, 6, 25, 0.40);
@@ -85,7 +85,7 @@
 
 .form.edit #icon::before {
   padding: 25px;
-  border-radius: var(--full-space);
+  border-radius: var(--space-full);
   background: rgba(15, 6, 25, .4);
 }
 

@@ -7,19 +7,19 @@
 }
 
 .switch input {
-  width: var(--none-space);
-  height: var(--none-space);
-  opacity: var(--none-space);
+  width: var(--space-null);
+  height: var(--space-null);
+  opacity: var(--space-null);
 }
 
 .slider {
   transition: .15s;
   border: var(--border);
   box-sizing: border-box;
-  top: var(--none-space);
-  left: var(--none-space);
-  right: var(--none-space);
-  bottom: var(--none-space);
+  top: var(--space-null);
+  left: var(--space-null);
+  right: var(--space-null);
+  bottom: var(--space-null);
   cursor: var(--cursor-pointer);
   position: var(--position-absolute);
   border-radius: var(--primary-space);
@@ -36,7 +36,7 @@
   width: var(--primary-space);
   height: var(--primary-space);
   transform: translateY(-0.2em);
-  border-radius: var(--full-space);
+  border-radius: var(--space-full);
   position: var(--position-absolute);
   background-color: var(--third-color);
   box-shadow: 0 0.2em 0 var(--primary-color);

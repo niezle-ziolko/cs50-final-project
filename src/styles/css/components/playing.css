@@ -4,7 +4,7 @@
   height: 16px;
   padding: 25px;
   display: var(--display-flex);
-  border-radius: var(--full-space);
+  border-radius: var(--space-full);
   position: var(--position-relative);
   background: rgba(15, 6, 25, 0.40);
   justify-content: var(--align-center);

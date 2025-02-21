@@ -24,12 +24,12 @@
 }
 
 .header .picture {
-  border-radius: var(--full-space);
+  border-radius: var(--space-full);
   border: 2px solid var(--primary-color);
 }
 
 .header .menu {
-  height: var(--full-space);
+  height: var(--space-full);
   display: var(--display-flex);
   text-align: var(--align-center);
   align-items: var(--align-center);

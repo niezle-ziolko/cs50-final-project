@@ -7,7 +7,7 @@
 .placeholder-bar {
   width: 10px;
   height: 50%;
-  bottom: var(--none-space);
+  bottom: var(--space-null);
   transform-origin: center bottom;
   background: var(--primary-color);
   position: var(--position-absolute);
@@ -54,7 +54,7 @@
   height: 10px;
   bottom: 10px;
   border-radius: 50%;
-  left: var(--none-space);
+  left: var(--space-null);
   position: var(--position-absolute);
   background: var(--secondary-theme-color);
   -webkit-animation: ball624 4s infinite;
