@@ -90,7 +90,7 @@
   justify-content: var(--align-center);
 }
 
-.panel #icon::before, .panel .heart::before {
+.panel #icon::before, .panel .fa-regular.fa-heart::before {
   padding: 25px;
   border-radius: var(--full-space);
   background: rgba(15, 6, 25, .4);
