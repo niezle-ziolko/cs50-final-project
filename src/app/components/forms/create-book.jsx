@@ -70,14 +70,17 @@ export default function CreateForm() {
         body: data
       });
 
-      if (!response.ok) {
-        throw new Error('Failed to submit form');
-      };
+      const data = await response.json();
+      setLoading(false);
 
-      console.log('Form submitted successfully');
+      if (response.ok) {
+        console.log('Form submitted successfully');
+      } else {
+        setError(`Error: ${data.error}`);
+      };
     } catch (error) {
-      setError(`Error: ${error}`);
-    } finally {
+      setError('An unexpected error occurred.');
+      console.error('Create error:', error);
       setLoading(false);
     };
   };

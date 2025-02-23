@@ -23,6 +23,10 @@
   justify-content: var(--center-align);
 }
 
+.form.create-book .button {
+  height: 77px;
+}
+
 .form.login {
   width: 24em;
   align-self: var(--center-align);

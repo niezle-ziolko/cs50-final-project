@@ -4,6 +4,8 @@ import { useAuth } from 'context/auth-context';
 
 import Loader from 'components/loader';
 
+import 'styles/css/components/forms.css';
+
 export default function EditForm() {
   const { updateUser, user } = useAuth();
   const [error, setError] = useState('');
