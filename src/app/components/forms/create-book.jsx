@@ -76,7 +76,7 @@ export default function CreateForm() {
 
       console.log('Form submitted successfully');
     } catch (error) {
-      setError('An error occurred while submitting the form.');
+      setError(`Error: ${error}`);
     } finally {
       setLoading(false);
     };
