@@ -1,16 +1,16 @@
 .placeholder-box {
   width: 75px;
   height: 100px;
-  position: var(--position-relative);
+  position: var(--relative-position);
 }
 
 .placeholder-bar {
   width: 10px;
   height: 50%;
-  bottom: var(--space-null);
+  bottom: var(--null-space);
   transform-origin: center bottom;
   background: var(--primary-color);
-  position: var(--position-absolute);
+  position: var(--absolute-position);
   box-shadow: 1px 1px 0 rgba(0, 0, 0, 0.2);
 }
 
@@ -54,8 +54,8 @@
   height: 10px;
   bottom: 10px;
   border-radius: 50%;
-  left: var(--space-null);
-  position: var(--position-absolute);
+  left: var(--null-space);
+  position: var(--absolute-position);
   background: var(--secondary-theme-color);
   -webkit-animation: ball624 4s infinite;
   animation: ball624 4s infinite;

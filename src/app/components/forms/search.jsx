@@ -10,7 +10,7 @@ const SearchBar = ({ searchQuery, setSearchQuery }) => {
         placeholder='Search books...'
         onChange={(e) => setSearchQuery(e.target.value)}
       />
-      <i className="fa-solid fa-magnifying-glass"></i>
+      <i className='fa-solid fa-magnifying-glass'></i>
     </div>
   );
 };

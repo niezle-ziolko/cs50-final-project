@@ -3,7 +3,7 @@
   padding: 2.5em;
   flex-direction: column;
   transition: .4s ease-in-out;
-  display: var(--display-flex);
+  display: var(--flex-display);
   border: var(--primary-border);
   background-color: var(--secondary-color);
 }
@@ -21,31 +21,31 @@
 }
 
 .panel .heading {
-  display: var(--display-flex);
+  display: var(--flex-display);
   justify-content: space-between;
-  align-items: var(--align-center);
+  align-items: var(--center-align);
 }
 
 .panel .heading .search {
   width: 250px;
   padding: 2px 7px;
   transition: .4s ease-in-out;
-  display: var(--display-flex);
+  display: var(--flex-display);
   border: var(--primary-border);
-  align-items: var(--align-center);
+  align-items: var(--center-align);
 }
 
 .panel .heading .search input {
   width: 100%;
-  border: var(--space-none);
-  transition: var(--space-none);
-  margin-top: var(--space-null);
-  padding-left: var(--space-null);
+  border: var(--none-space);
+  transition: var(--none-space);
+  margin-top: var(--null-space);
+  padding-left: var(--null-space);
 }
 
 .panel .heading .search input:hover {
-  transform: var(--space-none);
-  box-shadow: var(--space-none);
+  transform: var(--none-space);
+  box-shadow: var(--none-space);
 }
 
 .panel table {
@@ -55,49 +55,49 @@
 .panel tbody {
   gap: 15px;
   flex-wrap: wrap;
-  display: var(--display-flex);
+  display: var(--flex-display);
 }
 
 .panel tr {
   gap: 10px;
   width: 200px;
   height: 285px;
-  display: var(--display-flex);
-  text-align: var(--align-center);
-  align-items: var(--align-center);
-  position: var(--position-relative);
-  justify-content: var(--align-center);
+  display: var(--flex-display);
+  text-align: var(--center-align);
+  align-items: var(--center-align);
+  position: var(--relative-position);
+  justify-content: var(--center-align);
 }
 
 .panel td {
   overflow: hidden;
-  top: var(--space-null);
-  left: var(--space-null);
-  right: var(--space-null);
-  width: var(--space-full);
-  height: var(--space-full);
-  bottom: var(--space-null);
+  top: var(--null-space);
+  left: var(--null-space);
+  right: var(--null-space);
+  width: var(--full-space);
+  height: var(--full-space);
+  bottom: var(--null-space);
   transition: .4s ease-in-out;
-  display: var(--display-flex);
-  max-width: var(--space-full);
-  cursor: var(--cursor-pointer);
-  max-height: var(--space-full);
+  display: var(--flex-display);
+  max-width: var(--full-space);
+  cursor: var(--pointer-cursor);
+  max-height: var(--full-space);
   border: var(--primary-border);
-  align-items: var(--align-center);
-  position: var(--position-absolute);
-  justify-content: var(--align-center);
+  align-items: var(--center-align);
+  position: var(--absolute-position);
+  justify-content: var(--center-align);
 }
 
 .panel .none {
   display: block;
   text-align: start;
-  cursor: var(--space-auto);
-  border: var(--space-none);
+  cursor: var(--auto-space);
+  border: var(--none-space);
 }
 
 .panel .none:hover {
-  transform: var(--space-none);
-  box-shadow: var(--space-none);
+  transform: var(--none-space);
+  box-shadow: var(--none-space);
 }
 
 .panel .background-icon {
@@ -105,15 +105,15 @@
   width: 205px;
   height: 290px;
   transition: all 0.4s;
-  opacity: var(--space-null);
-  display: var(--display-flex);
-  cursor: var(--cursor-pointer);
-  text-align: var(--align-center);
-  align-items: var(--align-center);
-  position: var(--position-absolute);
-  align-content: var(--align-center);
+  opacity: var(--null-space);
+  display: var(--flex-display);
+  cursor: var(--pointer-cursor);
+  text-align: var(--center-align);
+  align-items: var(--center-align);
+  position: var(--absolute-position);
+  align-content: var(--center-align);
   background: rgba(15, 6, 25, 0.40);
-  justify-content: var(--align-center);
+  justify-content: var(--center-align);
 }
 
 .panel .background-icon:hover {
@@ -122,18 +122,18 @@
 
 .panel #icon {
   color: #e8e8e8;
-  display: var(--display-flex);
-  justify-content: var(--align-center);
+  display: var(--flex-display);
+  justify-content: var(--center-align);
 }
 
 .panel .heart {
   color: #c94c4c;
-  display: var(--display-flex);
-  justify-content: var(--align-center);
+  display: var(--flex-display);
+  justify-content: var(--center-align);
 }
 
 .panel #icon::before, .panel .fa-regular.fa-heart::before {
-  padding: 25px;
-  border-radius: var(--space-full);
+  padding: var(--quarter-space);
+  border-radius: var(--full-space);
   background: rgba(15, 6, 25, .4);
 }

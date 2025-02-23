@@ -6,7 +6,7 @@ import Loader from 'components/loader';
 
 export default function EditForm() {
   const { updateUser, user } = useAuth();
-  const [errorMessage, setErrorMessage] = useState('');
+  const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const [preview, setPreview] = useState(user?.photo || '');
   const [imageFile, setImageFile] = useState(null);
@@ -48,10 +48,10 @@ export default function EditForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setErrorMessage('');
+    setError('');
 
     if (formData.password && formData.password !== formData.confirmPassword) {
-      setErrorMessage('Passwords do not match!');
+      setError('Passwords do not match!');
       return;
     };
 
@@ -77,10 +77,10 @@ export default function EditForm() {
       if (res.ok) {
         updateUser(data);
       } else {
-        setErrorMessage(`Error: ${data.error || 'Failed to update user.'}`);
+        setError(`Error: ${data.error || 'Failed to update user.'}`);
       };
     } catch (error) {
-      setErrorMessage('An unexpected error occurred.');
+      setError('An unexpected error occurred.');
       setLoading(false);
     };
   };
@@ -106,7 +106,7 @@ export default function EditForm() {
         <input className='input' name='password' placeholder='Password' type='password' onChange={handleChange} />
         <input className='input' name='confirmPassword' placeholder='Confirm password' type='password' onChange={handleChange} />
         <span className='span'>Enter only the data you want to change.</span>
-        {errorMessage && <p className='error-message'>{errorMessage}</p>}
+        {error && <p className='error-message'>{error}</p>}
         <button className='button' type='submit' disabled={loading}>
           {loading ? <Loader /> : 'Submit'}
         </button>

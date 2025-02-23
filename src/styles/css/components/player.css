@@ -1,7 +1,7 @@
 .player {
   width: 24em;
-  align-self: var(--space-auto);
-  position: var(--position-relative);
+  align-self: var(--auto-space);
+  position: var(--relative-position);
 }
 
 .player .container {
@@ -9,7 +9,7 @@
   min-height: 42em;
   flex-direction: column;
   transition: .4s ease-in-out;
-  display: var(--display-flex);
+  display: var(--flex-display);
   border: var(--primary-border);
   background-color: var(--secondary-color);
 }
@@ -20,30 +20,30 @@
 }
 
 .player .image {
-  display: var(--display-flex);
-  justify-content: var(--align-center);
+  display: var(--flex-display);
+  justify-content: var(--center-align);
 }
 
 .player img {
   height: 463px;
-  width: var(--space-full);
+  width: var(--full-space);
   border: var(--primary-border);
 }
 
 .player .placeholder {
   height: 463px;
-  width: var(--space-full);
-  display: var(--display-flex);
+  width: var(--full-space);
+  display: var(--flex-display);
   border: var(--primary-border);
-  align-items: var(--align-center);
-  justify-content: var(--align-center);
+  align-items: var(--center-align);
+  justify-content: var(--center-align);
 }
 
 .player .box {
   gap: 5px;
-  display: var(--display-flex);
-  align-items: var(--align-center);
-  justify-content: var(--align-center);
+  display: var(--flex-display);
+  align-items: var(--center-align);
+  justify-content: var(--center-align);
 }
 
 .player .heart {
@@ -51,15 +51,15 @@
   height: 16px;
   font-size: 16px;
   color: #c94c4c;
-  display: var(--display-flex);
-  cursor: var(--cursor-pointer);
-  text-align: var(--align-center);
-  align-items: var(--align-center);
+  display: var(--flex-display);
+  cursor: var(--pointer-cursor);
+  text-align: var(--center-align);
+  align-items: var(--center-align);
 }
 
 .player .title {
   margin-top: 17px;
-  text-align: var(--align-center);
+  text-align: var(--center-align);
   font-family: var(--secondary-font-family);
 }
 
@@ -67,7 +67,7 @@
   font-size: 18px;
   font-weight: bold;
   color: var(--primary-color);
-  text-align: var(--align-center);
+  text-align: var(--center-align);
   padding-bottom: var(--secondary-space);
   font-family: var(--secondary-font-family);
 }
@@ -102,7 +102,7 @@ media-time-range {
 }
 
 media-time-range {
-  width: var(--space-full);
+  width: var(--full-space);
 }
 
 media-play-button,
@@ -111,11 +111,11 @@ media-seek-backward-button {
   width: 50px;
   margin: 10px;
   padding: 10px;
-  font-size: 25px;
   transition: all 0.4s;
   color: var(--primary-color);
   border: var(--primary-border);
-  border-radius: var(--space-full);
+  font-size: var(--quarter-space);
+  border-radius: var(--full-space);
   background-color: var(--transparent-color);
 }
 

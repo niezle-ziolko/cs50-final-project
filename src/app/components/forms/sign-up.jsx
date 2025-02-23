@@ -9,7 +9,7 @@ import Loader from 'components/loader';
 export default function SignUpForm() {
   const router = useRouter();
   const { updateUser } = useAuth();
-  const [errorMessage, setErrorMessage] = useState('');
+  const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     username: '',
@@ -24,10 +24,10 @@ export default function SignUpForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setErrorMessage('');
+    setError('');
 
     if (formData.password !== formData.confirmPassword) {
-      setErrorMessage('Passwords do not match!');
+      setError('Passwords do not match!');
       
       return;
     };
@@ -36,7 +36,7 @@ export default function SignUpForm() {
     const turnstileRes = formState.get('cf-turnstile-response');
 
     if (!turnstileRes || turnstileRes === 'error') {
-      setErrorMessage('Turnstile verification failed.');
+      setError('Turnstile verification failed.');
 
       return;
     };
@@ -45,7 +45,7 @@ export default function SignUpForm() {
       setLoading(true);
 
       if (!turnstileRes || turnstileRes === 'error') {
-        setErrorMessage('Turnstile verification failed.');
+        setError('Turnstile verification failed.');
         setLoading(false);
 
         return;
@@ -82,11 +82,11 @@ export default function SignUpForm() {
           updateUser(data);
           router.push('/auth/my-account');
         } else {
-          setErrorMessage(`Error: ${data.error}`);
+          setError(`Error: ${data.error}`);
         };
       };
     } catch (error) {
-      setErrorMessage('An unexpected error occurred.');
+      setError('An unexpected error occurred.');
       console.error('Registration error:', error);
       setLoading(false);
     };
@@ -105,7 +105,7 @@ export default function SignUpForm() {
           <input className='input' name='password' placeholder='Password' type='password' onChange={handleChange} required />
           <input className='input' name='confirmPassword' placeholder='Confirm password' type='password' onChange={handleChange} required />
           <div className='cf-turnstile' data-sitekey={TURNSTILE_SITE_KEY} data-callback='javascriptCallback' data-theme='dark' />
-          {errorMessage && <p className='error-message'>{errorMessage}</p>}
+          {error && <p className='error-message'>{error}</p>}
           <button className='button' type='submit' disabled={loading}>
             {loading ? <Loader /> : 'Submit'}
           </button>

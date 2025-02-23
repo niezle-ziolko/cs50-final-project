@@ -5,17 +5,17 @@
 
 .header .element {
   padding: 0px 30px;
-  display: var(--display-flex);
+  display: var(--flex-display);
   justify-content: space-between;
   border-bottom: 2px solid var(--primary-color);
 }
 
 .header .box {
   gap: 20px;
-  display: var(--display-flex);
-  align-items: var(--align-center);
+  display: var(--flex-display);
+  align-items: var(--center-align);
   margin-bottom: var(--primary-space);
-  justify-content: var(--align-center);
+  justify-content: var(--center-align);
 }
 
 .header .logo {
@@ -24,13 +24,13 @@
 }
 
 .header .picture {
-  border-radius: var(--space-full);
+  border-radius: var(--full-space);
   border: 2px solid var(--primary-color);
 }
 
 .header .menu {
-  height: var(--space-full);
-  display: var(--display-flex);
-  text-align: var(--align-center);
-  align-items: var(--align-center);
+  height: var(--full-space);
+  display: var(--flex-display);
+  text-align: var(--center-align);
+  align-items: var(--center-align);
 }

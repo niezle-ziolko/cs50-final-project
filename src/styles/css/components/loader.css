@@ -1,13 +1,13 @@
 .loader {
   width: 3px;
   height: 4px;
-  position: var(--position-absolute);
+  position: var(--absolute-position);
 }
 
 .loader div {
   width: 50%;
   height: 150%;
-  position: var(--position-absolute);
+  position: var(--absolute-position);
   background: var(--primary-theme-color);
   animation: loader-fzua35 1s calc(var(--delay) * 1s) infinite ease;
   transform: rotate(calc(var(--rotation) * 1deg)) translate(0, calc(var(--translation) * 1%));

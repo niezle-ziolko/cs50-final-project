@@ -1,6 +1,6 @@
 'use client';
 import ClientPanel from 'components/panel/panel';
-import EditForm from 'components/forms/edit';
+import CreateForm from 'components/forms/create-book';
 
 import 'styles/css/components/forms.css';
 import 'styles/css/components/panel.css';
@@ -11,7 +11,7 @@ export default function MyAccount() {
   return (
     <div className='page'>
       <ClientPanel title={title} />
-      <EditForm />
+      <CreateForm />
     </div>
   );
 };

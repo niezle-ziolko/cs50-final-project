@@ -1,129 +1,118 @@
 'use client';
-import { useState, useRef, useEffect } from 'react';
+import { useState } from 'react';
 import { useAuth } from 'context/auth-context';
 
+import AIIcon from 'styles/icons/ai';
 import Loader from 'components/loader';
-import ImageIcon from 'styles/icons/image';
-import AudioIcon from 'styles/icons/audio';
 
-export default function EditForm() {
+import 'styles/css/components/forms.css';
+
+export default function CreateForm() {
   const { user } = useAuth();
-  const [errorMessage, setErrorMessage] = useState('');
-  const [loading, setLoading] = useState(false);
-  const [imagePreview, setImagePreview] = useState(user?.photo || '');
-  const [audioFile, setAudioFile] = useState(null);
-  const [imageFile, setImageFile] = useState(null);
   const [formData, setFormData] = useState({
-    author: user?.username,
     title: '',
     description: '',
-    link: '',
-    picture: ''
+    audio: [],
+    textFiles: [],
+    image: null,
   });
-
-  const fileInputRef = useRef(null);
-  const audioInputRef = useRef(null);
-
-  useEffect(() => {
-    if (user) {
-      setFormData((prev) => ({
-        ...prev,
-        author: user.username
-      }));
-    }
-  }, [user]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [imageName, setImageName] = useState('No file chosen');
+  const [fileNames, setFileNames] = useState([]);
+  const [isTextMode, setIsTextMode] = useState(false);
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleImageClick = () => {
-    fileInputRef.current.click();
-  };
-
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      setImageFile(file);
-      const reader = new FileReader();
-      reader.onloadend = () => setImagePreview(reader.result);
-      reader.readAsDataURL(file);
-    }
-  };
-
-  const handleAudioClick = () => {
-    audioInputRef.current.click();
-  };
-
-  const handleAudioChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      setAudioFile(file);
-    }
+    const { name, type, files, value } = e.target;
+    if (type === 'file') {
+      if (name === 'image') {
+        setImageName(files[0]?.name || 'No file chosen');
+        setFormData((prev) => ({ ...prev, image: files[0] || null }));
+      } else if (name === 'fileUpload') {
+        const newFiles = Array.from(files);
+        setFileNames(newFiles.map((file) => file.name));
+        setFormData((prev) => ({
+          ...prev,
+          [isTextMode ? 'textFiles' : 'audio']: newFiles,
+        }));
+      };
+    } else {
+      setFormData((prev) => ({ ...prev, [name]: value }));
+    };
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setErrorMessage('');
+    setError(null);
+
+    if (!user?.username) {
+      setError('You must have a username to submit this form.');
+      return;
+    };
+
+    setLoading(true);
+
+    const data = new FormData();
+    data.append('username', user.username);
+    data.append('title', formData.title);
+    data.append('description', formData.description);
+    formData.audio.forEach((file) => data.append('audio', file));
+    formData.textFiles.forEach((file) => data.append('textFiles', file));
+    if (formData.image) data.append('image', formData.image);
 
     try {
-      setLoading(true);
-      const payload = new FormData();
-      Object.entries(formData).forEach(([key, value]) => {
-        if (value.trim() !== '') payload.append(key, value);
-      });
-      if (imageFile) payload.append('picture', imageFile);
-      if (audioFile) payload.append('audio', audioFile);
-
-      const res = await fetch('/api/data/book', {
+      const response = await fetch('/api/data/book', {
         method: 'POST',
         headers: {
+          'Content-Type': 'application/json',
           'Authorization': `Bearer ${process.env.NEXT_PUBLIC_BOOK_AUTH}`
         },
-        body: payload
+        body: data
       });
 
-      const data = await res.json();
-      setLoading(false);
+      if (!response.ok) {
+        throw new Error('Failed to submit form');
+      };
 
-      if (res.ok) {
-        // updateUser(data); // Zakładam, że ta funkcja aktualizuje dane użytkownika
-      } else {
-        setErrorMessage(`Error: ${data.error || 'Failed to update user.'}`);
-      }
+      console.log('Form submitted successfully');
     } catch (error) {
-      setErrorMessage('An unexpected error occurred.');
+      setError('An error occurred while submitting the form.');
+    } finally {
       setLoading(false);
-    }
+    };
   };
 
   return (
-    <div className='form-element' style={{ alignSelf: 'auto' }}>
-      <form className='form' onSubmit={handleSubmit}>
+    <div className='form create-book'>
+      <form className='form' style={{ position: 'absolute' }} onSubmit={handleSubmit}>
         <p className='heading'>Create your book</p>
         <div className='box'>
-          <div className='picture' onClick={handleImageClick} style={{ cursor: 'pointer' }}>
-            {imagePreview ? (
-              <img src={imagePreview} alt='book-cover' width='200' height='200' style={{ borderRadius: '10%' }} />
-            ) : (
-              <span>Click to upload book cover</span>
-            )}
-            <ImageIcon />
-          </div>
-          <input type='file' ref={fileInputRef} style={{ display: 'none' }} onChange={handleImageChange} accept='image/*' />
+          <label className='file-upload'>
+            <input 
+              type='file' 
+              name='fileUpload' 
+              accept={isTextMode ? 'text/plain' : 'audio/mp3'} 
+              multiple 
+              onChange={handleChange} 
+            />
+            <span>Select {isTextMode ? 'Text Files (.txt)' : 'Audio Files (.mp3)'}</span>
+          </label>
+          <p className='file-name'>{fileNames.length > 0 ? fileNames.join(', ') : 'No files chosen'}</p>
+        </div>
+        <div className='box'>
+          <label className='file-upload'>
+            <input type='file' name='image' accept='image/*' onChange={handleChange} />
+            <span>Select Cover Image</span>
+          </label>
+          <p className='file-name'>{imageName}</p>
         </div>
         <input className='input' name='title' placeholder='Title' type='text' value={formData.title} onChange={handleChange} />
-        <input className='input' name='description' placeholder='Description' type='text' value={formData.description} onChange={handleChange} />
-        <div className='box'>
-          <div className='audio' onClick={handleAudioClick} style={{ cursor: 'pointer' }}>
-            <span>Click to upload audio file</span>
-            <AudioIcon />
-          </div>
-        </div>
-        {errorMessage && <p className='error-message'>{errorMessage}</p>}
+        <textarea name='description' placeholder='Description' value={formData.description} onChange={handleChange} />
+        {error && <p className='error-message'>{error}</p>}
         <button className='button' type='submit' disabled={loading}>
           {loading ? <Loader /> : 'Submit'}
         </button>
+        <AIIcon onClick={() => setIsTextMode((prev) => !prev)} />
       </form>
     </div>
   );

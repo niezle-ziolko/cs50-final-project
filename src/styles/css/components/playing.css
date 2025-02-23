@@ -2,19 +2,19 @@
   gap: 2px;
   width: 16px;
   height: 16px;
-  padding: 25px;
-  display: var(--display-flex);
-  border-radius: var(--space-full);
-  position: var(--position-relative);
+  display: var(--flex-display);
+  padding: var(--quarter-space);
+  border-radius: var(--full-space);
+  position: var(--relative-position);
   background: rgba(15, 6, 25, 0.40);
-  justify-content: var(--align-center);
+  justify-content: var(--center-align);
 }
 
 .greenline {
   width: 2px;
   height: 20px;
   transform-origin: bottom;
-  position: var(--position-relative);
+  position: var(--relative-position);
   background-color: var(--secondary-theme-color);
 }
 

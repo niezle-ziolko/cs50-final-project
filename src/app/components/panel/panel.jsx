@@ -6,6 +6,7 @@ import { useAuth } from 'context/auth-context';
 import Loader from '../loader';
 import Playing from '../playing';
 import SearchBar from '../forms/search';
+import InfoButton from '../buttons/info-button';
 import LikeButton from '../buttons/like-button';
 
 import 'styles/css/components/panel.css';
@@ -88,6 +89,9 @@ export default function ClientPanel({ title }) {
         <h1>{title}</h1>
         {title === 'Library' && (
           <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+        )}
+        {title === 'My books' && (
+          <InfoButton />
         )}
       </div>
       <table>

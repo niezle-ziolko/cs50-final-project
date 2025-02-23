@@ -3,25 +3,25 @@
   height: var(--primary-space);
   width: var(--secondary-space);
   font-size: var(--font-size-p);
-  position: var(--position-relative);
+  position: var(--relative-position);
 }
 
 .switch input {
-  width: var(--space-null);
-  height: var(--space-null);
-  opacity: var(--space-null);
+  width: var(--null-space);
+  height: var(--null-space);
+  opacity: var(--null-space);
 }
 
 .slider {
   transition: .15s;
   box-sizing: border-box;
-  top: var(--space-null);
-  left: var(--space-null);
-  right: var(--space-null);
-  bottom: var(--space-null);
-  cursor: var(--cursor-pointer);
+  top: var(--null-space);
+  left: var(--null-space);
+  right: var(--null-space);
+  bottom: var(--null-space);
+  cursor: var(--pointer-cursor);
   border: var(--primary-border);
-  position: var(--position-absolute);
+  position: var(--absolute-position);
   border-radius: var(--primary-space);
   background-color: var(--third-color);
 }
@@ -36,8 +36,8 @@
   height: var(--primary-space);
   transform: translateY(-0.2em);
   border: var(--primary-border);
-  border-radius: var(--space-full);
-  position: var(--position-absolute);
+  border-radius: var(--full-space);
+  position: var(--absolute-position);
   background-color: var(--third-color);
   box-shadow: 0 0.2em 0 var(--primary-color);
 }
@@ -66,29 +66,29 @@ input:hover:checked + .slider:before {
 
 .menu .container {
   gap: 50px;
-  display: var(--display-flex);
-  align-items: var(--align-center);
+  display: var(--flex-display);
+  align-items: var(--center-align);
 }
 
 .menu .list {
   gap: 50px;
   padding: 0px;
   font-size: 20px;
-  display: var(--display-flex);
-  align-items: var(--align-center);
+  display: var(--flex-display);
+  align-items: var(--center-align);
   font-family: var(--primary-font-family);
 }
 
 .menu .item {
-  display: var(--display-flex);
+  display: var(--flex-display);
 }
 
 .menu .item:hover {
   font-weight: bold;
   transition: all 0.3s;
-  cursor: var(--cursor-pointer);
+  cursor: var(--pointer-cursor);
 }
 
 .logout-button {
-  padding: 8px 25px;
+  padding: 8px var(--quarter-space);
 }

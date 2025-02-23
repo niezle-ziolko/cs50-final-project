@@ -6,18 +6,19 @@
   --primary-theme-color: #222831;
   --transparent-color: transparent;
   --secondary-theme-color: #24b3fb;
-  --space-null: 0;
-  --space-auto: auto;
-  --space-none: none;
-  --space-full: 100%;
+  --null-space: 0;
+  --auto-space: auto;
+  --none-space: none;
+  --full-space: 100%;
   --primary-space: 1em;
+  --quarter-space: 25px;
   --secondary-space: 2em;
   --primary-font-size: 15px;
-  --display-flex: flex;
-  --align-center: center;
-  --position-absolute: absolute;
-  --position-relative: relative;
-  --cursor-pointer: pointer;
+  --flex-display: flex;
+  --center-align: center;
+  --absolute-position: absolute;
+  --relative-position: relative;
+  --pointer-cursor: pointer;
   --primary-border: 2px solid var(--primary-color);
 }
 
@@ -28,7 +29,7 @@
 }
 
 body {
-  margin: var(--space-null);
+  margin: var(--null-space);
   height: 100vh;
   transition: all 0.3s;
   color: var(--primary-color);
@@ -39,10 +40,10 @@ body {
 main {
   display: grid;
   padding: 15px 20px;
-  justify-content: var(--align-center);
+  justify-content: var(--center-align);
 }
 
-input {
+input, textarea {
   margin-top: 10px;
   transition: .4s ease-in-out;
   color: var(--primary-color);
@@ -52,7 +53,7 @@ input {
   background-color: var(--secondary-color);
 }
 
-input:hover {
+input:hover, textarea:hover {
   box-shadow: 10px 10px 0px var(--primary-color);
   transform: translateX(-0.5em) translateY(-0.5em);
 }
@@ -64,7 +65,7 @@ input::placeholder {
 button {
   font-weight: bold;
   transition: .4s ease-in-out;
-  cursor: var(--cursor-pointer);
+  cursor: var(--pointer-cursor);
   border: var(--primary-border);
   color: var(--primary-theme-color);
   font-size: var(--primary-font-size);
@@ -79,7 +80,7 @@ button:hover {
 
 button:active {
   transition: .2s;
-  box-shadow: var(--space-none);
+  box-shadow: var(--none-space);
   transform: translateX(0em) translateY(0em);
 }
 
@@ -87,12 +88,12 @@ form {
   gap: 10px;
   padding: 2.5em;
   flex-direction: column;
-  top: var(--space-null);
-  left: var(--space-null);
-  right: var(--space-null);
-  bottom: var(--space-null);    
+  top: var(--null-space);
+  left: var(--null-space);
+  right: var(--null-space);
+  bottom: var(--null-space);    
   transition: .4s ease-in-out;
-  display: var(--display-flex);
+  display: var(--flex-display);
   border: var(--primary-border);
   background-color: var(--secondary-color);
 }
@@ -114,7 +115,7 @@ h2 {
 
 a {
   color: var(--primary-color);
-  text-decoration: var(--space-none);
+  text-decoration: var(--none-space);
 }
 
 p {
@@ -125,12 +126,25 @@ p {
 }
 
 hr {
-  width: var(--space-full);
-  margin: var(--space-null);
+  width: var(--full-space);
+  margin: var(--null-space);
   border: 1px solid var(--primary-color);
+}
+
+textarea {
+  height: 100%;
+  resize: none;
+  padding: 0.7em;
+  outline: var(--none-space);
+  background: var(--none-space);
+  border: var(--primary-border);
+}
+
+textarea::placeholder {
+  color: var(--primary-color);
 }
 
 .page {
   gap: 50px;
-  display: var(--display-flex);
+  display: var(--flex-display);
 }

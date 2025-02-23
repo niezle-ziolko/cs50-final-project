@@ -9,7 +9,7 @@ import Loader from 'components/loader';
 export default function SignInForm() {
   const router = useRouter();
   const { updateUser } = useAuth();
-  const [errorMessage, setErrorMessage] = useState('');
+  const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     username: '',
@@ -22,13 +22,13 @@ export default function SignInForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setErrorMessage('');
+    setError('');
 
     const formState = new FormData(e.target);
     const turnstileRes = formState.get('cf-turnstile-response');
 
     if (!turnstileRes || turnstileRes === 'error') {
-      setErrorMessage('Turnstile verification failed.');
+      setError('Turnstile verification failed.');
       
       return;
     };
@@ -37,7 +37,7 @@ export default function SignInForm() {
       setLoading(true);
 
       if (!turnstileRes || turnstileRes === 'error') {
-        setErrorMessage('Turnstile verification failed.');
+        setError('Turnstile verification failed.');
         setLoading(false);
 
         return;
@@ -75,11 +75,11 @@ export default function SignInForm() {
           updateUser(data);
           router.push('/auth/my-account');
         } else {
-          setErrorMessage(`Error: ${data.error}`);
+          setError(`Error: ${data.error}`);
         };
       };
     } catch (error) {
-      setErrorMessage('An unexpected error occurred.');
+      setError('An unexpected error occurred.');
       console.error('Login error:', error);
       setLoading(false);
     };
@@ -96,7 +96,7 @@ export default function SignInForm() {
           <input className='input' name='username' placeholder='Username' type='text' value={formData.username} onChange={handleChange} required />
           <input className='input' name='password' placeholder='Password' type='password' value={formData.password} onChange={handleChange} required />
           <div className='cf-turnstile' data-sitekey={TURNSTILE_SITE_KEY} data-callback='javascriptCallback' data-theme='dark' />
-          {errorMessage && <p className='error-message'>{errorMessage}</p>}
+          {error && <p className='error-message'>{error}</p>}
           <button className='button' type='submit' disabled={loading}>
             {loading ? <Loader /> : 'Submit'}
           </button>

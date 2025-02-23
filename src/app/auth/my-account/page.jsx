@@ -1,6 +1,6 @@
 'use client';
 import ClientPanel from 'components/panel/panel';
-import EditForm from 'components/forms/edit';
+import EditForm from 'components/forms/edit-account';
 
 import 'styles/css/components/forms.css';
 import 'styles/css/components/panel.css';
